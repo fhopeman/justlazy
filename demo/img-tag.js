@@ -1,5 +1,6 @@
 (function () {
 
+    var lazymaltbeer = Lazymaltbeer();
     var btnLazyLoad = window.document.getElementById("btn-lazy-load");
     var imgToLoad = window.document.getElementById("lazy-load-img");
 
