@@ -1,4 +1,4 @@
-# lazymaltbeer [![Build Status](https://travis-ci.org/fhopeman/lazymaltbeer.svg?branch=master)](https://travis-ci.org/fhopeman/lazymaltbeer)
+# lazymaltbeer.js [![Build Status](https://travis-ci.org/fhopeman/lazymaltbeer.svg?branch=master)](https://travis-ci.org/fhopeman/lazymaltbeer)
 Lightweight javascript plugin which uses plain javascript code and doesn't need an empty src tag.
 
 ## Unique selling proposition
