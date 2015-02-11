@@ -2,11 +2,25 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         jshint: {
-            all: ['Gruntfile.js', 'lazymaltbeer.js']
+            files:
+                [
+                'Gruntfile.js',
+                'src/**/*.js',
+                'spec/**/*.js'
+                ]
+        },
+        jasmine : {
+            src : 'src/**/*.js',
+            options : {
+                specs : 'spec/**/*.js'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.registerTask('default', 'jshint');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
+
+    grunt.registerTask('test', ['jshint', 'jasmine']);
+    grunt.registerTask('default', 'test');
 
 };

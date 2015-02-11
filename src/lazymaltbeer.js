@@ -1,4 +1,5 @@
 var Lazymaltbeer = function() {
+    'use strict';
 
     /**
      * Lazy load images with img tag.
