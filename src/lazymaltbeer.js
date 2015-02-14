@@ -9,8 +9,8 @@ var Lazymaltbeer = function() {
      */
     var lazyLoadImg = function(imgPlaceholder) {
         var img = document.createElement("img");
-        img.src = imgPlaceholder.dataset.src;
-        img.alt = imgPlaceholder.dataset.alt;
+        img.src = imgPlaceholder.getAttribute("data-src");
+        img.alt = imgPlaceholder.getAttribute("data-alt");
 
         imgPlaceholder.parentNode.insertBefore(img, imgPlaceholder);
     };
