@@ -3,7 +3,7 @@ Lightweight javascript plugin which uses plain javascript code and doesn't need 
 
 - 100% performance (no jQuery)
 - 100% valid HTML (no empty src tag)
-- Well tested
+- Heavily tested
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
 
