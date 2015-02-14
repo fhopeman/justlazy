@@ -92,7 +92,7 @@ module.exports = function (grunt) {
         }, {
             browserName: "iphone",
             platform: "OS X 10.10",
-            deviceName: "iPad Simulator",
+            deviceName: "iPhone Simulator",
             "device-orientation": "portrait",
             version: "8.1"
         },
