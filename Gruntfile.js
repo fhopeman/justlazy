@@ -148,7 +148,7 @@ module.exports = function (grunt) {
                     build: process.env.TRAVIS_JOB_ID,
                     browsers: browsers,
                     testname: "lazymaltbeer.js tests",
-                    "max-duration": 60,
+                    "max-duration": 120,
                     tags: ["master"]
                 }
             }
