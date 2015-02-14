@@ -1,46 +1,117 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-    var browsers = [{
-        browserName: "firefox",
-        version: "19",
-        platform: "XP"
-    }, {
-        browserName: "chrome",
-        platform: "XP"
-    }, {
-        browserName: "chrome",
-        platform: "linux"
-    }, {
-        browserName: "internet explorer",
-        platform: "WIN8",
-        version: "10"
-    }, {
-        browserName: "internet explorer",
-        platform: "XP",
-        version: "8"
-    }, {
-        browserName: "internet explorer",
-        platform: "VISTA",
-        version: "9"
-    }, {
-        browserName: "opera",
-        platform: "Windows 2008",
-        version: "12"
-    }];
+    var browsers = [
+        // chrome
+        {
+            browserName: "chrome",
+            platform: "Windows XP",
+            version: "26.0"
+        }, {
+            browserName: "chrome",
+            platform: "OS X 10.9",
+            version: "38.0"
+        }, {
+            browserName: "chrome",
+            platform: "Windows 8.1",
+            version: "40.0"
+        }, {
+            browserName: "chrome",
+            platform: "Linux",
+            version: "30.0"
+        },
+        // firefox
+        {
+            browserName: "firefox",
+            platform: "Windows XP",
+            version: "10.0"
+        }, {
+            browserName: "firefox",
+            platform: "Windows 7",
+            version: "17.0"
+        }, {
+            browserName: "firefox",
+            platform: "Linux",
+            version: "35.0"
+        },
+        // internet explorer
+        {
+            browserName: "internet explorer",
+            platform: "Windows XP",
+            version: "8.0"
+        }, {
+            browserName: "internet explorer",
+            platform: "Windows 7",
+            version: "9.0"
+        }, {
+            browserName: "internet explorer",
+            platform: "Windows 8",
+            version: "10.0"
+        }, {
+            browserName: "internet explorer",
+            platform: "Windows 8.1",
+            version: "11.0"
+        },
+        // opera
+        {
+            browserName: "opera",
+            platform: "Windows 7",
+            version: "11"
+        }, {
+            browserName: "opera",
+            platform: "Linux",
+            version: "12"
+        // safari
+        }, {
+            browserName: "safari",
+            platform: "Windows 7",
+            version: "5.1"
+        }, {
+            browserName: "safari",
+            platform: "OS X 10.8",
+            version: "6.0"
+        },
+        // iPhone, iPad
+        {
+            browserName: "iphone",
+            platform: "OS X 10.10",
+            deviceName: "iPhone Simulator",
+            version: "6.1"
+        }, {
+            browserName: "iphone",
+            platform: "OS X 10.10",
+            deviceName: "iPad Simulator",
+            version: "6.0"
+        },
+        // android
+        {
+            browserName: "android",
+            platform: "Linux",
+            deviceName: "Samsung Galaxy S2 Emulator",
+            version: "4.2"
+        }, {
+            browserName: "android",
+            platform: "Linux",
+            deviceName: "Motorola Droid Razr Emulator",
+            version: "4.0"
+        }, {
+            browserName: "android",
+            platform: "Linux",
+            deviceName: "Samsung Galaxy S3 Emulator",
+            version: "4.1"
+        }];
 
     grunt.initConfig({
         jshint: {
-            files:
-                [
+            files: [
                 "Gruntfile.js",
                 "src/**/*.js",
                 "spec/**/*.js"
-                ]
+            ]
         },
-        jasmine : {
-            src : "src/**/*.js",
-            options : {
-                specs : "spec/**/*.js"
+        jasmine: {
+            src: "src/**/*.js",
+            options: {
+                specs: "spec/**/*.js"
             }
         },
         connect: {
@@ -58,7 +129,7 @@ module.exports = function(grunt) {
                     build: process.env.TRAVIS_JOB_ID,
                     browsers: browsers,
                     testname: "lazymaltbeer.js tests",
-                    "max-duration": 60,
+                    "max-duration": 180,
                     tags: ["master"]
                 }
             }
