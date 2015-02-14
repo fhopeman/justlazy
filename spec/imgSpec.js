@@ -14,12 +14,10 @@ describe("lazymaltbeer should lazy load span", function() {
         loadFixtures("img-span.html");
 
         var lazymaltbeer = Lazymaltbeer();
-        //var span = document.getElementById("lazy-span");
-        var span = $("#lazy-span")[0];
+        var span = document.getElementById("lazy-span");
         lazymaltbeer.lazyLoadImg(span);
 
-        // var img = document.getElementsByTagName("img");
-        var img = $("img")[0];
+        var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", "images/test-image.jpg");
         expect(img).toHaveAttr("alt", "alt-test-image");
     });
@@ -32,7 +30,7 @@ describe("lazymaltbeer should lazy load span", function() {
         expect(span).toHaveText("some content here");
         lazymaltbeer.lazyLoadImg(span);
 
-        var img = document.getElementsByTagName("img");
+        var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", "images/test-image.jpg");
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveText("some content here");
@@ -46,10 +44,27 @@ describe("lazymaltbeer should lazy load span", function() {
         expect(span).toHaveCss({display: "none"});
         lazymaltbeer.lazyLoadImg(span);
 
-        var img = document.getElementsByTagName("img");
+        var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", "images/test-image.jpg");
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveCss({display: "none"});
+    });
+
+});
+
+describe("lazymaltbeer should lazy load div", function() {
+
+    it("without extra stuff", function () {
+        loadFixtures("img-div.html");
+
+        var lazymaltbeer = Lazymaltbeer();
+        var div = document.getElementById("lazy-div");
+        lazymaltbeer.lazyLoadImg(div);
+
+        var img = document.getElementsByTagName("img")[0];
+        expect(document.getElementsByTagName("img").length).toBe(1);
+        expect(img).toHaveAttr("src", "images/test-image.jpg");
+        expect(img).toHaveAttr("alt", "alt-test-image");
     });
 
 });
