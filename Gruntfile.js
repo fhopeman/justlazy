@@ -70,7 +70,7 @@ module.exports = function (grunt) {
             platform: "OS X 10.8",
             version: "6.0"
         },
-        // iPhone, iPad
+        // apple
         {
             browserName: "iphone",
             platform: "OS X 10.10",
