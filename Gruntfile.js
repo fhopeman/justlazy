@@ -75,21 +75,25 @@ module.exports = function (grunt) {
             browserName: "iphone",
             platform: "OS X 10.10",
             deviceName: "iPhone Simulator",
+            "device-orientation": "portrait",
             version: "6.1"
         }, {
             browserName: "iphone",
             platform: "OS X 10.10",
             deviceName: "iPad Simulator",
+            "device-orientation": "portrait",
             version: "6.0"
         }, {
             browserName: "iphone",
             platform: "OS X 10.10",
-            deviceName: "iPad Simulator",
-            version: "7.0"
+            deviceName: "iPhone Simulator",
+            "device-orientation": "portrait",
+            version: "7.1"
         }, {
             browserName: "iphone",
             platform: "OS X 10.10",
             deviceName: "iPad Simulator",
+            "device-orientation": "portrait",
             version: "8.1"
         },
         // android
@@ -144,7 +148,7 @@ module.exports = function (grunt) {
                     build: process.env.TRAVIS_JOB_ID,
                     browsers: browsers,
                     testname: "lazymaltbeer.js tests",
-                    "max-duration": 180,
+                    "max-duration": 60,
                     tags: ["master"]
                 }
             }
