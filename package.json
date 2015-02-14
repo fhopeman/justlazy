@@ -16,6 +16,6 @@
     "grunt-contrib-watch": "~0.6.1"
   },
   "scripts": {
-    "test": "grunt --verbose"
+    "test": "grunt travis-ci"
   }
 }

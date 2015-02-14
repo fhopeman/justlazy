@@ -32,15 +32,15 @@ module.exports = function(grunt) {
         jshint: {
             files:
                 [
-                'Gruntfile.js',
-                'src/**/*.js',
-                'spec/**/*.js'
+                "Gruntfile.js",
+                "src/**/*.js",
+                "spec/**/*.js"
                 ]
         },
         jasmine : {
-            src : 'src/**/*.js',
+            src : "src/**/*.js",
             options : {
-                specs : 'spec/**/*.js'
+                specs : "spec/**/*.js"
             }
         },
         connect: {
@@ -51,14 +51,14 @@ module.exports = function(grunt) {
                 }
             }
         },
-        'saucelabs-jasmine': {
+        "saucelabs-jasmine": {
             all: {
                 options: {
                     urls: ["http://127.0.0.1:9999/jasmine-standalone/SpecRunner.html"],
                     build: process.env.TRAVIS_JOB_ID,
                     browsers: browsers,
                     testname: "lazymaltbeer.js tests",
-                    'max-duration': 60,
+                    "max-duration": 60,
                     tags: ["master"]
                 }
             }
@@ -66,16 +66,19 @@ module.exports = function(grunt) {
         watch: {}
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-saucelabs');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("grunt-contrib-jasmine");
+    grunt.loadNpmTasks("grunt-saucelabs");
+    grunt.loadNpmTasks("grunt-contrib-connect");
+    grunt.loadNpmTasks("grunt-contrib-watch");
 
-    grunt.registerTask("dev", ["connect", "watch"]);
-    grunt.registerTask('test', ['jshint', 'jasmine']);
+    grunt.registerTask("server", ["connect", "watch"]);
+    grunt.registerTask("test-jshint", ["jshint"]);
+    grunt.registerTask("test-jasmine", ["jasmine"]);
     grunt.registerTask("test-browsers", ["connect", "saucelabs-jasmine"]);
+    grunt.registerTask("test-all", ["jshint", "jasmine", "connect", "saucelabs-jasmine"]);
+    grunt.registerTask("travis-ci", ["test-all"]);
 
-    grunt.registerTask('default', 'test');
+    grunt.registerTask("default", ["test-jshint", "test-jasmine"]);
 
 };
