@@ -121,6 +121,11 @@ module.exports = function (grunt) {
         jasmine: {
             src: "src/**/*.js",
             options: {
+                vendor: [
+                    "jasmine-standalone/lib/jasmine-jquery-2.0.7/jquery.js",
+                    "jasmine-standalone/lib/jasmine-jquery-2.0.7/jasmine-jquery.js",
+                    "jasmine-standalone/phantomjs-config.js"
+                ],
                 specs: "spec/**/*.js"
             }
         },
