@@ -81,6 +81,16 @@ module.exports = function (grunt) {
             platform: "OS X 10.10",
             deviceName: "iPad Simulator",
             version: "6.0"
+        }, {
+            browserName: "iphone",
+            platform: "OS X 10.10",
+            deviceName: "iPad Simulator",
+            version: "7.0"
+        }, {
+            browserName: "iphone",
+            platform: "OS X 10.10",
+            deviceName: "iPad Simulator",
+            version: "8.1"
         },
         // android
         {
