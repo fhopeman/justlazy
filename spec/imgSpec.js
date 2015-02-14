@@ -62,9 +62,37 @@ describe("lazymaltbeer should lazy load div", function() {
         lazymaltbeer.lazyLoadImg(div);
 
         var img = document.getElementsByTagName("img")[0];
+        expect(img).toHaveAttr("src", "images/test-image.jpg");
+        expect(img).toHaveAttr("alt", "alt-test-image");
+    });
+
+    it("with content (remove content)", function () {
+        loadFixtures("img-div-with-content.html");
+
+        var lazymaltbeer = Lazymaltbeer();
+        var div = document.getElementById("lazy-div");
+        expect(div).toHaveText("many text here ..");
+        lazymaltbeer.lazyLoadImg(div);
+
+        var img = document.getElementsByTagName("img")[0];
         expect(document.getElementsByTagName("img").length).toBe(1);
         expect(img).toHaveAttr("src", "images/test-image.jpg");
         expect(img).toHaveAttr("alt", "alt-test-image");
+        expect(img).not.toHaveText("many text here ..");
+    });
+
+    it("with styling (remove styling)", function() {
+        loadFixtures("img-div-with-css.html");
+
+        var lazymaltbeer = Lazymaltbeer();
+        var div = document.getElementById("lazy-div");
+        expect(div).toHaveCss({display: "none"});
+        lazymaltbeer.lazyLoadImg(div);
+
+        var img = document.getElementsByTagName("img")[0];
+        expect(img).toHaveAttr("src", "images/test-image.jpg");
+        expect(img).toHaveAttr("alt", "alt-test-image");
+        expect(img).not.toHaveCss({display: "none"});
     });
 
 });
