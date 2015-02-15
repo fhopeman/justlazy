@@ -8,7 +8,7 @@ describe("lazymaltbeer", function() {
 
 });
 
-const base64Image = "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=";
+var base64Image = "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=";
 
 describe("lazymaltbeer should lazy load span", function() {
 
