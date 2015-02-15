@@ -7,23 +7,21 @@
     <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.2.0/jasmine_favicon.png">
     <link rel="stylesheet" href="lib/jasmine-2.2.0/jasmine.css">
 
-    <!-- jquery for jasmine tests (fixture support) -->
-    <script src="lib/jasmine-jquery-2.0.7/jquery.js"></script>
-
     <script src="lib/jasmine-2.2.0/jasmine.js"></script>
     <script src="lib/jasmine-2.2.0/jasmine-html.js"></script>
     <script src="lib/jasmine-2.2.0/boot.js"></script>
-
-    <!-- html fixture support for jasmine-->
-    <script src="lib/jasmine-jquery-2.0.7/jasmine-jquery.js"></script>
-    <script>
-        jasmine.getFixtures().fixturesPath = "../spec/fixtures/";
-    </script>
 
     <!--js reporter for saucelabs -->
     <script src="lib/jasmine-jsreporter/jasmine-jsreporter.js"></script>
     <script>
         jasmine.getEnv().addReporter(new jasmine.JSReporter2());
+    </script>
+
+    <!-- html fixture support for jasmine-->
+    <script src="lib/jasmine-jquery-2.0.7/jquery.js"></script>
+    <script src="lib/jasmine-jquery-2.0.7/jasmine-jquery.js"></script>
+    <script>
+        jasmine.getFixtures().fixturesPath = "../spec/fixtures/";
     </script>
 
     <!-- include source files here... -->
