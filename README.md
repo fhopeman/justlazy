@@ -1,5 +1,5 @@
 # justlazy.js [![Build Status](https://travis-ci.org/fhopeman/justlazy.svg?branch=master)](https://travis-ci.org/fhopeman/justlazy)
-Lightweight javascript plugin to lazy load (responsive) images. Most of the existing javascript plugins using jQuery or supporting just the img-tag. This plugin is supposed to be an alternative for (responsive) image lazy loading.
+Lightweight javascript plugin to lazy load (responsive) images. Most of the existing javascript plugins using jQuery or supporting just the img-tag. This plugin is supposed to be an alternative.
 
 - 100% performance with plain javascript (no jQuery)
 - 100% valid HTML (no empty src tag)
@@ -32,11 +32,11 @@ The result will be:
 Coming soon ..
 
 ## Testing
-justlazy has CI set up through Travis CI and Sauce Labs (free for open-source projects).
+justlazy has CI set up through [Travis CI](https://travis-ci.org) and [Sauce Labs](https://saucelabs.com) (free for open-source projects).
 Pull-request and checkins will be tested automatically.
 
-To run tests manually you can use the `grunt server` command and
-call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
+To run tests manually you can use the `grunt` command to perform jshint and jasmine tests with phantomjs.
+Furthermore you can run `grunt server` to call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
 
 ## Contributing
 Just clone the repo and feel free to contribute.
