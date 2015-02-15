@@ -228,11 +228,10 @@ hr {
 }
 
 .example-container {
-    margin-top: 50px;
+    margin-top: 10px;
 }
 .lazy-container {
     width: 100%;
-    height: 337px;
 }
 .lazy-container img {
     width: 100%;
@@ -278,7 +277,6 @@ a {
     border-radius: 50%;
     width: 8em;
     height: 8em;
-    top: calc(50% - 4em);
     left: calc(50% - 4em);
 }
 @-webkit-keyframes load8 {
