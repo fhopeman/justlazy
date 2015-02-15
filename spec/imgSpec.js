@@ -9,6 +9,7 @@ describe("lazymaltbeer", function() {
 });
 
 var base64Image = "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=";
+var base64Image2 = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
 describe("lazymaltbeer should lazy load span", function() {
 
@@ -52,6 +53,38 @@ describe("lazymaltbeer should lazy load span", function() {
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveCss({display: "none"});
         expect(document.getElementById("lazy-span")).not.toExist();
+    });
+
+    it("in complex html structure", function() {
+        loadFixtures("img-span-complex.html");
+
+        var lazymaltbeer = Lazymaltbeer();
+
+        // load img 1
+        expect(document.querySelectorAll(".lazy-span").length).toBe(3);
+        lazymaltbeer.lazyLoadImg(document.querySelectorAll(".lazy-span")[0]);
+        var img1 = document.getElementById("li-1").getElementsByTagName("img")[0];
+        expect(img1).toHaveAttr("src", base64Image);
+        expect(img1).toHaveAttr("alt", "alt-test-image-1");
+        expect(document.getElementById("li-1").getElementsByTagName("span")).not.toExist();
+
+        // load img 2
+        expect(document.querySelectorAll(".lazy-span").length).toBe(2);
+        lazymaltbeer.lazyLoadImg(document.querySelectorAll(".lazy-span")[0]);
+        var img2 = document.getElementById("li-2").getElementsByTagName("img")[0];
+        expect(img2).toHaveAttr("src", base64Image);
+        expect(img2).toHaveAttr("alt", "alt-test-image-2");
+        expect(document.getElementById("li-2").getElementsByTagName("span")).not.toExist();
+
+        // load img 3
+        expect(document.querySelectorAll(".lazy-span").length).toBe(1);
+        lazymaltbeer.lazyLoadImg(document.querySelectorAll(".lazy-span")[0]);
+        var img3 = document.getElementById("li-3").getElementsByTagName("img")[0];
+        expect(img3).toHaveAttr("src", base64Image);
+        expect(img3).toHaveAttr("alt", "alt-test-image-3");
+        expect(document.getElementById("li-3").getElementsByTagName("span")).not.toExist();
+
+        expect(document.getElementsByTagName("img").length).toBe(4);
     });
 
 });
