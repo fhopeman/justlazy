@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
@@ -8,86 +8,59 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <title>justlazy.js by fhopeman</title>
-  </head>
+    <title>justlazy.js</title>
+</head>
 
-  <body>
+<body>
 
-    <header>
-      <div class="container">
+<header>
+    <div class="container">
         <h1>justlazy.js</h1>
         <h2>lightweight javascript plugin for image lazy loading</h2>
-
         <section id="downloads">
-          <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/fhopeman/justlazy" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+            <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn">get .zip</a>
+            <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn">get .tar.gz</a>
+            <a href="https://github.com/fhopeman/justlazy" class="btn btn-github">
+                <span class="icon"></span>
+                fork me!
+            </a>
         </section>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-<a id="justlazyjs-" class="anchor" href="#justlazyjs-" aria-hidden="true"><span class="octicon octicon-link"></span></a>justlazy.js <a href="https://travis-ci.org/fhopeman/justlazy"><img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" alt="Build Status"></a>
-</h1>
-
-<p>Lightweight javascript plugin to lazy load (responsive) images. Most of the existing javascript plugins using jQuery or supporting just the img-tag. This plugin is supposed to be an alternative.</p>
-
-<ul>
-<li>100% performance with plain javascript (no jQuery)</li>
-<li>100% valid HTML (no empty src tag)</li>
-<li>Simplicity and lightness (just lazy loading of images, no special cases)</li>
-<li>Heavily tested on various devices, browsers and OS versions</li>
-</ul>
-
-<p><a href="https://saucelabs.com/u/fhopeman"><img src="https://saucelabs.com/browser-matrix/fhopeman.svg" alt="Sauce Test Status"></a></p>
-
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
-
-<p>The basic way is to include the justlazy.js file (maybe minified) into your page.</p>
-
-<h3>
-<a id="loading-the-img-tag" class="anchor" href="#loading-the-img-tag" aria-hidden="true"><span class="octicon octicon-link"></span></a>loading the img-tag</h3>
-
-<p>The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..). The <code>data-src</code> attribute is mandatory, the <code>data-alt</code> attribute optional. </p>
-
-<pre><code>  &lt;span id="lazy-span" data-src="path/to/image" data-alt="altText"&gt;&lt;/span&gt;
-</code></pre>
-
-<p>You can trigger the lazy loading with the following commands:</p>
-
-<pre><code>  var justlazy = Justlazy();
-  justlazy.lazyLoadImg(document.getElementById("lazy-span"));
-</code></pre>
-
-<p>The result will be:</p>
-
-<pre><code>  &lt;img src="path/to/image" alt="altText"/&gt;
-</code></pre>
-
-<h3>
-<a id="loading-the-picture-tag" class="anchor" href="#loading-the-picture-tag" aria-hidden="true"><span class="octicon octicon-link"></span></a>loading the picture-tag</h3>
-
-<p>Coming soon ..</p>
-
-<h2>
-<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h2>
-
-<p>justlazy has CI set up through <a href="https://travis-ci.org">Travis CI</a> and <a href="https://saucelabs.com">Sauce Labs</a> (free for open-source projects).
-Pull-request and checkins will be tested automatically.</p>
-
-<p>To run tests manually you can use the <code>grunt</code> command to perform jshint and jasmine tests with phantomjs.
-Furthermore you can run <code>grunt server</code> to call the jasmine runner in your browser <a href="http://localhost:9999">localhost:9999</a></p>
-
-<h2>
-<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
-
-<p>Just feel free to contribute.</p>
-      </section>
     </div>
+</header>
 
-    
-  </body>
+<div class="container">
+    <section id="main_content">
+        <h1>
+            justlazy.js
+        </h1>
+        <a href="https://travis-ci.org/fhopeman/justlazy">
+            <img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" alt="Build Status">
+        </a>
+
+        <pre><!--
+         --><code><!--
+             -->var justlazy = Justlazy();
+<!--         -->justlazy.lazyLoadImg(document.getElementById("lazy-span"));<!--
+         --></code><!--
+     --></pre>
+        <a id="load-img-1" href="#" class="btn btn-lazy-load">lazy load</a>
+        <div class="lazy-container">
+            <img src="images/lazy_1.jpg" alt="alt_lazy_1"/>
+        </div>
+
+        <a id="load-img-2" href="#" class="btn btn-lazy-load">lazy load</a>
+        <div class="lazy-container">
+            <img src="images/lazy_2.jpg" alt="alt_lazy_1"/>
+        </div>
+
+        <a id="load-img-3" href="#" class="btn btn-lazy-load">lazy load</a>
+        <div class="lazy-container">
+            <img src="images/lazy_3.jpg" alt="alt_lazy_1"/>
+        </div>
+
+    </section>
+</div>
+
+
+</body>
 </html>
