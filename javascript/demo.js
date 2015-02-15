@@ -2,16 +2,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var justlazy = Justlazy();
 
-    var initLazyBtn = function (btn, lazyImgElem) {
+    var initLazyBtn = function (btn, lazyPlaceholderId) {
         btn.onclick = function() {
-            var span = document.getElementById(lazyImgElem);
-            if (span) {
-                justlazy.lazyLoadImg(span);
+            var lazyPlaceholder = document.getElementById(lazyPlaceholderId);
+            if (lazyPlaceholder) {
+                justlazy.lazyLoadImg(lazyPlaceholder);
             }
+            
             return false;
         };
     };
-    
+
     // img 1
     initLazyBtn(document.getElementById("load-img-1"), "lazy-img-1");
 
