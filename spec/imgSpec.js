@@ -16,8 +16,7 @@ describe("lazymaltbeer should lazy load span", function() {
     it("without extra stuff", function() {
         loadFixtures("img-span.html");
 
-        var lazymaltbeer = Lazymaltbeer();
-        lazymaltbeer.lazyLoadImg(document.getElementById("lazy-span"));
+        Lazymaltbeer().lazyLoadImg(document.getElementById("lazy-span"));
 
         var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", base64Image);
@@ -31,6 +30,7 @@ describe("lazymaltbeer should lazy load span", function() {
         var lazymaltbeer = Lazymaltbeer();
         var span = document.getElementById("lazy-span");
         expect(span).toHaveText("some content here");
+
         lazymaltbeer.lazyLoadImg(span);
 
         var img = document.getElementsByTagName("img")[0];
@@ -46,6 +46,7 @@ describe("lazymaltbeer should lazy load span", function() {
         var lazymaltbeer = Lazymaltbeer();
         var span = document.getElementById("lazy-span");
         expect(span).toHaveCss({display: "none"});
+
         lazymaltbeer.lazyLoadImg(span);
 
         var img = document.getElementsByTagName("img")[0];
@@ -72,7 +73,7 @@ describe("lazymaltbeer should lazy load span", function() {
         expect(document.querySelectorAll(".lazy-span").length).toBe(2);
         lazymaltbeer.lazyLoadImg(document.querySelectorAll(".lazy-span")[0]);
         var img2 = document.getElementById("li-2").getElementsByTagName("img")[0];
-        expect(img2).toHaveAttr("src", base64Image);
+        expect(img2).toHaveAttr("src", base64Image2);
         expect(img2).toHaveAttr("alt", "alt-test-image-2");
         expect(document.getElementById("li-2").getElementsByTagName("span")).not.toExist();
 
@@ -87,6 +88,22 @@ describe("lazymaltbeer should lazy load span", function() {
         expect(document.getElementsByTagName("img").length).toBe(4);
     });
 
+    it("without data-alt attribute", function () {
+        loadFixtures("img-span-without-alt.html");
+
+        var lazymaltbeer = Lazymaltbeer();
+        var span = document.getElementById("lazy-span");
+        expect(span).toHaveAttr("data-src", base64Image);
+        expect(span).not.toHaveAttr("data-alt");
+
+        lazymaltbeer.lazyLoadImg(span);
+
+        var img = document.getElementsByTagName("img");
+        expect(img).toExist();
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).not.toHaveAttr("data-alt");
+    });
+
 });
 
 describe("lazymaltbeer should lazy load div", function() {
@@ -94,8 +111,7 @@ describe("lazymaltbeer should lazy load div", function() {
     it("without extra stuff", function () {
         loadFixtures("img-div.html");
 
-        var lazymaltbeer = Lazymaltbeer();
-        lazymaltbeer.lazyLoadImg(document.getElementById("lazy-div"));
+        Lazymaltbeer().lazyLoadImg(document.getElementById("lazy-div"));
 
         var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", base64Image);
@@ -109,6 +125,7 @@ describe("lazymaltbeer should lazy load div", function() {
         var lazymaltbeer = Lazymaltbeer();
         var div = document.getElementById("lazy-div");
         expect(div).toHaveText("many text here ..");
+
         lazymaltbeer.lazyLoadImg(div);
 
         var img = document.getElementsByTagName("img")[0];
@@ -125,6 +142,7 @@ describe("lazymaltbeer should lazy load div", function() {
         var lazymaltbeer = Lazymaltbeer();
         var div = document.getElementById("lazy-div");
         expect(div).toHaveCss({display: "none"});
+
         lazymaltbeer.lazyLoadImg(div);
 
         var img = document.getElementsByTagName("img")[0];
@@ -132,6 +150,59 @@ describe("lazymaltbeer should lazy load div", function() {
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveCss({display: "none"});
         expect(document.getElementById("lazy-div")).not.toExist();
+    });
+
+    it("with empty data-alt attribute", function() {
+        loadFixtures("img-div-empty-alt.html");
+
+        var lazymaltbeer = Lazymaltbeer();
+        var div = document.getElementById("lazy-div");
+        expect(div).toHaveAttr("data-src", base64Image);
+        expect(div).toHaveAttr("data-alt", "");
+
+        lazymaltbeer.lazyLoadImg(div);
+
+        var img = document.getElementsByTagName("img")[0];
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).not.toHaveAttr("alt");
+        expect(document.getElementById("lazy-div")).not.toExist();
+    });
+
+});
+
+describe("lazymaltbeer shouldnt lazy load span", function() {
+
+    it("without data-src attribute", function () {
+        loadFixtures("img-span-errors.html");
+
+        var errorContainer = document.getElementById("lazy-span-error-src");
+        var lazymaltbeer = Lazymaltbeer();
+        var span = errorContainer.getElementsByTagName("span")[0];
+        expect(span).not.toHaveAttr("data-src");
+        expect(span).toHaveAttr("data-alt", "alt-test-image");
+
+        lazymaltbeer.lazyLoadImg(span);
+
+        expect(errorContainer.getElementsByTagName("span")).toExist();
+        expect(errorContainer.getElementsByTagName("img")).not.toExist();
+    });
+
+    it("without data-src and data-alt attribute", function () {
+        loadFixtures("img-span-errors.html");
+
+        var errorContainer = document.getElementById("lazy-span-error-src-alt");
+        var lazymaltbeer = Lazymaltbeer();
+        var span = errorContainer.getElementsByTagName("span")[0];
+        expect(span).not.toHaveAttr("data-src");
+        expect(span).not.toHaveAttr("data-alt");
+        expect(span).toHaveAttr("data-some-other", "someOtherValue");
+
+        lazymaltbeer.lazyLoadImg(span);
+
+        var spanAfterReload = errorContainer.getElementsByTagName("span");
+        expect(spanAfterReload).toExist();
+        expect(spanAfterReload).toHaveAttr("data-some-other", "someOtherValue");
+        expect(errorContainer.getElementsByTagName("img")).not.toExist();
     });
 
 });
