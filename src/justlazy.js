@@ -1,4 +1,4 @@
-var Lazymaltbeer = function() {
+var Justlazy = function() {
     'use strict';
 
     var module = {};

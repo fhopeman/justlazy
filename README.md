@@ -1,4 +1,4 @@
-# lazymaltbeer.js [![Build Status](https://travis-ci.org/fhopeman/justlazy.svg?branch=master)](https://travis-ci.org/fhopeman/justlazy)
+# justlazy.js [![Build Status](https://travis-ci.org/fhopeman/justlazy.svg?branch=master)](https://travis-ci.org/fhopeman/justlazy)
 Lightweight javascript plugin which uses plain javascript code and doesn't need an empty src tag.
 
 - 100% performance (no jQuery)
