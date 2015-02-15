@@ -1,0 +1,8 @@
+.lazy-placeholder {
+    text-align: center;
+    background-color: #EFEFEF;
+}
+.lazy-placeholder:after {
+    position: relative;
+    top: 50%;
+}

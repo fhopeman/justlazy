@@ -3,11 +3,25 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>lazy maltbeer image lazy loading demo</title>
+
+    <link rel="stylesheet" href="demo.css"/>
+    <link rel="stylesheet" href="../src/lazymaltbeer.css"/>
 </head>
 <body>
 
-    <button id="btn-lazy-load">load img lazy!</button>
-    <span id="lazy-load-img" data-src="images/medium.jpg" data-alt="lazy img"/>
+    <div class="example-area">
+        <button id="btn-lazy-load">load img lazy!</button>
+        <div id="lazy-load-img" class="lazy-placeholder" data-src="images/medium.jpg" data-alt="lazy img"
+                style="width: 100px; height: 100px;">
+        </div>
+    </div>
+
+    <div class="example-area">
+        <button id="btn-lazy-load-1">load img lazy!</button>
+        <div id="lazy-load-img-1" class="lazy-placeholder-1" data-src="images/medium.jpg" data-alt="lazy img"
+             style="width: 100px; height: 100px;">
+        </div>
+    </div>
 
 </body>
 </html>
