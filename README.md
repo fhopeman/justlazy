@@ -4,7 +4,7 @@ Lightweight javascript plugin to lazy load (responsive) images. Most of the exis
 - 100% performance with plain javascript (no jQuery)
 - 100% valid HTML (no empty src tag)
 - Simplicity and lightness (just lazy loading of images, no special cases)
-- Heavily tested on various devices  
+- Heavily tested on various devices, browsers and OS versions
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
 
