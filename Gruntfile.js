@@ -148,7 +148,7 @@ module.exports = function (grunt) {
                     build: process.env.TRAVIS_JOB_ID,
                     browsers: browsers,
                     testname: "justlazy.js tests",
-                    "max-duration": 120,
+                    "max-duration": 240,
                     tags: ["master"]
                 }
             }
