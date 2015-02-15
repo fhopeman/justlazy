@@ -1,8 +1,20 @@
 var Lazymaltbeer = function() {
     'use strict';
 
+    var module = {};
+
+    /**
+     * Creates an img html node and sets the src and alt
+     * attributes.
+     *
+     * @param src mandatory image source attribute.
+     * @param alt optional alt text attribute.
+     *
+     * @returns {HTMLElement} img html node.
+     */
     var createImg = function (src, alt) {
         var img = document.createElement("img");
+
         img.src = src;
         if (alt) {
             img.alt = alt;
@@ -11,6 +23,12 @@ var Lazymaltbeer = function() {
         return img;
     };
 
+    /**
+     * Replaces the img placeholder (html node of any type) with the img.
+     *
+     * @param imgPlaceholder img placeholder html node.
+     * @param img img node itself.
+     */
     var replacePlacholderWithImg = function (imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
         if (parentNode) {
@@ -23,9 +41,10 @@ var Lazymaltbeer = function() {
      * Lazy load images with img tag.
      *
      * @param imgPlaceholder the placeholder is a html node of any type (e.g. a span element).
-     *                       The node has to provide the data elements src and alt.
+     *                       The node has to provide the data element data-src. The data-alt
+     *                       attribute is optional.
      */
-    var lazyLoadImg = function(imgPlaceholder) {
+    module.lazyLoadImg = function(imgPlaceholder) {
         var src = imgPlaceholder.getAttribute("data-src");
         var alt = imgPlaceholder.getAttribute("data-alt");
 
@@ -35,8 +54,6 @@ var Lazymaltbeer = function() {
         }
     };
 
-    return {
-        lazyLoadImg: lazyLoadImg
-    };
+    return module;
 
 };
