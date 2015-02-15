@@ -147,7 +147,7 @@ module.exports = function (grunt) {
                     urls: ["http://127.0.0.1:9999/jasmine-standalone/SpecRunner.html"],
                     build: process.env.TRAVIS_JOB_ID,
                     browsers: browsers,
-                    testname: "lazymaltbeer.js tests",
+                    testname: "justlazy.js tests",
                     "max-duration": 120,
                     tags: ["master"]
                 }

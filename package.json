@@ -1,10 +1,10 @@
 {
-  "name": "lazymaltbeer",
+  "name": "justlazy",
   "description": "Lightweight javascript plugin to lazy load images",
-  "version": "0.0.1",
+  "version": "0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fhopeman/lazymaltbeer"
+    "url": "https://github.com/fhopeman/justlazy"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
