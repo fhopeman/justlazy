@@ -12,7 +12,11 @@ var Lazymaltbeer = function() {
         img.src = imgPlaceholder.getAttribute("data-src");
         img.alt = imgPlaceholder.getAttribute("data-alt");
 
-        imgPlaceholder.parentNode.insertBefore(img, imgPlaceholder);
+        var parentNode = imgPlaceholder.parentNode;
+        if (parentNode) {
+            parentNode.insertBefore(img, imgPlaceholder);
+            parentNode.removeChild(imgPlaceholder);
+        }
     };
 
     return {

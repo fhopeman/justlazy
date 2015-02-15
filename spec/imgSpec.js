@@ -16,12 +16,12 @@ describe("lazymaltbeer should lazy load span", function() {
         loadFixtures("img-span.html");
 
         var lazymaltbeer = Lazymaltbeer();
-        var span = document.getElementById("lazy-span");
-        lazymaltbeer.lazyLoadImg(span);
+        lazymaltbeer.lazyLoadImg(document.getElementById("lazy-span"));
 
         var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
+        expect(document.getElementById("lazy-span")).not.toExist();
     });
 
     it("with content (remove content)", function() {
@@ -36,6 +36,7 @@ describe("lazymaltbeer should lazy load span", function() {
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveText("some content here");
+        expect(document.getElementById("lazy-span")).not.toExist();
     });
 
     it("with styling (remove styling)", function() {
@@ -50,6 +51,7 @@ describe("lazymaltbeer should lazy load span", function() {
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveCss({display: "none"});
+        expect(document.getElementById("lazy-span")).not.toExist();
     });
 
 });
@@ -60,12 +62,12 @@ describe("lazymaltbeer should lazy load div", function() {
         loadFixtures("img-div.html");
 
         var lazymaltbeer = Lazymaltbeer();
-        var div = document.getElementById("lazy-div");
-        lazymaltbeer.lazyLoadImg(div);
+        lazymaltbeer.lazyLoadImg(document.getElementById("lazy-div"));
 
         var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
+        expect(document.getElementById("lazy-div")).not.toExist();
     });
 
     it("with content (remove content)", function () {
@@ -81,6 +83,7 @@ describe("lazymaltbeer should lazy load div", function() {
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveText("many text here ..");
+        expect(document.getElementById("lazy-div")).not.toExist();
     });
 
     it("with styling (remove styling)", function() {
@@ -95,6 +98,7 @@ describe("lazymaltbeer should lazy load div", function() {
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveCss({display: "none"});
+        expect(document.getElementById("lazy-div")).not.toExist();
     });
 
 });
