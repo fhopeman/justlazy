@@ -14,7 +14,8 @@ Lightweight javascript plugin to lazy load (responsive) images. Most of the exis
 The basic way is to include the justlazy.js file (maybe minified) into your page.
 
 ### loading the img-tag
-The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..). The `data-src` attribute is mandatory, the `data-alt` attribute optional. 
+The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
+The `data-src` attribute is mandatory, the `data-alt` and `data-title` attribute optional.
 ```
   <span id="lazy-span" data-src="path/to/image"
                        data-alt="optional alt text"

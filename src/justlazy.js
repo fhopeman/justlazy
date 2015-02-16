@@ -9,7 +9,7 @@ var Justlazy = (function() {
      *
      * @param src mandatory image source attribute.
      * @param alt optional alt text attribute.
-     * @param title optinal title attribute.
+     * @param title optional title attribute.
      *
      * @returns {HTMLElement} img html node.
      */
