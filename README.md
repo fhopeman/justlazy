@@ -16,18 +16,20 @@ The basic way is to include the justlazy.js file (maybe minified) into your page
 ### loading the img-tag
 The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..). The `data-src` attribute is mandatory, the `data-alt` attribute optional. 
 ```
-  <span id="lazy-span" data-src="path/to/image" data-alt="altText"></span>
+  <span id="lazy-span" data-src="path/to/image"
+                       data-alt="optional alt text"
+                       data-title="optional title">
+  </span>
 ```
 
 You can trigger the lazy loading with the following commands:
 ```
-  var justlazy = Justlazy();
-  justlazy.lazyLoadImg(document.getElementById("lazy-span"));
+  Justlazy.lazyLoadImg(document.getElementById("lazy-span"));
 ```
 
 The result will be:
 ```
-  <img src="path/to/image" alt="altText"/>
+  <img src="path/to/image" alt="optional alt text" title="optional title"/>
 ```
 
 ### loading the picture-tag
