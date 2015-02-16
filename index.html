@@ -35,20 +35,17 @@
             <img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" alt="Build Status">
         </a>
 
-        <pre><!--
-         --><code><!--
-             -->var justlazy = Justlazy();<!--
-         --></code><!--
-     --></pre>
-        This demo uses buttons to trigger the lazy loading event. But feel free
-        to use other event (e.g. scroll events) types.
+        <p>
+            This demo uses buttons to trigger the lazy loading event. But feel free
+            to use other event types (e.g. scroll events).
+        </p>
 <pre>
 <code><!--
 -->var initLazyBtn = function (btn, placeholderId) {
     btn.onclick = function() {
         var placeholder = document.getElementById(placeholderId);
         if (placeholder) {
-            justlazy.lazyLoadImg(placeholder);
+            Justlazy.lazyLoadImg(placeholder);
         }
 
         return false;
