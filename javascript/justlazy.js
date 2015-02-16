@@ -1,4 +1,4 @@
-var Justlazy = function() {
+var Justlazy = (function() {
     'use strict';
 
     var module = {};
@@ -9,15 +9,19 @@ var Justlazy = function() {
      *
      * @param src mandatory image source attribute.
      * @param alt optional alt text attribute.
+     * @param title optional title attribute.
      *
      * @returns {HTMLElement} img html node.
      */
-    var createImg = function (src, alt) {
+    var createImg = function (src, alt, title) {
         var img = document.createElement("img");
 
         img.src = src;
         if (alt) {
             img.alt = alt;
+        }
+        if (title) {
+            img.title = title;
         }
 
         return img;
@@ -42,18 +46,19 @@ var Justlazy = function() {
      *
      * @param imgPlaceholder the placeholder is a html node of any type (e.g. a span element).
      *                       The node has to provide the data element data-src. The data-alt
-     *                       attribute is optional.
+     *                       and data-title attributes are optional.
      */
     module.lazyLoadImg = function(imgPlaceholder) {
         var src = imgPlaceholder.getAttribute("data-src");
         var alt = imgPlaceholder.getAttribute("data-alt");
+        var title = imgPlaceholder.getAttribute("data-title");
 
         if (src) {
-            var img = createImg(src, alt);
+            var img = createImg(src, alt, title);
             replacePlacholderWithImg(imgPlaceholder, img);
         }
     };
 
     return module;
 
-};
+})();
