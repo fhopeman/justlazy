@@ -44,4 +44,4 @@ To run tests manually you can use the `grunt` command to perform jshint and jasm
 Furthermore you can run `grunt server` to call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
 
 ## Contributing
-Just feel free to contribute.
+Just feel free to contribute..
