@@ -1,4 +1,4 @@
-var Justlazy = function() {
+var Justlazy = (function() {
     'use strict';
 
     var module = {};
@@ -56,4 +56,4 @@ var Justlazy = function() {
 
     return module;
 
-};
+})();
