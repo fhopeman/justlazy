@@ -19,6 +19,7 @@ describe("justlazy should lazy load span", function() {
         var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
+        expect(img).toHaveAttr("title", "a title");
         expect(document.getElementById("lazy-span")).not.toExist();
     });
 
@@ -60,7 +61,8 @@ describe("justlazy should lazy load span", function() {
         Justlazy.lazyLoadImg(document.querySelectorAll(".lazy-span")[0]);
         var img1 = document.getElementById("li-1").getElementsByTagName("img")[0];
         expect(img1).toHaveAttr("src", base64Image);
-        expect(img1).toHaveAttr("alt", "alt-test-image-1");
+        expect(img1).toHaveAttr("alt", "alt1");
+        expect(img1).toHaveAttr("title", "title1");
         expect(document.getElementById("li-1").getElementsByTagName("span")).not.toExist();
 
         // load img 2
@@ -68,7 +70,8 @@ describe("justlazy should lazy load span", function() {
         Justlazy.lazyLoadImg(document.querySelectorAll(".lazy-span")[0]);
         var img2 = document.getElementById("li-2").getElementsByTagName("img")[0];
         expect(img2).toHaveAttr("src", base64Image2);
-        expect(img2).toHaveAttr("alt", "alt-test-image-2");
+        expect(img2).toHaveAttr("alt", "alt2");
+        expect(img2).toHaveAttr("title", "title2");
         expect(document.getElementById("li-2").getElementsByTagName("span")).not.toExist();
 
         // load img 3
@@ -76,7 +79,8 @@ describe("justlazy should lazy load span", function() {
         Justlazy.lazyLoadImg(document.querySelectorAll(".lazy-span")[0]);
         var img3 = document.getElementById("li-3").getElementsByTagName("img")[0];
         expect(img3).toHaveAttr("src", base64Image);
-        expect(img3).toHaveAttr("alt", "alt-test-image-3");
+        expect(img3).toHaveAttr("alt", "alt3");
+        expect(img3).toHaveAttr("title", "title3");
         expect(document.getElementById("li-3").getElementsByTagName("span")).not.toExist();
 
         expect(document.getElementsByTagName("img").length).toBe(4);
@@ -87,6 +91,7 @@ describe("justlazy should lazy load span", function() {
 
         var span = document.getElementById("lazy-span");
         expect(span).toHaveAttr("data-src", base64Image);
+        expect(span).toHaveAttr("data-title", "some title");
         expect(span).not.toHaveAttr("data-alt");
 
         Justlazy.lazyLoadImg(span);
@@ -94,7 +99,25 @@ describe("justlazy should lazy load span", function() {
         var img = document.getElementsByTagName("img");
         expect(img).toExist();
         expect(img).toHaveAttr("src", base64Image);
-        expect(img).not.toHaveAttr("data-alt");
+        expect(img).toHaveAttr("title", "some title");
+        expect(img).not.toHaveAttr("alt");
+    });
+
+    it("without data-title attribute", function () {
+        loadFixtures("img-span-without-title.html");
+
+        var span = document.getElementById("lazy-span");
+        expect(span).toHaveAttr("data-src", base64Image);
+        expect(span).toHaveAttr("data-alt", "some alt text");
+        expect(span).not.toHaveAttr("data-title");
+
+        Justlazy.lazyLoadImg(span);
+
+        var img = document.getElementsByTagName("img");
+        expect(img).toExist();
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).toHaveAttr("alt", "some alt text");
+        expect(img).not.toHaveAttr("title");
     });
 
 });
@@ -109,6 +132,7 @@ describe("justlazy should lazy load div", function() {
         var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "alt-test-image");
+        expect(img).toHaveAttr("title", "some title");
         expect(document.getElementById("lazy-div")).not.toExist();
     });
 
@@ -149,12 +173,31 @@ describe("justlazy should lazy load div", function() {
         var div = document.getElementById("lazy-div");
         expect(div).toHaveAttr("data-src", base64Image);
         expect(div).toHaveAttr("data-alt", "");
+        expect(div).toHaveAttr("data-title", "some title");
 
         Justlazy.lazyLoadImg(div);
 
         var img = document.getElementsByTagName("img")[0];
         expect(img).toHaveAttr("src", base64Image);
+        expect(img).toHaveAttr("title", "some title");
         expect(img).not.toHaveAttr("alt");
+        expect(document.getElementById("lazy-div")).not.toExist();
+    });
+
+    it("with empty data-title attribute", function() {
+        loadFixtures("img-div-empty-title.html");
+
+        var div = document.getElementById("lazy-div");
+        expect(div).toHaveAttr("data-src", base64Image);
+        expect(div).toHaveAttr("data-alt", "some alt text");
+        expect(div).toHaveAttr("data-title", "");
+
+        Justlazy.lazyLoadImg(div);
+
+        var img = document.getElementsByTagName("img")[0];
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).toHaveAttr("alt", "some alt text");
+        expect(img).not.toHaveAttr("title");
         expect(document.getElementById("lazy-div")).not.toExist();
     });
 
@@ -172,7 +215,9 @@ describe("justlazy shouldnt lazy load span", function() {
 
         Justlazy.lazyLoadImg(span);
 
-        expect(errorContainer.getElementsByTagName("span")).toExist();
+        var spanAfterLazyLoading = errorContainer.getElementsByTagName("span");
+        expect(spanAfterLazyLoading).toExist();
+        expect(spanAfterLazyLoading).toHaveAttr("data-alt", "alt-test-image");
         expect(errorContainer.getElementsByTagName("img")).not.toExist();
     });
 
