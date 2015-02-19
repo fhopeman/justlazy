@@ -36,8 +36,7 @@ var Justlazy = (function() {
     var replacePlacholderWithImg = function (imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
         if (parentNode) {
-            parentNode.insertBefore(img, imgPlaceholder);
-            parentNode.removeChild(imgPlaceholder);
+            parentNode.replaceChild(img, imgPlaceholder);
         }
     };
 
