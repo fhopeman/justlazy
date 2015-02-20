@@ -39,12 +39,19 @@ The result will be:
 ### loading the picture-tag
 Coming soon ..
 
-## Testing
+## Continuous Integration
 justlazy has CI set up through [Travis CI](https://travis-ci.org) and [Sauce Labs](https://saucelabs.com) (free for open-source projects).
 Pull-request and checkins will be tested automatically.
 
-To run tests manually you can use the `grunt` command to perform jshint and jasmine tests with phantomjs.
-Furthermore you can run `grunt server` to call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
-
 ## Contributing
 Just feel free to contribute ..
+
+### Setup
+To set up the project you just have to run the install command.
+```
+   npm install
+```
+
+### Testing
+To run tests manually you can use the `grunt` command to perform jshint and jasmine tests with phantomjs.
+Furthermore you can run `grunt server` to call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
