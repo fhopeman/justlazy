@@ -11,7 +11,10 @@ Lightweight javascript plugin to lazy load (responsive) images. Most of the exis
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
 
 ## Usage
-The basic way is to include the justlazy.js file (maybe minified) into your page.
+The basic way is to include the `justlazy.js` file (or the minified version `justlazy.min.js`) into your page.
+```
+   <script src="javascript/justlazy.js" type="text/javascript"></script>
+```
 
 ### loading the img-tag
 The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
