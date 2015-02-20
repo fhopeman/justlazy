@@ -115,10 +115,17 @@ module.exports = function (grunt) {
         }];
 
     grunt.initConfig({
+        uglify: {
+            target: {
+                files: {
+                    'src/justlazy.min.js': ['src/justlazy.js']
+                }
+            }
+        },
         jshint: {
             files: [
                 "Gruntfile.js",
-                "src/**/*.js",
+                "src/justlazy.js",
                 "spec/**/*.js"
             ]
         },
@@ -161,14 +168,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-saucelabs");
     grunt.loadNpmTasks("grunt-contrib-connect");
     grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask("server", ["connect", "watch"]);
+    grunt.registerTask("minify", ["uglify"]);
     grunt.registerTask("test-jshint", ["jshint"]);
     grunt.registerTask("test-jasmine", ["jasmine"]);
     grunt.registerTask("test-browsers", ["connect", "saucelabs-jasmine"]);
     grunt.registerTask("test-all", ["jshint", "jasmine", "connect", "saucelabs-jasmine"]);
     grunt.registerTask("travis-ci", ["test-all"]);
 
-    grunt.registerTask("default", ["test-jshint", "test-jasmine"]);
+    grunt.registerTask("default", ["test-jshint", "test-jasmine", "minify"]);
 
 };
