@@ -18,11 +18,13 @@ The basic way is to include the `justlazy.js` file (or the minified version `jus
 
 ### loading the img-tag
 The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
-The `data-src` attribute is mandatory, the `data-alt` and `data-title` attribute optional.
+The `data-src` attribute is mandatory, the `data-alt`, `data-title` and `data-errorhandler`
+attributes are optional.
 ```
   <span id="lazy-span" data-src="path/to/image"
                        data-alt="optional alt text"
-                       data-title="optional title">
+                       data-title="optional title"
+                       data-errorhandler="optional error handler code">
   </span>
 ```
 
@@ -33,7 +35,9 @@ You can trigger the lazy loading with the following commands:
 
 The result will be:
 ```
-  <img src="path/to/image" alt="optional alt text" title="optional title"/>
+  <img src="path/to/image" alt="optional alt text"
+       title="optional title" onerror="optional error handler code"
+  />
 ```
 
 ### loading the picture-tag
