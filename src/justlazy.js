@@ -10,10 +10,11 @@ var Justlazy = (function() {
      * @param src mandatory image source attribute.
      * @param alt optional alt text attribute.
      * @param title optional title attribute.
+     * @param errorhandler optional errorhandler.
      *
      * @returns {HTMLElement} img html node.
      */
-    var createImg = function (src, alt, title) {
+    var createImg = function (src, alt, title, errorhandler) {
         var img = document.createElement("img");
 
         img.src = src;
@@ -22,6 +23,9 @@ var Justlazy = (function() {
         }
         if (title) {
             img.title = title;
+        }
+        if (errorhandler) {
+            img.setAttribute("onerror", errorhandler);
         }
 
         return img;
@@ -51,9 +55,10 @@ var Justlazy = (function() {
         var src = imgPlaceholder.getAttribute("data-src");
         var alt = imgPlaceholder.getAttribute("data-alt");
         var title = imgPlaceholder.getAttribute("data-title");
+        var errorhandler = imgPlaceholder.getAttribute("data-errorhandler");
 
         if (src) {
-            var img = createImg(src, alt, title);
+            var img = createImg(src, alt, title, errorhandler);
             replacePlacholderWithImg(imgPlaceholder, img);
         }
     };

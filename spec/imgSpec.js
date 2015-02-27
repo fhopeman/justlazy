@@ -53,6 +53,21 @@ describe("justlazy should lazy load span", function() {
         expect(document.getElementById("lazy-span")).not.toExist();
     });
 
+    it("with errorhandler", function () {
+        loadFixtures("img-errorhandler.html");
+        var container = document.getElementById("errorhandler1");
+
+        var span = container.getElementsByTagName("span")[0];
+        expect(span).toHaveAttr("data-src", base64Image2);
+        expect(span).toHaveAttr("data-errorhandler", "this.onerror=null;this.src='" + base64Image + "';");
+
+        Justlazy.lazyLoadImg(span);
+
+        var img = container.getElementsByTagName("img")[0];
+        expect(img).toExist();
+        expect(img).toHaveAttr("onerror", "this.onerror=null;this.src='" + base64Image + "';");
+    });
+
     it("in complex html structure", function() {
         loadFixtures("img-span-complex.html");
 
@@ -96,7 +111,7 @@ describe("justlazy should lazy load span", function() {
 
         Justlazy.lazyLoadImg(span);
 
-        var img = document.getElementsByTagName("img");
+        var img = document.getElementsByTagName("img")[0];
         expect(img).toExist();
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("title", "some title");
@@ -113,7 +128,7 @@ describe("justlazy should lazy load span", function() {
 
         Justlazy.lazyLoadImg(span);
 
-        var img = document.getElementsByTagName("img");
+        var img = document.getElementsByTagName("img")[0];
         expect(img).toExist();
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "some alt text");
@@ -165,6 +180,21 @@ describe("justlazy should lazy load div", function() {
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).not.toHaveCss({display: "none"});
         expect(document.getElementById("lazy-div")).not.toExist();
+    });
+
+    it("with errorhandler", function () {
+        loadFixtures("img-errorhandler.html");
+        var container = document.getElementById("errorhandler2");
+
+        var div = container.getElementsByTagName("div")[0];
+        expect(div).toHaveAttr("data-src", base64Image);
+        expect(div).toHaveAttr("data-errorhandler", "this.onerror=null;this.src='" + base64Image2 + "';");
+
+        Justlazy.lazyLoadImg(div);
+
+        var img = container.getElementsByTagName("img")[0];
+        expect(img).toExist();
+        expect(img).toHaveAttr("onerror", "this.onerror=null;this.src='" + base64Image2 + "';");
     });
 
     it("with empty data-alt attribute", function() {

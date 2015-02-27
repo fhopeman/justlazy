@@ -130,7 +130,7 @@ module.exports = function (grunt) {
             ]
         },
         jasmine: {
-            src: "src/**/*.js",
+            src: "src/justlazy.js",
             options: {
                 vendor: [
                     "jasmine-standalone/lib/jasmine-jquery-2.0.7/jquery.js",
