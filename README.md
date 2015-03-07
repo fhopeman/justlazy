@@ -1,5 +1,6 @@
 # justlazy.js [![Build Status](https://travis-ci.org/fhopeman/justlazy.svg?branch=master)](https://travis-ci.org/fhopeman/justlazy)
-Lightweight javascript plugin to lazy load (responsive) images. Most of the existing javascript plugins using jQuery or supporting just the img-tag. This plugin is supposed to be an alternative.
+Lightweight javascript plugin (micro library) to lazy load responsive images. Most of the existing javascript plugins using jQuery or
+supporting just the img-tag. This plugin is supposed to be an alternative.
 
 [>> View demo](http://fhopeman.github.io/justlazy/)
 
@@ -16,7 +17,7 @@ The basic way is to include the `justlazy.js` file (or the minified version `jus
    <script src="javascript/justlazy.js" type="text/javascript"></script>
 ```
 
-### loading the img-tag
+### lazy load images with img-tag
 The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
 The `data-src` attribute is mandatory, the `data-alt`, `data-title` and `data-errorhandler`
 attributes are optional.
@@ -28,7 +29,7 @@ attributes are optional.
   </span>
 ```
 
-You can trigger the lazy loading with the following commands:
+You can trigger the image lazy loading with the following commands:
 ```
   Justlazy.lazyLoadImg(document.getElementById("lazy-span"));
 ```
@@ -40,7 +41,10 @@ The result will be:
   />
 ```
 
-### loading the picture-tag
+### lazy load responsive images with picture-tag
+Coming soon ..
+
+### lazy load responsive images with srcset-attribute
 Coming soon ..
 
 ## Continuous Integration
