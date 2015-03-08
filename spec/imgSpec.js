@@ -63,11 +63,11 @@ describe("justlazy should lazy load span", function() {
         expect(testCase("testSpanWithCss", withElements("span"))[0]).not.toExist();
     });
 
-    it("with errorhandler", function () {
+    it("with error handler", function () {
         var span = testCase("testSpanWithErrorHandler", withElements("span"))[0];
 
         expect(span).toHaveAttr("data-src", base64Image2);
-        expect(span).toHaveAttr("data-errorhandler", "this.onerror=null;this.src='" + base64Image + "';");
+        expect(span).toHaveAttr("data-error-handler", "this.onerror=null;this.src='" + base64Image + "';");
 
         Justlazy.lazyLoadImg(span);
 
@@ -225,11 +225,11 @@ describe("justlazy should lazy load div", function() {
         expect(testCase("testDivWithStyling", withElements("div"))[0]).not.toExist();
     });
 
-    it("with errorhandler", function () {
+    it("with error handler", function () {
         var div = testCase("testDivWithErrorhandler", withElements("div"))[0];
 
         expect(div).toHaveAttr("data-src", base64Image);
-        expect(div).toHaveAttr("data-errorhandler", "this.onerror=null;this.src='" + base64Image2 + "';");
+        expect(div).toHaveAttr("data-error-handler", "this.onerror=null;this.src='" + base64Image2 + "';");
 
         Justlazy.lazyLoadImg(div);
 
