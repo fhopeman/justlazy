@@ -14,7 +14,7 @@
 <header>
     <div class="container">
         <h1>justlazy.js</h1>
-        <h2>lightweight javascript plugin for image lazy loading</h2>
+        <h2>micro javascript library for responsive image lazy loading</h2>
         <section id="downloads">
             <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn">get .zip</a>
             <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn">get .tar.gz</a>
@@ -28,15 +28,13 @@
 
 <div class="container">
     <section id="main_content">
-        <h1>
-            justlazy.js
-        </h1>
+        <h1>responsive image lazy loading</h1>
         <a href="https://travis-ci.org/fhopeman/justlazy">
             <img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" alt="Build Status">
         </a>
 
         <p>
-            This demo uses buttons to trigger the lazy loading event. But feel free
+            This demo uses buttons to trigger the image lazy loading event. But feel free
             to use other event types (e.g. scroll events).
         </p>
 <pre>
@@ -61,9 +59,9 @@
 -->initLazyBtn(document.getElementById("loadImg1"), "lazyImg1");<!--
 --></code>
 </pre>
-            <a id="loadImg1" href="#" class="btn btn-lazy-load">lazy load</a>
+            <a id="loadImg1" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load</a>
             <div class="lazy-container">
-                <div id="lazyImg1" class="lazy-placeholder" data-src="images/lazy_1.jpg" data-alt="some alt text for img1" data-title="some title for img1"></div>
+                <div id="lazyImg1" class="lazy-placeholder" data-src="images/lazy_1.jpg" data-alt="first image to lazy load" data-title="some title for image 1"></div>
             </div>
         </div>
 
@@ -74,9 +72,9 @@
 -->initLazyBtn(document.getElementById("loadImg2"), "lazyimg2");<!--
 --></code>
 </pre>
-            <a id="loadImg2" href="#" class="btn btn-lazy-load">lazy load</a>
+            <a id="loadImg2" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load</a>
             <div class="lazy-container">
-                <div id="lazyImg2" class="lazy-placeholder" data-src="images/lazy_2.jpg" data-alt="some alt text for img2" data-title="some title for img2"></div>
+                <div id="lazyImg2" class="lazy-placeholder" data-src="images/lazy_2.jpg" data-alt="second image to lazy load" data-title="some title for image 2"></div>
             </div>
         </div>
 
@@ -87,9 +85,9 @@
 -->initLazyBtn(document.getElementById("loadImg3"), "lazyImg3");<!--
 --></code>
 </pre>
-            <a id="loadImg3" href="#" class="btn btn-lazy-load">lazy load</a>
+            <a id="loadImg3" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load</a>
             <div class="lazy-container">
-                <div id="lazyImg3" class="lazy-placeholder" data-src="images/lazy_3.jpg" data-alt="some alt text for img3" data-title="some title for img3"></div>
+                <div id="lazyImg3" class="lazy-placeholder" data-src="images/lazy_3.jpg" data-alt="third image to lazy load" data-title="some title for image 3"></div>
             </div>
         </div>
 
