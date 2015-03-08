@@ -1,0 +1,36 @@
+<div id="testDiv">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-alt="alt-test-image"
+         data-title="some title">
+    </div>
+</div>
+
+<div id="testDivWithEmptyAlt">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-alt=""
+         data-title="some title">
+    </div>
+</div>
+
+<div id="testDivWithContent">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-alt="alt-test-image">
+        many text here ..
+    </div>
+</div>
+
+<div id="testDivWithStyling">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-alt="alt-test-image" style="display: none"></div>
+</div>
+
+<div id="testDivWithErrorhandler">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-errorhandler="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+    </div>
+</div>
+
+<div id="testDivWithEmptyTitle">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-alt="some alt text"
+         data-title="">
+    </div>
+</div>
