@@ -1,6 +1,6 @@
 # justlazy.js [![Build Status](https://travis-ci.org/fhopeman/justlazy.svg?branch=master)](https://travis-ci.org/fhopeman/justlazy)
-Lightweight javascript plugin (micro library) to lazy load responsive images. Most of the existing javascript plugins using jQuery or
-supporting just the img-tag. This plugin is supposed to be an alternative.
+Lightweight javascript plugin to lazy load responsive images without additional functionality (e.g. event binding). Most of the existing javascript plugins using extensive dependencies or
+supporting just the img-tag without responsive parts. This plugin is supposed to be an alternative.
 
 [>> View demo](http://fhopeman.github.io/justlazy/)
 
