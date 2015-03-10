@@ -10,10 +10,12 @@ var Justlazy = (function() {
      * @param src mandatory image source attribute.
      * @param alt optional alt text attribute.
      * @param title optional title attribute.
+     * @param errorHandler optional error handler.
+     * @param srcset optional srcset attribute.
      *
      * @returns {HTMLElement} img html node.
      */
-    var createImg = function (src, alt, title) {
+    var createImg = function (src, alt, title, errorHandler, srcset) {
         var img = document.createElement("img");
 
         img.src = src;
@@ -22,6 +24,12 @@ var Justlazy = (function() {
         }
         if (title) {
             img.title = title;
+        }
+        if (errorHandler) {
+            img.setAttribute("onerror", errorHandler);
+        }
+        if (srcset) {
+            img.setAttribute("srcset", srcset);
         }
 
         return img;
@@ -36,8 +44,7 @@ var Justlazy = (function() {
     var replacePlacholderWithImg = function (imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
         if (parentNode) {
-            parentNode.insertBefore(img, imgPlaceholder);
-            parentNode.removeChild(imgPlaceholder);
+            parentNode.replaceChild(img, imgPlaceholder);
         }
     };
 
@@ -52,9 +59,11 @@ var Justlazy = (function() {
         var src = imgPlaceholder.getAttribute("data-src");
         var alt = imgPlaceholder.getAttribute("data-alt");
         var title = imgPlaceholder.getAttribute("data-title");
+        var errorHandler = imgPlaceholder.getAttribute("data-error-handler");
+        var srcset = imgPlaceholder.getAttribute("data-srcset");
 
         if (src) {
-            var img = createImg(src, alt, title);
+            var img = createImg(src, alt, title, errorHandler, srcset);
             replacePlacholderWithImg(imgPlaceholder, img);
         }
     };

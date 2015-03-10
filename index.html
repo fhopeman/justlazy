@@ -59,7 +59,7 @@
 -->initLazyBtn(document.getElementById("loadImg1"), "lazyImg1");<!--
 --></code>
 </pre>
-            <a id="loadImg1" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load</a>
+            <a id="loadImg1" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
             <div class="lazy-container">
                 <div id="lazyImg1" class="lazy-placeholder" data-src="images/lazy_1.jpg" data-alt="first image to lazy load" data-title="some title for image 1"></div>
             </div>
@@ -72,22 +72,27 @@
 -->initLazyBtn(document.getElementById("loadImg2"), "lazyimg2");<!--
 --></code>
 </pre>
-            <a id="loadImg2" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load</a>
+            <a id="loadImg2" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
             <div class="lazy-container">
                 <div id="lazyImg2" class="lazy-placeholder" data-src="images/lazy_2.jpg" data-alt="second image to lazy load" data-title="some title for image 2"></div>
             </div>
         </div>
 
         <div class="example-container">
-            <h3>#3</h3>
+            <h3>#3: lazy load with srcset tag</h3>
 <pre>
 <code><!--
 -->initLazyBtn(document.getElementById("loadImg3"), "lazyImg3");<!--
 --></code>
 </pre>
-            <a id="loadImg3" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load</a>
+            <a id="loadImg3" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load responsive image</a>
             <div class="lazy-container">
-                <div id="lazyImg3" class="lazy-placeholder" data-src="images/lazy_3.jpg" data-alt="third image to lazy load" data-title="some title for image 3"></div>
+                <div id="lazyImg3" class="lazy-placeholder"
+                     data-src="images/lazy_3_defaultSize.jpg"
+                     data-srcset="images/lazy_3_smallSize.jpg 600w, images/lazy_3_bigSize.jpg 1000w"
+                     data-alt="forth image to lazy load"
+                     data-title="some title for image 3">
+                </div>
             </div>
         </div>
 
