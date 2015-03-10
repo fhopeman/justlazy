@@ -1,5 +1,6 @@
 var base64Image = "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=";
 var base64Image2 = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+var base64ImageDefault = "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNg+M9QDwADgQF/e5IkGQAAAABJRU5ErkJggg==";
 
 var testCase = function(testCaseId, tagName) {
     return document
@@ -35,6 +36,22 @@ describe("justlazy should lazy load span", function() {
         expect(img).toHaveAttr("alt", "alt-test-image");
         expect(img).toHaveAttr("title", "a title");
         expect(testCase("testSpan", withElements("span"))[0]).not.toExist();
+    });
+
+    it("with just mandatory attributes", function() {
+        var span = testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0];
+
+        Justlazy.lazyLoadImg(span);
+
+        var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).not.toHaveAttr("alt");
+        expect(img).not.toHaveAttr("title");
+        expect(img).not.toHaveAttr("onerror");
+        // use following instead of 'expect(img).not.toHaveAttr("srcset");', because
+        // some browsers doesn't support the srcset-attribute via jquery-select
+        expect(img.getAttribute("srcset")).toBeNull();
+        expect(testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0]).not.toExist();
     });
 
     it("with content (remove content)", function() {
@@ -139,6 +156,23 @@ describe("justlazy should lazy load span", function() {
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("alt", "some alt text");
         expect(img).not.toHaveAttr("title");
+    });
+
+    it("with srcset attribute", function() {
+        var span = testCase("testSpanWithSrcset", withElements("span"))[0];
+        var srcsetValue = base64Image + " 400w, " + base64Image2 + " 800w";
+
+        expect(span).toHaveAttr("data-src", base64ImageDefault);
+        expect(span).toHaveAttr("data-srcset", srcsetValue);
+
+        Justlazy.lazyLoadImg(span);
+
+        var img = testCase("testSpanWithSrcset", withElements("img"))[0];
+        expect(img).toExist();
+        expect(img).toHaveAttr("src", base64ImageDefault);
+        // use following instead of 'expect(img).toHaveAttr("srcset", srcsetValue);', because
+        // some browsers doesn't support the srcset-attribute via jquery-select
+        expect(img.getAttribute("srcset")).toBe(srcsetValue);
     });
 
 });
