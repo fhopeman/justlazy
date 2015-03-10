@@ -22,10 +22,11 @@ The images to lazy load are represented by a placeholder of your choice (e.g. di
 The `data-src` attribute is mandatory, the `data-alt`, `data-title` and `data-error-handler`
 attributes are optional.
 ```
-  <span id="lazySpan" data-src="path/to/image"
-                       data-alt="optional alt text"
-                       data-title="optional title"
-                       data-error-handler="optional error handler code">
+  <span id="lazySpan"
+                data-src="path/to/image"
+                data-alt="optional alt text"
+                data-title="optional title"
+                data-error-handler="optional error handler code">
   </span>
 ```
 
@@ -45,8 +46,9 @@ The result will be:
 Similar to the img example above, you can easily lazy load responsive img-tags which contain a `srcset` attribute. You just have
 to add the `data-srcset` attribute to the placeholder:
 ```
-  <span id="lazySpanWithSrcset" data-src="path/to/default/image"
-                       data-srcset="path/to/small/image 600w, path/to/big/image 1000w">
+  <span id="lazySpanWithSrcset"
+                data-src="path/to/default/image"
+                data-srcset="path/to/small/image 600w, path/to/big/image 1000w">
   </span>
 ```
 After performing the `Justlazy.lazyLoadImg` function, the result will be:
