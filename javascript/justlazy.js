@@ -1,3 +1,8 @@
+/**
+ * justlazy.js 0.4.0
+ *
+ * https://github.com/fhopeman/justlazy
+ */
 var Justlazy = (function() {
     'use strict';
 
@@ -8,7 +13,7 @@ var Justlazy = (function() {
      * attributes.
      *
      * @param src mandatory image source attribute.
-     * @param alt optional alt text attribute.
+     * @param alt mandatory alt text attribute.
      * @param title optional title attribute.
      * @param errorHandler optional error handler.
      * @param srcset optional srcset attribute.
@@ -19,9 +24,7 @@ var Justlazy = (function() {
         var img = document.createElement("img");
 
         img.src = src;
-        if (alt) {
-            img.alt = alt;
-        }
+        img.alt = alt;
         if (title) {
             img.title = title;
         }
@@ -62,7 +65,7 @@ var Justlazy = (function() {
         var errorHandler = imgPlaceholder.getAttribute("data-error-handler");
         var srcset = imgPlaceholder.getAttribute("data-srcset");
 
-        if (src) {
+        if (src && (alt || alt === "")) {
             var img = createImg(src, alt, title, errorHandler, srcset);
             replacePlacholderWithImg(imgPlaceholder, img);
         }
