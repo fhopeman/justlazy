@@ -19,7 +19,7 @@ The basic way is to include the `justlazy.js` file (or the minified version `jus
 
 ### lazy load images with img-tag
 The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
-The `data-src` attribute is mandatory, the `data-alt`, `data-title` and `data-error-handler`
+The `data-src` and `data-alt` attributes are mandatory, the `data-title` and `data-error-handler`
 attributes are optional.
 ```
   <span id="lazySpan"
@@ -47,13 +47,13 @@ Similar to the img example above, you can easily lazy load responsive img-tags w
 to add the `data-srcset` attribute to the placeholder:
 ```
   <span id="lazySpanWithSrcset"
-                data-src="path/to/default/image"
+                data-src="path/to/default/image" data-alt="some alt text"
                 data-srcset="path/to/small/image 600w, path/to/big/image 1000w">
   </span>
 ```
 After performing the `Justlazy.lazyLoadImg` function, the result will be:
 ```
-  <img src="path/to/default/image"
+  <img src="path/to/default/image" alt="some alt text"
        srcset="path/to/small/image 600w, path/to/big/image 1000w"
   />
 ```

@@ -5,25 +5,37 @@
     </div>
 </div>
 
-<div id="testDivWithEmptyAlt">
+<div id="testDivWithEmptyErrorHandler">
     <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
-         data-alt=""
-         data-title="some title">
+         data-alt="some alt text"
+         data-title="some title"
+         data-error-handler="">
+    </div>
+</div>
+
+<div id="testDivWithoutErrorHandler">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-alt="some alt text">
     </div>
 </div>
 
 <div id="testDivWithContent">
-    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-alt="alt-test-image">
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-alt="alt-test-image">
         many text here ..
     </div>
 </div>
 
 <div id="testDivWithStyling">
-    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-alt="alt-test-image" style="display: none"></div>
+    <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-alt="alt-test-image"
+         style="display: none">
+     </div>
 </div>
 
 <div id="testDivWithErrorhandler">
     <div data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+         data-alt="some alt text"
          data-error-handler="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
     </div>
 </div>

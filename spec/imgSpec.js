@@ -45,7 +45,7 @@ describe("justlazy should lazy load span", function() {
 
         var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
         expect(img).toHaveAttr("src", base64Image);
-        expect(img).not.toHaveAttr("alt");
+        expect(img).toHaveAttr("alt", "some alt text");
         expect(img).not.toHaveAttr("title");
         expect(img).not.toHaveAttr("onerror");
         // use following instead of 'expect(img).not.toHaveAttr("srcset");', because
@@ -126,20 +126,24 @@ describe("justlazy should lazy load span", function() {
         expect(testContainer.getElementsByTagName("img").length).toBe(4);
     });
 
-    it("without data-alt attribute", function () {
-        var span = testCase("testSpanWithoutAlt", withElements("span"))[0];
+    it("without data-srcset attribute", function () {
+        var span = testCase("testSpanWithoutSrcset", withElements("span"))[0];
 
         expect(span).toHaveAttr("data-src", base64Image);
         expect(span).toHaveAttr("data-title", "some title");
-        expect(span).not.toHaveAttr("data-alt");
+        expect(span).toHaveAttr("data-alt", "some alt text");
+        expect(span).not.toHaveAttr("data-srcset");
 
         Justlazy.lazyLoadImg(span);
 
-        var img = testCase("testSpanWithoutAlt", withElements("img"))[0];
+        var img = testCase("testSpanWithoutSrcset", withElements("img"))[0];
         expect(img).toExist();
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("title", "some title");
-        expect(img).not.toHaveAttr("alt");
+        expect(img).toHaveAttr("alt", "some alt text");
+        // use following instead of 'expect(img).not.toHaveAttr("srcset");', because
+        // some browsers doesn't support the srcset-attribute via jquery-select
+        expect(img.getAttribute("srcset")).toBeNull();
     });
 
     it("without data-title attribute", function () {
@@ -163,6 +167,7 @@ describe("justlazy should lazy load span", function() {
         var srcsetValue = base64Image + " 400w, " + base64Image2 + " 800w";
 
         expect(span).toHaveAttr("data-src", base64ImageDefault);
+        expect(span).toHaveAttr("data-alt", "some alt text");
         expect(span).toHaveAttr("data-srcset", srcsetValue);
 
         Justlazy.lazyLoadImg(span);
@@ -170,6 +175,7 @@ describe("justlazy should lazy load span", function() {
         var img = testCase("testSpanWithSrcset", withElements("img"))[0];
         expect(img).toExist();
         expect(img).toHaveAttr("src", base64ImageDefault);
+        expect(img).toHaveAttr("alt", "some alt text");
         // use following instead of 'expect(img).toHaveAttr("srcset", srcsetValue);', because
         // some browsers doesn't support the srcset-attribute via jquery-select
         expect(img.getAttribute("srcset")).toBe(srcsetValue);
@@ -194,7 +200,23 @@ describe("justlazy shouldnt lazy load span", function() {
         var spanAfterLazyLoading = testCase("testSpanWithSrcError", withElements("span"))[0];
         expect(spanAfterLazyLoading).toExist();
         expect(spanAfterLazyLoading).toHaveAttr("data-alt", "alt-test-image");
+        expect(spanAfterLazyLoading).not.toHaveAttr("data-src");
         expect(testCase("testSpanWithSrcError", withElements("img"))[0]).not.toExist();
+    });
+
+    it("without data-alt attribute", function () {
+        var span = testCase("testSpanWithAltError", withElements("span"))[0];
+
+        expect(span).toHaveAttr("data-src", base64Image);
+        expect(span).not.toHaveAttr("data-alt");
+
+        Justlazy.lazyLoadImg(span);
+
+        var spanAfterLazyLoading = testCase("testSpanWithAltError", withElements("span"))[0];
+        expect(spanAfterLazyLoading).toExist();
+        expect(spanAfterLazyLoading).toHaveAttr("data-src", base64Image);
+        expect(spanAfterLazyLoading).not.toHaveAttr("data-alt");
+        expect(testCase("testSpanWithAltError", withElements("img"))[0]).not.toExist();
     });
 
     it("without data-src and data-alt attribute", function () {
@@ -263,29 +285,50 @@ describe("justlazy should lazy load div", function() {
         var div = testCase("testDivWithErrorhandler", withElements("div"))[0];
 
         expect(div).toHaveAttr("data-src", base64Image);
+        expect(div).toHaveAttr("data-alt", "some alt text");
         expect(div).toHaveAttr("data-error-handler", "this.onerror=null;this.src='" + base64Image2 + "';");
 
         Justlazy.lazyLoadImg(div);
 
         var img = testCase("testDivWithErrorhandler", withElements("img"))[0];
         expect(img).toExist();
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).toHaveAttr("alt", "some alt text");
         expect(img).toHaveAttr("onerror", "this.onerror=null;this.src='" + base64Image2 + "';");
     });
 
-    it("with empty data-alt attribute", function() {
-        var div = testCase("testDivWithEmptyAlt", withElements("div"))[0];
+    it("with empty data-error-handler attribute", function() {
+        var div = testCase("testDivWithEmptyErrorHandler", withElements("div"))[0];
 
         expect(div).toHaveAttr("data-src", base64Image);
-        expect(div).toHaveAttr("data-alt", "");
+        expect(div).toHaveAttr("data-alt", "some alt text");
         expect(div).toHaveAttr("data-title", "some title");
+        expect(div).toHaveAttr("data-error-handler", "");
 
         Justlazy.lazyLoadImg(div);
 
-        var img = testCase("testDivWithEmptyAlt", withElements("img"))[0];
+        var img = testCase("testDivWithEmptyErrorHandler", withElements("img"))[0];
         expect(img).toHaveAttr("src", base64Image);
         expect(img).toHaveAttr("title", "some title");
-        expect(img).not.toHaveAttr("alt");
-        expect(testCase("testDivWithEmptyAlt", withElements("div"))[0]).not.toExist();
+        expect(img).toHaveAttr("alt", "some alt text");
+        expect(img).not.toHaveAttr("onerror");
+        expect(testCase("testDivWithEmptyErrorHandler", withElements("div"))[0]).not.toExist();
+    });
+
+    it("without data-error-handler attribute", function() {
+        var div = testCase("testDivWithoutErrorHandler", withElements("div"))[0];
+
+        expect(div).toHaveAttr("data-src", base64Image);
+        expect(div).toHaveAttr("data-alt", "some alt text");
+        expect(div).not.toHaveAttr("data-error-handler");
+
+        Justlazy.lazyLoadImg(div);
+
+        var img = testCase("testDivWithoutErrorHandler", withElements("img"))[0];
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).toHaveAttr("alt", "some alt text");
+        expect(img).not.toHaveAttr("onerror");
+        expect(testCase("testDivWithoutErrorHandler", withElements("div"))[0]).not.toExist();
     });
 
     it("with empty data-title attribute", function() {
