@@ -60,7 +60,7 @@ var Justlazy = (function() {
         var errorHandler = imgPlaceholder.getAttribute("data-error-handler");
         var srcset = imgPlaceholder.getAttribute("data-srcset");
 
-        if (src && alt) {
+        if (src && (alt || alt === "")) {
             var img = createImg(src, alt, title, errorHandler, srcset);
             replacePlacholderWithImg(imgPlaceholder, img);
         }

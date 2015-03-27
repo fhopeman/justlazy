@@ -181,6 +181,20 @@ describe("justlazy should lazy load span", function() {
         expect(img.getAttribute("srcset")).toBe(srcsetValue);
     });
 
+    it("with empty data-alt attribute", function () {
+        var span = testCase("testSpanWithEmptyAlt", withElements("span"))[0];
+
+        expect(span).toHaveAttr("data-src", base64Image);
+        expect(span).toHaveAttr("data-alt", "");
+
+        Justlazy.lazyLoadImg(span);
+
+        var img = testCase("testSpanWithEmptyAlt", withElements("img"))[0];
+        expect(img).toExist();
+        expect(img).toHaveAttr("src", base64Image);
+        expect(img).toHaveAttr("alt", "");
+    });
+
 });
 
 describe("justlazy shouldnt lazy load span", function() {

@@ -20,7 +20,8 @@ The basic way is to include the `justlazy.js` file (or the minified version `jus
 ### lazy load images with img-tag
 The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
 The `data-src` and `data-alt` attributes are mandatory, the `data-title` and `data-error-handler`
-attributes are optional.
+attributes are optional. If you don't want to provide a `data-alt` attribute, you can also define
+`data-alt=""` (not recommended!).
 ```
   <span id="lazySpan"
                 data-src="path/to/image"
