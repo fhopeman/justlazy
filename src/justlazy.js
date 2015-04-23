@@ -17,16 +17,12 @@ var Justlazy = (function() {
      * @param title optional title attribute.
      * @param errorHandler optional error handler.
      * @param srcset optional srcset attribute.
-     * @param onloadCallback optional onload callback function.
      *
      * @returns {HTMLElement} img html node.
      */
-    var createImg = function (src, alt, title, errorHandler, srcset, onloadCallback) {
+    var createImg = function (src, alt, title, errorHandler, srcset) {
         var img = document.createElement("img");
 
-        if (onloadCallback) {
-            img.onload = onloadCallback;
-        }
         img.src = src;
         img.alt = alt;
         if (title) {
@@ -61,9 +57,8 @@ var Justlazy = (function() {
      * @param imgPlaceholder the placeholder is a html node of any type (e.g. a span element).
      *                       The node has to provide the data element data-src. The data-alt
      *                       and data-title attributes are optional.
-     * @param onloadCallback optional callback which is invoked after the image is loaded.
      */
-    module.lazyLoadImg = function(imgPlaceholder, onloadCallback) {
+    module.lazyLoadImg = function(imgPlaceholder) {
         var src = imgPlaceholder.getAttribute("data-src");
         var alt = imgPlaceholder.getAttribute("data-alt");
         var title = imgPlaceholder.getAttribute("data-title");
@@ -71,7 +66,7 @@ var Justlazy = (function() {
         var srcset = imgPlaceholder.getAttribute("data-srcset");
 
         if (src && (alt || alt === "")) {
-            var img = createImg(src, alt, title, errorHandler, srcset, onloadCallback);
+            var img = createImg(src, alt, title, errorHandler, srcset);
             replacePlacholderWithImg(imgPlaceholder, img);
         }
     };
