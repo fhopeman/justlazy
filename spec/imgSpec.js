@@ -195,6 +195,21 @@ describe("justlazy should lazy load span", function() {
         expect(img).toHaveAttr("alt", "");
     });
 
+    it("and invoke onload callback", function(done) {
+        var span = testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0];
+
+        expect(span).not.toHaveAttr("data-some-test-attr");
+
+        Justlazy.lazyLoadImg(span, function() {
+            this.setAttribute("someKey", "someValue");
+
+            var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
+            expect(img).toExist();
+            expect(img).toHaveAttr("someKey", "someValue");
+            done();
+        });
+    });
+
 });
 
 describe("justlazy shouldnt lazy load span", function() {
@@ -233,7 +248,7 @@ describe("justlazy shouldnt lazy load span", function() {
         expect(testCase("testSpanWithAltError", withElements("img"))[0]).not.toExist();
     });
 
-    it("without data-src and data-alt attribute", function () {
+    it("without data-src and data-alt attribute", function() {
         var span = testCase("testSpanWithSrcAndAltError", withElements("span"))[0];
 
         expect(span).not.toHaveAttr("data-src");
