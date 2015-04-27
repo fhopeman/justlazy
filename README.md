@@ -33,7 +33,9 @@ attributes are optional. If you don't want to provide a `data-alt` attribute, yo
 
 You can trigger the image lazy loading with the following commands:
 ```
-  Justlazy.lazyLoadImg(document.getElementById("lazySpan"));
+  Justlazy.lazyLoadImg(document.getElementById("lazySpan"), function() {
+      // optional onload callback
+  });
 ```
 
 The result will be:
