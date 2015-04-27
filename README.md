@@ -62,7 +62,7 @@ After performing the `Justlazy.lazyLoadImg` function, the result will be:
 ```
 
 ### lazy load responsive images with picture-tag
-Coming soon ..
+Coming soon..
 
 ## Continuous Integration
 justlazy has CI set up through [Travis CI](https://travis-ci.org) and [Sauce Labs](https://saucelabs.com) (free for open-source projects).
