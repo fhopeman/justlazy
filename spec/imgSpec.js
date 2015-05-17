@@ -214,7 +214,7 @@ describe("justlazy shouldnt lazy load span", function() {
         loadFixtures("imgTagWithSpan.html");
     });
 
-    it("and call onloadError callback", function (done) {
+    it("and call onLazyLoadError callback", function (done) {
         var span = testCase("testSpanWithSrcError", withElements("span"))[0];
 
         Justlazy.lazyLoadImg(span, function() {
@@ -390,6 +390,22 @@ describe("justlazy should lazy load div", function() {
             expect(testCase("testDivWithEmptyTitle", withElements("div"))[0]).not.toExist();
             done();
         });
+    });
+
+});
+
+describe("Justlazy callback", function() {
+
+    it("(onLazyLoadError) shouldn't be called if not defined", function () {
+        loadFixtures("imgTagWithSpan.html");
+        var span = testCase("testSpanWithSrcError", withElements("span"))[0];
+
+        Justlazy.lazyLoadImg(span, function() {
+            fail();
+        }, undefined);
+
+        var spanAfterLazyLoading = testCase("testSpanWithSrcError", withElements("span"))[0];
+        expect(spanAfterLazyLoading).toExist();
     });
 
 });
