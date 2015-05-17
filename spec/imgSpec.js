@@ -226,6 +226,17 @@ describe("justlazy shouldnt lazy load span", function() {
         });
     });
 
+    it("and shouldn't call onLazyLoadError callback if not defined", function () {
+        var span = testCase("testSpanWithSrcError", withElements("span"))[0];
+
+        Justlazy.lazyLoadImg(span, function() {
+            fail();
+        }, undefined);
+
+        var spanAfterLazyLoading = testCase("testSpanWithSrcError", withElements("span"))[0];
+        expect(spanAfterLazyLoading).toExist();
+    });
+
     it("without data-src attribute", function (done) {
         var span = testCase("testSpanWithSrcError", withElements("span"))[0];
 
@@ -393,19 +404,3 @@ describe("justlazy should lazy load div", function() {
     });
 
 });
-
-//describe("Justlazy callback", function() {
-
-//    it("(onLazyLoadError) shouldn't be called if not defined", function () {
-//        loadFixtures("imgTagWithSpan.html");
-//        var span = testCase("testSpanWithSrcError", withElements("span"))[0];
-
-//        Justlazy.lazyLoadImg(span, function() {
-//            fail();
-//        }, undefined);
-
-//        var spanAfterLazyLoading = testCase("testSpanWithSrcError", withElements("span"))[0];
-//        expect(spanAfterLazyLoading).toExist();
-//    });
-
-//});
