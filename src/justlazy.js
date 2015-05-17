@@ -19,14 +19,16 @@ var Justlazy = (function() {
      * @param srcset optional srcset attribute.
      * @param onloadCallback optional onload callback function.
      *
-     * @returns {HTMLElement} img html node.
      */
-    var createImg = function (src, alt, title, errorHandler, srcset, onloadCallback) {
+    var createImg = function (src, alt, title, errorHandler, srcset, imgPlaceholder, onloadCallback) {
         var img = document.createElement("img");
 
-        if (onloadCallback) {
-            img.onload = onloadCallback;
-        }
+        img.onload = function() {
+            replacePlacholderWithImg(imgPlaceholder, img);
+            if (onloadCallback) {
+                onloadCallback.call(img);
+            }
+        };
         img.src = src;
         img.alt = alt;
         if (title) {
@@ -38,8 +40,6 @@ var Justlazy = (function() {
         if (srcset) {
             img.setAttribute("srcset", srcset);
         }
-
-        return img;
     };
 
     /**
@@ -62,8 +62,11 @@ var Justlazy = (function() {
      *                       The node has to provide the data element data-src. The data-alt
      *                       and data-title attributes are optional.
      * @param onloadCallback optional callback which is invoked after the image is loaded.
+     * @param onLazyLoadErrorCallback optional error handler which is invoked if the
+     *                                replacement of the lazy placeholder fails (e.g. mandatory
+     *                                attributes missing).
      */
-    module.lazyLoadImg = function(imgPlaceholder, onloadCallback) {
+    module.lazyLoadImg = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
         var src = imgPlaceholder.getAttribute("data-src");
         var alt = imgPlaceholder.getAttribute("data-alt");
         var title = imgPlaceholder.getAttribute("data-title");
@@ -71,8 +74,9 @@ var Justlazy = (function() {
         var srcset = imgPlaceholder.getAttribute("data-srcset");
 
         if (src && (alt || alt === "")) {
-            var img = createImg(src, alt, title, errorHandler, srcset, onloadCallback);
-            replacePlacholderWithImg(imgPlaceholder, img);
+            createImg(src, alt, title, errorHandler, srcset, imgPlaceholder, onloadCallback);
+        } else {
+            onLazyLoadErrorCallback.call(imgPlaceholder);
         }
     };
 

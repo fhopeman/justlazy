@@ -27,7 +27,7 @@ attributes are optional. If you don't want to provide a `data-alt` attribute, yo
                 data-src="path/to/image"
                 data-alt="optional alt text"
                 data-title="optional title"
-                data-error-handler="optional error handler code">
+                data-error-handler="optional img error handler code">
   </span>
 ```
 
@@ -35,10 +35,14 @@ You can trigger the image lazy loading with the following commands:
 ```
   Justlazy.lazyLoadImg(document.getElementById("lazySpan"), function() {
       // optional onload callback, parameter can be undefined
+  }, function() {
+      // optional lazy load error callback, parameter can be undefined
   });
 ```
+The lazy load error handler will be invoked if the placeholder could not be
+replaced. This occurs if mandatory attributes (e.g. `data-src`) aren't available.
 
-The result will be:
+The result of the function call will be the following img element:
 ```
   <img src="path/to/image" alt="optional alt text"
        title="optional title" onerror="optional error handler code"
