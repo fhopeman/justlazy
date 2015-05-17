@@ -87,7 +87,9 @@ var Justlazy = (function() {
         if (imgAttributes.src && (imgAttributes.alt || imgAttributes.alt === "")) {
             createImage(imgPlaceholder, imgAttributes, onloadCallback);
         } else {
-            onLazyLoadErrorCallback.call(imgPlaceholder);
+            if (onLazyLoadErrorCallback) {
+                onLazyLoadErrorCallback.call(imgPlaceholder);
+            }
         }
     };
 
