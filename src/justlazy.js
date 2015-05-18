@@ -1,5 +1,5 @@
 /**
- * justlazy.js 0.7.0
+ * justlazy.js 0.8.0
  *
  * https://github.com/fhopeman/justlazy
  */
