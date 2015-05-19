@@ -73,7 +73,7 @@ justlazy has CI set up through [Travis CI](https://travis-ci.org) and [Sauce Lab
 Pull-request and checkins will be tested automatically.
 
 ## Contributing
-Just feel free to contribute ..
+Just feel free to contribute..
 
 ### Setup
 To set up the project you just have to run the install command.
