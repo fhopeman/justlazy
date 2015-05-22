@@ -6,8 +6,6 @@
 var Justlazy = (function() {
     'use strict';
 
-    var module = {};
-
     /**
      * Creates an img html node and sets the attributes of the
      * image. If the image is loaded successfully, the placeholder
@@ -18,11 +16,11 @@ var Justlazy = (function() {
      * @param onloadCallback optional onload callback function.
      *
      */
-    var createImage = function (imgPlaceholder, imgAttributes, onloadCallback) {
+    var _createImage = function (imgPlaceholder, imgAttributes, onloadCallback) {
         var img = document.createElement("img");
 
         img.onload = function() {
-            replacePlacholderWithImage(imgPlaceholder, img);
+            _replacePlacholderWithImage(imgPlaceholder, img);
             if (onloadCallback) {
                 onloadCallback.call(img);
             }
@@ -46,7 +44,7 @@ var Justlazy = (function() {
      * @param imgPlaceholder img placeholder html node.
      * @param img img node itself.
      */
-    var replacePlacholderWithImage = function (imgPlaceholder, img) {
+    var _replacePlacholderWithImage = function (imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
         if (parentNode) {
             parentNode.replaceChild(img, imgPlaceholder);
@@ -60,7 +58,7 @@ var Justlazy = (function() {
      *
      * @returns object with image attributes.
      */
-    var resolveImageAttributes = function(imgPlaceholder) {
+    var _resolveImageAttributes = function(imgPlaceholder) {
         return {
             src: imgPlaceholder.getAttribute("data-src"),
             alt: imgPlaceholder.getAttribute("data-alt"),
@@ -81,11 +79,11 @@ var Justlazy = (function() {
      *                                replacement of the lazy placeholder fails (e.g. mandatory
      *                                attributes missing).
      */
-    module.lazyLoadImg = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
-        var imgAttributes = resolveImageAttributes(imgPlaceholder);
+    var lazyLoadImg = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+        var imgAttributes = _resolveImageAttributes(imgPlaceholder);
 
         if (imgAttributes.src && (imgAttributes.alt || imgAttributes.alt === "")) {
-            createImage(imgPlaceholder, imgAttributes, onloadCallback);
+            _createImage(imgPlaceholder, imgAttributes, onloadCallback);
         } else {
             if (onLazyLoadErrorCallback) {
                 onLazyLoadErrorCallback.call(imgPlaceholder);
@@ -93,6 +91,8 @@ var Justlazy = (function() {
         }
     };
 
-    return module;
+    return {
+        lazyLoadImg: lazyLoadImg
+    };
 
 })();
