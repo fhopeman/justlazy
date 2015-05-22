@@ -21,19 +21,19 @@ var Justlazy = (function() {
 
         img.onload = function() {
             _replacePlacholderWithImage(imgPlaceholder, img);
-            if (onloadCallback) {
+            if (!!onloadCallback) {
                 onloadCallback.call(img);
             }
         };
         img.src = imgAttributes.src;
         img.alt = imgAttributes.alt;
-        if (imgAttributes.title) {
+        if (!!imgAttributes.title) {
             img.title = imgAttributes.title;
         }
-        if (imgAttributes.errorHandler) {
+        if (!!imgAttributes.errorHandler) {
             img.setAttribute("onerror", imgAttributes.errorHandler);
         }
-        if (imgAttributes.srcset) {
+        if (!!imgAttributes.srcset) {
             img.setAttribute("srcset", imgAttributes.srcset);
         }
     };
@@ -46,7 +46,7 @@ var Justlazy = (function() {
      */
     var _replacePlacholderWithImage = function (imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
-        if (parentNode) {
+        if (!!parentNode) {
             parentNode.replaceChild(img, imgPlaceholder);
         }
     };
@@ -82,10 +82,10 @@ var Justlazy = (function() {
     var lazyLoadImg = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
 
-        if (imgAttributes.src && (imgAttributes.alt || imgAttributes.alt === "")) {
+        if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
             _createImage(imgPlaceholder, imgAttributes, onloadCallback);
         } else {
-            if (onLazyLoadErrorCallback) {
+            if (!!onLazyLoadErrorCallback) {
                 onLazyLoadErrorCallback.call(imgPlaceholder);
             }
         }
