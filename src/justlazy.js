@@ -11,9 +11,9 @@ var Justlazy = (function() {
      * image. If the image is loaded successfully, the placeholder
      * will be replaced with the image.
      *
-     * @param imgPlaceholder placeholder element of the img to lazy load.
-     * @param imgAttributes attributes of the image which will be created.
-     * @param onloadCallback optional onload callback function.
+     * @param {Object} imgPlaceholder Placeholder element of the img to lazy load.
+     * @param {Object} imgAttributes Attributes of the image which will be created.
+     * @param {Function} onloadCallback Optional onload callback function.
      *
      */
     var _createImage = function (imgPlaceholder, imgAttributes, onloadCallback) {
@@ -41,8 +41,8 @@ var Justlazy = (function() {
     /**
      * Replaces the img placeholder (html node of any type) with the img.
      *
-     * @param imgPlaceholder img placeholder html node.
-     * @param img img node itself.
+     * @param {Object} imgPlaceholder Image placeholder html node.
+     * @param {Object} img Image node itself.
      */
     var _replacePlacholderWithImage = function (imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
@@ -54,9 +54,9 @@ var Justlazy = (function() {
     /**
      * Reads out the relevant attributes of the imagePlaceholder.
      *
-     * @param imgPlaceholder placeholder which holds image attributes.
+     * @param {Object} imgPlaceholder Lazy image placeholder which holds image attributes.
      *
-     * @returns object with image attributes.
+     * @returns {Object} Object with image attributes.
      */
     var _resolveImageAttributes = function(imgPlaceholder) {
         return {
@@ -71,13 +71,13 @@ var Justlazy = (function() {
     /**
      * Lazy loads image with img tag.
      *
-     * @param imgPlaceholder the placeholder is a html node of any type (e.g. a span element).
-     *                       The node has to provide the data element data-src and data-alt.
-     *                       All other attributes are optional.
-     * @param onloadCallback optional callback which is invoked after the image is loaded.
-     * @param onLazyLoadErrorCallback optional error handler which is invoked if the
-     *                                replacement of the lazy placeholder fails (e.g. mandatory
-     *                                attributes missing).
+     * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
+     *                                The node has to provide the data element data-src and data-alt.
+     *                                All other attributes are optional.
+     * @param {Function} onloadCallback Optional callback which is invoked after the image is loaded.
+     * @param {Function} onLazyLoadErrorCallback Optional error handler which is invoked if the
+     *                                           replacement of the lazy placeholder fails (e.g. mandatory
+     *                                           attributes missing).
      */
     var lazyLoadImg = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
