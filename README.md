@@ -11,7 +11,7 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
 
-## Install
+## Installation
 #### script include
 Firstly, you can include the `justlazy.js` file (or the minified version `justlazy.min.js`) as follows into your page.
 ```
