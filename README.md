@@ -12,10 +12,18 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
 
 ## Usage
-The basic way is to include the `justlazy.js` file (or the minified version `justlazy.min.js`) into your page.
+Firstly, you can include the `justlazy.js` file (or the minified version `justlazy.min.js`) as follows into your page.
 ```
    <script src="javascript/justlazy.js" type="text/javascript"></script>
 ```
+To install it via npm, the following URL has to be added to the `package.json` file:
+```
+   "dependencies": {
+       [some other dependencies],
+       "justlazy": "git://github.com/fhopeman/justlazy.git#x.y.z"
+     }
+```
+`x.y.z` has to be replaced with the current [tag number](https://github.com/fhopeman/justlazy/releases).
 
 ### lazy load images with img-tag
 The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
