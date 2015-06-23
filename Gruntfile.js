@@ -86,13 +86,6 @@ module.exports = function (grunt) {
             "device-orientation": "portrait",
             version: "7.1"
         },
-        //{
-        //    browserName: "iphone",
-        //    platform: "OS X 10.10",
-        //    deviceName: "iPhone Simulator",
-        //    "device-orientation": "portrait",
-        //    version: "8.1"
-        //},
         // android
         {
             browserName: "android",
