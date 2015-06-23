@@ -1,0 +1,43 @@
+/**
+ * justlazy.css 0.8.0
+ *
+ * https://github.com/fhopeman/justlazy
+ */
+@-webkit-keyframes rotate360 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotate360 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+.justlazy-placeholder {
+    position: relative;
+    border-top: 0.6em solid rgba(255, 255, 255, 0.2);
+    border-right: 0.6em solid rgba(255, 255, 255, 0.2);
+    border-bottom: 0.6em solid rgba(255, 255, 255, 0.2);
+    border-left: 0.6em solid #878787;
+    animation: rotate360 1s infinite linear;
+    -webkit-animation: rotate360 1s infinite linear;
+    -moz-animation: rotate360 1s infinite linear;
+    -o-animation: rotate360 1s infinite linear;
+}
+.justlazy-placeholder,
+.justlazy-placeholder:after {
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    left: calc(50% - 2em);
+}
