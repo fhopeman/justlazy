@@ -1,4 +1,3 @@
-#/bin/bash
+#!/bin/bash
 
 sudo npm install -g grunt-cli
-
