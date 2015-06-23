@@ -1,4 +1,8 @@
-/* lazy spinner */
+/**
+ * justlazy 0.8.0-SNAPSHOT
+ *
+ * https://github.com/fhopeman/justlazy
+ */
 @-webkit-keyframes rotate360 {
     from {
         -webkit-transform: rotate(0deg);
