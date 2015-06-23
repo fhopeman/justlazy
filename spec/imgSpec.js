@@ -70,7 +70,7 @@ describe("justlazy should lazy load span", function() {
         });
     });
 
-    it("with styling (remove styling)", function(done) {
+    it("with style attribute (remove styling)", function(done) {
         var span = testCase("testSpanWithCss", withElements("span"))[0];
         expect(span).toHaveCss({display: "none"});
 
@@ -320,7 +320,7 @@ describe("justlazy should lazy load div", function() {
         });
     });
 
-    it("with styling (remove styling)", function(done) {
+    it("with style attribute (remove styling)", function(done) {
         var div = testCase("testDivWithStyling", withElements("div"))[0];
         expect(div).toHaveCss({display: "none"});
 
@@ -330,6 +330,25 @@ describe("justlazy should lazy load div", function() {
             expect(img).toHaveAttr("alt", "alt-test-image");
             expect(img).not.toHaveCss({display: "none"});
             expect(testCase("testDivWithStyling", withElements("div"))[0]).not.toExist();
+            done();
+        });
+    });
+
+    it("with class attribute (remove styling)", function(done) {
+        var div = testCase("testDivWithClass", withElements("div"))[0];
+        expect(div).toHaveClass("someClass");
+
+        Justlazy.lazyLoadImg(div, function() {
+            // check loaded img of callback function
+            expect(this).not.toBeUndefined();
+            expect(this).not.toHaveClass("someClass");
+
+            // check twice within html structure
+            var img = testCase("testDivWithClass", withElements("img"))[0];
+            expect(img).toHaveAttr("src", base64Image);
+            expect(img).not.toHaveClass("someClass");
+            expect(img).toHaveAttr("alt", "alt-test-image");
+
             done();
         });
     });
