@@ -104,7 +104,7 @@ After performing the `Justlazy.lazyLoadImg` function, the result will be:
 ```
 
 #### 3. With picture-tag
-Coming soon..
+Coming soon ..
 
 ## Contributing
 Just feel free to contribute ..
