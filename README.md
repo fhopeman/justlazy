@@ -70,7 +70,7 @@ placeholder:
 The default loading spinner has the css class `justlazy-placeholder`.
 
 ## Examples
-##### 1. Basic
+#### 1. Basic
 ```
 <span id="lazySpan" data-src="some/image/path" data-alt="some alt text"
       class="justlazy-placeholder">
@@ -87,7 +87,7 @@ The result of the function call will be:
 <img src="some/image/path" alt="some alt text"/>
 ```
 
-##### 2. With srcset-attribute
+#### 2. With srcset-attribute
 Similar to the img example above, you can easily lazy load responsive img-tags which containing a `srcset` attribute.
 You just have to add the `data-srcset` attribute to the placeholder:
 ```
@@ -103,7 +103,7 @@ After performing the `Justlazy.lazyLoadImg` function, the result will be:
 />
 ```
 
-##### 3. With picture-tag
+#### 3. With picture-tag
 Coming soon..
 
 ## Contributing
