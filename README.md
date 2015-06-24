@@ -34,7 +34,7 @@ To install it via npm, the git URL has to be added to the `package.json` file:
 `x.y.z` has to be replaced with the current [tag number](https://github.com/fhopeman/justlazy/releases).
 
 ## Usage
-To lazy load an image, firstly a placeholder of your choice (e.g. span, div, ..)
+To lazy load an image, first of all a placeholder of your choice (e.g. span, div, ..)
 has to be defined. This placeholder itself is a html element which contains
 different data-attributes to provide the image information.
 
@@ -58,19 +58,19 @@ replaced. This occurs if mandatory attributes (e.g. `data-src`) aren't available
 Following attributes can be used as data-attributes of the image
 placeholder:
 
-| Attribute   | Mandatory   |Description                        |
-|-------------|-------------|-----------------------------------|
-|`data-src`   |yes          |image source                       |
-|`data-alt`   |yes          |alt text of image, `data-alt=""` allowed, but not recommended!|
-|`data-title` |no           |title of image                     |
-|`data-error` |no           |error handler of image             |
-|`data-srcset`|no           |response image source set attribute|
+| Attribute   | Mandatory   |Description                          |
+|-------------|-------------|-------------------------------------|
+|`data-src`   |yes          |image source                         |
+|`data-alt`   |yes          |alt text of image, `data-alt=""` allowed (not recommended!)|
+|`data-title` |no           |title of image                       |
+|`data-error` |no           |error handler of image               |
+|`data-srcset`|no           |responsive image source-set attribute|
 
 #### Styling
 The default loading spinner has the css class `justlazy-placeholder`.
 
 #### Examples
-##### lazy load images with img-tag
+##### 1. Basic
 ```
 <span id="lazySpan" data-src="some/image/path" data-alt="some alt text"
       class="justlazy-placeholder">
@@ -87,9 +87,9 @@ The result of the function call will be:
 <img src="some/image/path" alt="some alt text"/>
 ```
 
-##### lazy load responsive images with srcset-attribute
-Similar to the img example above, you can easily lazy load responsive img-tags which contain a `srcset` attribute. You just have
-to add the `data-srcset` attribute to the placeholder:
+##### 2. With srcset-attribute
+Similar to the img example above, you can easily lazy load responsive img-tags which containing a `srcset` attribute.
+You just have to add the `data-srcset` attribute to the placeholder:
 ```
 <span id="lazySpanWithSrcset"
               data-src="path/to/default/image" data-alt="some alt text"
@@ -103,7 +103,7 @@ After performing the `Justlazy.lazyLoadImg` function, the result will be:
 />
 ```
 
-##### lazy load responsive images with picture-tag
+##### 3. With picture-tag
 Coming soon..
 
 ## Contributing
