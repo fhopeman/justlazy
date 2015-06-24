@@ -12,81 +12,112 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
 
 ## Installation
-#### script include
-Firstly, you can include the `justlazy.js` file (or the minified version `justlazy.min.js`) as follows into your page.
+#### file include
+Firstly, you can include the `justlazy.js` file as follows in your page.
 ```
-   <script src="javascript/justlazy.js" type="text/javascript"></script>
+<script src="javascript/justlazy.js" type="text/javascript"></script>
+```
+
+If you want to use the lazy spinner, following css file is needed:
+```
+<link href="stylesheets/justlazy.css" type="text/css" rel="stylesheet">
 ```
 
 #### npm
-To install it via npm, the following URL has to be added to the `package.json` file:
+To install it via npm, the git URL has to be added to the `package.json` file:
 ```
-   "dependencies": {
-       [some other dependencies],
-       "justlazy": "git://github.com/fhopeman/justlazy.git#x.y.z"
-     }
+"dependencies": {
+    [some other dependencies],
+    "justlazy": "git://github.com/fhopeman/justlazy.git#x.y.z"
+}
 ```
 `x.y.z` has to be replaced with the current [tag number](https://github.com/fhopeman/justlazy/releases).
 
 ## Usage
-#### lazy load images with img-tag
-The images to lazy load are represented by a placeholder of your choice (e.g. div, span, ..).
-The `data-src` and `data-alt` attributes are mandatory, the `data-title` and `data-error-handler`
-attributes are optional. If you don't want to provide a `data-alt` attribute, you can also define
-`data-alt=""` (not recommended!).
-```
-  <span id="lazySpan"
-                data-src="path/to/image"
-                data-alt="optional alt text"
-                data-title="optional title"
-                data-error-handler="optional img error handler code">
-  </span>
-```
+To lazy load an image, firstly a placeholder of your choice (e.g. span, div, ..)
+has to be defined. This placeholder itself is a html element which contains
+different data-attributes to provide the image information.
 
-You can trigger the image lazy loading with the following commands:
+After calling the loading function, the library loads the image with javascript
+in the background and then replaces the whole placeholder with the image.
+You don't have to care about deleting the styling or other relics.
+
+#### Function
+The replacement function is defined as follows:
 ```
-  Justlazy.lazyLoadImg(document.getElementById("lazySpan"), function() {
-      // optional onload callback, parameter can be undefined
-  }, function() {
-      // optional lazy load error callback, parameter can be undefined
-  });
+Justlazy.lazyLoadImg(placeholder[, successCallback, errorCallback]);
 ```
-The lazy load error handler will be invoked if the placeholder could not be
+- The mandatory `placeholder` is a html object which represents the
+image placeholder.
+- The optional `successCallback` will be invoked if the placeholder is
+properly replaced.
+- The optional `errorCallback` will be invoked if the placeholder could not be
 replaced. This occurs if mandatory attributes (e.g. `data-src`) aren't available.
 
-The result of the function call will be the following img element:
+#### Attributes
+Following attributes can be used as data-attributes of the image
+placeholder:
+
+| Attribute   | Mandatory   |Description                        |
+|-------------|-------------|-----------------------------------|
+|`data-src`   |yes          |image source                       |
+|`data-alt`   |yes          |alt text of image, `data-alt=""` allowed, but not recommended!|
+|`data-title` |no           |title of image                     |
+|`data-error` |no           |error handler of image             |
+|`data-srcset`|no           |response image source set attribute|
+
+#### Styling
+The default loading spinner has the css class `justlazy-placeholder`.
+
+#### Examples
+##### lazy load images with img-tag
 ```
-  <img src="path/to/image" alt="optional alt text"
-       title="optional title" onerror="optional error handler code"
-  />
+<span id="lazySpan" data-src="some/image/path" data-alt="some alt text"
+      class="justlazy-placeholder">
+</span>
 ```
 
-#### lazy load responsive images with srcset-attribute
+Trigger the image lazy loading:
+```
+Justlazy.lazyLoadImg(document.getElementById("lazySpan"));
+```
+
+The result of the function call will be:
+```
+<img src="some/image/path" alt="some alt text"/>
+```
+
+##### lazy load responsive images with srcset-attribute
 Similar to the img example above, you can easily lazy load responsive img-tags which contain a `srcset` attribute. You just have
 to add the `data-srcset` attribute to the placeholder:
 ```
-  <span id="lazySpanWithSrcset"
-                data-src="path/to/default/image" data-alt="some alt text"
-                data-srcset="path/to/small/image 600w, path/to/big/image 1000w">
-  </span>
+<span id="lazySpanWithSrcset"
+              data-src="path/to/default/image" data-alt="some alt text"
+              data-srcset="path/to/small/image 600w, path/to/big/image 1000w">
+</span>
 ```
 After performing the `Justlazy.lazyLoadImg` function, the result will be:
 ```
-  <img src="path/to/default/image" alt="some alt text"
-       srcset="path/to/small/image 600w, path/to/big/image 1000w"
-  />
+<img src="path/to/default/image" alt="some alt text"
+     srcset="path/to/small/image 600w, path/to/big/image 1000w"
+/>
 ```
 
-#### lazy load responsive images with picture-tag
+##### lazy load responsive images with picture-tag
 Coming soon..
 
 ## Contributing
-Just feel free to contribute..
+Just feel free to contribute ..
 
-#### Setup
-To set up the project you just have to clone the repository and run the install command:
+#### Project setup
+To set up the project you need the grunt-cli:
 ```
-   npm install
+sudo npm install -g grunt-cli
+```
+
+Then you just have to clone the repository and run the install command:
+```
+npm install
 ```
 
 #### Testing
@@ -94,5 +125,5 @@ To run tests manually you can use the `grunt` command to perform jshint and jasm
 Furthermore you can run `grunt server` to call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
 
 #### Continuous Integration
-justlazy has CI set up through [Travis CI](https://travis-ci.org) and [Sauce Labs](https://saucelabs.com) (free for open-source projects).
+`justlazy` has CI set up through [Travis CI](https://travis-ci.org) and [Sauce Labs](https://saucelabs.com) (free for open-source projects).
 Pull-request and checkins will be tested automatically.
