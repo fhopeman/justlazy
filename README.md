@@ -81,7 +81,7 @@ After performing the `Justlazy.lazyLoadImg` function, the result will be:
 Coming soon..
 
 ## Contributing
-Just feel free to contribute..
+Just feel free to contribute ..
 
 #### Setup
 To set up the project you just have to clone the repository and run the install command:
