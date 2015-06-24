@@ -69,7 +69,7 @@ placeholder:
 #### Styling
 The default loading spinner has the css class `justlazy-placeholder`.
 
-#### Examples
+## Examples
 ##### 1. Basic
 ```
 <span id="lazySpan" data-src="some/image/path" data-alt="some alt text"
