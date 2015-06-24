@@ -334,25 +334,6 @@ describe("justlazy should lazy load div", function() {
         });
     });
 
-    it("with class attribute (remove styling)", function(done) {
-        var div = testCase("testDivWithClass", withElements("div"))[0];
-        expect(div).toHaveClass("someClass");
-
-        Justlazy.lazyLoadImg(div, function() {
-            // check loaded img of callback function
-            expect(this).not.toBeUndefined();
-            expect(this).not.toHaveClass("someClass");
-
-            // check twice within html structure
-            var img = testCase("testDivWithClass", withElements("img"))[0];
-            expect(img).toHaveAttr("src", base64Image);
-            expect(img).not.toHaveClass("someClass");
-            expect(img).toHaveAttr("alt", "alt-test-image");
-
-            done();
-        });
-    });
-
     it("with error handler", function (done) {
         var div = testCase("testDivWithErrorhandler", withElements("div"))[0];
 
