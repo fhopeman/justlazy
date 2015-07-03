@@ -42,28 +42,28 @@
             This demo uses buttons to trigger the image lazy loading event. But feel free
             to use other event types (e.g. scroll events).
         </p>
-<pre>
-<code><!--
--->var initLazyBtn = function (btn, placeholderId) {
-    btn.onclick = function() {
-        var placeholder = document.getElementById(placeholderId);
-        if (placeholder) {
-            Justlazy.lazyLoadImg(placeholder);
-        }
-
-        return false;
-    };
-};<!--
---></code>
-</pre>
+        <pre><!--
+         --><code><!--
+            -->var initLazyBtn = function (btn, placeholderId) {
+<!--            -->    btn.onclick = function() {
+<!--        -->        var placeholder = document.getElementById(placeholderId);
+<!--            -->        if (placeholder) {
+<!--            -->            Justlazy.lazyLoadImg(placeholder);
+<!--            -->        }
+<!--            -->
+<!--            -->        return false;
+<!--            -->    };
+<!--            -->};<!--
+         --></code><!--
+     --></pre>
         
         <div class="example-container">
             <h3>#1</h3>
-<pre>
-<code><!--
--->initLazyBtn(document.getElementById("loadImg1"), "lazyImg1");<!--
---></code>
-</pre>
+            <pre><!--
+             --><code><!--
+            -->initLazyBtn(document.getElementById("loadImg1"), "lazyImg1");<!--
+             --></code><!--
+         --></pre>
             <a id="loadImg1" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
             <div class="lazy-container">
                 <div id="lazyImg1" class="justlazy-placeholder" data-src="images/lazy_1.jpg" data-alt="first image to lazy load" data-title="some title for image 1"></div>
@@ -72,11 +72,11 @@
 
         <div class="example-container">
             <h3>#2</h3>
-<pre>
-<code><!--
--->initLazyBtn(document.getElementById("loadImg2"), "lazyimg2");<!--
---></code>
-</pre>
+            <pre><!--
+             --><code><!--
+                -->initLazyBtn(document.getElementById("loadImg2"), "lazyimg2");<!--
+             --></code><!--
+         --></pre>
             <a id="loadImg2" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
             <div class="lazy-container">
                 <div id="lazyImg2" class="justlazy-placeholder" data-src="images/lazy_2.jpg" data-alt="second image to lazy load" data-title="some title for image 2"></div>
@@ -85,11 +85,11 @@
 
         <div class="example-container">
             <h3>#3: lazy load with srcset tag</h3>
-<pre>
-<code><!--
--->initLazyBtn(document.getElementById("loadImg3"), "lazyImg3");<!--
---></code>
-</pre>
+            <pre><!--
+             --><code><!--
+                -->initLazyBtn(document.getElementById("loadImg3"), "lazyImg3");<!--
+             --></code><!--
+         --></pre>
             <a id="loadImg3" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load responsive image</a>
             <div class="lazy-container">
                 <div id="lazyImg3" class="justlazy-placeholder"
