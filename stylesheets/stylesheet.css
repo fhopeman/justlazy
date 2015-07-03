@@ -6,6 +6,7 @@ body {
     font-size: 16px;
     line-height: 1.5;
     font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    text-align: justify;
 }
 
 /* General & 'Reset' Stuff */
