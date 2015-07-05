@@ -79,7 +79,7 @@ var Justlazy = (function() {
      *                                           replacement of the lazy placeholder fails (e.g. mandatory
      *                                           attributes missing).
      */
-    var lazyLoadImg = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+    var lazyLoad = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
@@ -92,7 +92,7 @@ var Justlazy = (function() {
     };
 
     return {
-        lazyLoadImg: lazyLoadImg
+        lazyLoad: lazyLoad
     };
 
 })();

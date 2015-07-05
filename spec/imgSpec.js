@@ -29,7 +29,7 @@ describe("justlazy should lazy load span", function() {
     it("without extra stuff", function(done) {
         var span = testCase("testSpan", withElements("span"))[0];
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpan", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "alt-test-image");
@@ -42,7 +42,7 @@ describe("justlazy should lazy load span", function() {
     it("with just mandatory attributes", function(done) {
         var span = testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0];
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "some alt text");
@@ -60,7 +60,7 @@ describe("justlazy should lazy load span", function() {
         var span = testCase("testSpanWithContent", withElements("span"))[0];
         expect(span).toHaveText("some content here");
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithContent", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "alt-test-image");
@@ -74,7 +74,7 @@ describe("justlazy should lazy load span", function() {
         var span = testCase("testSpanWithCss", withElements("span"))[0];
         expect(span).toHaveCss({display: "none"});
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithCss", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "alt-test-image");
@@ -90,7 +90,7 @@ describe("justlazy should lazy load span", function() {
         expect(span).toHaveAttr("data-src", base64Image2);
         expect(span).toHaveAttr("data-error-handler", "this.onerror=null;this.src='" + base64Image + "';");
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithErrorHandler", withElements("img"))[0];
             expect(img).toExist();
             expect(img).toHaveAttr("onerror", "this.onerror=null;this.src='" + base64Image + "';");
@@ -104,7 +104,7 @@ describe("justlazy should lazy load span", function() {
         expect(testContainer.querySelectorAll(".lazy-span").length).toBe(3);
 
         // load second image of list structure
-        Justlazy.lazyLoadImg(testContainer.querySelectorAll(".lazy-span")[1], function() {
+        Justlazy.lazyLoad(testContainer.querySelectorAll(".lazy-span")[1], function() {
             var img2 = testContainer.querySelector("#li2").getElementsByTagName("img")[0];
             expect(img2).toHaveAttr("src", base64Image2);
             expect(img2).toHaveAttr("alt", "alt2");
@@ -124,7 +124,7 @@ describe("justlazy should lazy load span", function() {
         expect(span).toHaveAttr("data-alt", "some alt text");
         expect(span).not.toHaveAttr("data-srcset");
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithoutSrcset", withElements("img"))[0];
             expect(img).toExist();
             expect(img).toHaveAttr("src", base64Image);
@@ -144,7 +144,7 @@ describe("justlazy should lazy load span", function() {
         expect(span).toHaveAttr("data-alt", "some alt text");
         expect(span).not.toHaveAttr("data-title");
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithoutTitle", withElements("img"))[0];
             expect(img).toExist();
             expect(img).toHaveAttr("src", base64Image);
@@ -162,7 +162,7 @@ describe("justlazy should lazy load span", function() {
         expect(span).toHaveAttr("data-alt", "some alt text");
         expect(span).toHaveAttr("data-srcset", srcsetValue);
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithSrcset", withElements("img"))[0];
             expect(img).toExist();
             expect(img).toHaveAttr("src", base64ImageDefault);
@@ -180,7 +180,7 @@ describe("justlazy should lazy load span", function() {
         expect(span).toHaveAttr("data-src", base64Image);
         expect(span).toHaveAttr("data-alt", "");
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             var img = testCase("testSpanWithEmptyAlt", withElements("img"))[0];
             expect(img).toExist();
             expect(img).toHaveAttr("src", base64Image);
@@ -194,7 +194,7 @@ describe("justlazy should lazy load span", function() {
 
         expect(span).not.toHaveAttr("data-some-test-attr");
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             this.setAttribute("someKey", "someValue");
 
             var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
@@ -217,7 +217,7 @@ describe("justlazy shouldnt lazy load span", function() {
     it("and call onLazyLoadError callback", function (done) {
         var span = testCase("testSpanWithSrcError", withElements("span"))[0];
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             fail();
         }, function() {
             var spanAfterLazyLoading = testCase("testSpanWithSrcError", withElements("span"))[0];
@@ -229,7 +229,7 @@ describe("justlazy shouldnt lazy load span", function() {
     it("and shouldn't call onLazyLoadError callback if not defined", function () {
         var span = testCase("testSpanWithSrcError", withElements("span"))[0];
 
-        Justlazy.lazyLoadImg(span, function() {
+        Justlazy.lazyLoad(span, function() {
             fail();
         }, undefined);
 
@@ -243,7 +243,7 @@ describe("justlazy shouldnt lazy load span", function() {
         expect(span).not.toHaveAttr("data-src");
         expect(span).toHaveAttr("data-alt", "alt-test-image");
 
-        Justlazy.lazyLoadImg(span, undefined, function() {
+        Justlazy.lazyLoad(span, undefined, function() {
             var spanAfterLazyLoading = testCase("testSpanWithSrcError", withElements("span"))[0];
             expect(spanAfterLazyLoading).toExist();
             expect(spanAfterLazyLoading).toHaveAttr("data-alt", "alt-test-image");
@@ -259,7 +259,7 @@ describe("justlazy shouldnt lazy load span", function() {
         expect(span).toHaveAttr("data-src", base64Image);
         expect(span).not.toHaveAttr("data-alt");
 
-        Justlazy.lazyLoadImg(span, undefined, function() {
+        Justlazy.lazyLoad(span, undefined, function() {
             var spanAfterLazyLoading = testCase("testSpanWithAltError", withElements("span"))[0];
             expect(spanAfterLazyLoading).toExist();
             expect(spanAfterLazyLoading).toHaveAttr("data-src", base64Image);
@@ -276,7 +276,7 @@ describe("justlazy shouldnt lazy load span", function() {
         expect(span).not.toHaveAttr("data-alt");
         expect(span).toHaveAttr("data-some-other", "someOtherValue");
 
-        Justlazy.lazyLoadImg(span, undefined, function() {
+        Justlazy.lazyLoad(span, undefined, function() {
             var spanAfterReload = testCase("testSpanWithSrcAndAltError", withElements("span"))[0];
             expect(spanAfterReload).toExist();
             expect(spanAfterReload).toHaveAttr("data-some-other", "someOtherValue");
@@ -295,7 +295,7 @@ describe("justlazy should lazy load div", function() {
     it("without extra stuff", function (done) {
         var div = testCase("testDiv", withElements("div"))[0];
 
-        Justlazy.lazyLoadImg(div, function() {
+        Justlazy.lazyLoad(div, function() {
             var img = testCase("testDiv", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "alt-test-image");
@@ -310,7 +310,7 @@ describe("justlazy should lazy load div", function() {
 
         expect(div).toHaveText("many text here ..");
 
-        Justlazy.lazyLoadImg(div, function() {
+        Justlazy.lazyLoad(div, function() {
             var img = testCase("testDivWithContent", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "alt-test-image");
@@ -324,7 +324,7 @@ describe("justlazy should lazy load div", function() {
         var div = testCase("testDivWithStyling", withElements("div"))[0];
         expect(div).toHaveCss({display: "none"});
 
-        Justlazy.lazyLoadImg(div, function() {
+        Justlazy.lazyLoad(div, function() {
             var img = testCase("testDivWithStyling", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "alt-test-image");
@@ -341,7 +341,7 @@ describe("justlazy should lazy load div", function() {
         expect(div).toHaveAttr("data-alt", "some alt text");
         expect(div).toHaveAttr("data-error-handler", "this.onerror=null;this.src='" + base64Image2 + "';");
 
-        Justlazy.lazyLoadImg(div, function() {
+        Justlazy.lazyLoad(div, function() {
             var img = testCase("testDivWithErrorhandler", withElements("img"))[0];
             expect(img).toExist();
             expect(img).toHaveAttr("src", base64Image);
@@ -359,7 +359,7 @@ describe("justlazy should lazy load div", function() {
         expect(div).toHaveAttr("data-title", "some title");
         expect(div).toHaveAttr("data-error-handler", "");
 
-        Justlazy.lazyLoadImg(div, function() {
+        Justlazy.lazyLoad(div, function() {
             var img = testCase("testDivWithEmptyErrorHandler", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("title", "some title");
@@ -377,7 +377,7 @@ describe("justlazy should lazy load div", function() {
         expect(div).toHaveAttr("data-alt", "some alt text");
         expect(div).not.toHaveAttr("data-error-handler");
 
-        Justlazy.lazyLoadImg(div, function() {
+        Justlazy.lazyLoad(div, function() {
             var img = testCase("testDivWithoutErrorHandler", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "some alt text");
@@ -393,7 +393,7 @@ describe("justlazy should lazy load div", function() {
         expect(div).toHaveAttr("data-alt", "some alt text");
         expect(div).toHaveAttr("data-title", "");
 
-        Justlazy.lazyLoadImg(div, function() {
+        Justlazy.lazyLoad(div, function() {
             var img = testCase("testDivWithEmptyTitle", withElements("img"))[0];
             expect(img).toHaveAttr("src", base64Image);
             expect(img).toHaveAttr("alt", "some alt text");

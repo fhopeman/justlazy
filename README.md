@@ -45,7 +45,7 @@ You don't have to care about deleting the styling or other relics.
 #### Function
 The replacement function is defined as follows:
 ```
-Justlazy.lazyLoadImg(placeholder[, successCallback, errorCallback]);
+Justlazy.lazyLoad(placeholder[, successCallback, errorCallback]);
 ```
 - The mandatory `placeholder` is a html object which represents the
 image placeholder.
@@ -79,7 +79,7 @@ The default loading spinner has the css class `justlazy-placeholder`.
 
 Trigger the image lazy loading:
 ```
-Justlazy.lazyLoadImg(document.getElementById("lazySpan"));
+Justlazy.lazyLoad(document.getElementById("lazySpan"));
 ```
 
 The result of the function call will be:
@@ -96,7 +96,7 @@ You just have to add the `data-srcset` attribute to the placeholder:
               data-srcset="path/to/small/image 600w, path/to/big/image 1000w">
 </span>
 ```
-After performing the `Justlazy.lazyLoadImg` function, the result will be:
+After performing the `Justlazy.lazyLoad` function, the result will be:
 ```
 <img src="path/to/default/image" alt="some alt text"
      srcset="path/to/small/image 600w, path/to/big/image 1000w"
