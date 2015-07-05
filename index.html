@@ -43,6 +43,7 @@
             every other event type to trigger the loading function manually.
         </p>
 
+        <!-- example 1 -->
         <div class="example-container">
             <h3>#1 lazy load with specific event (e.g. button click)</h3>
             <pre><!--
@@ -56,11 +57,10 @@
              --></code><!--
          --></pre>
             <a id="loadImg1Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
-            <div class="lazy-container">
-                <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="first image to lazy load" data-title="some title for image 1"></div>
-            </div>
+            <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="first image to lazy load" data-title="some title for image 1"></div>
         </div>
 
+        <!-- example 2 -->
         <div class="example-container">
             <h3>#2: lazy load with srcset attribute</h3>
             <pre><!--
@@ -74,13 +74,11 @@
              --></code><!--
          --></pre>
             <a id="loadImg2Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load responsive image</a>
-            <div class="lazy-container">
-                <div id="img2" class="justlazy-placeholder"
-                     data-src="images/img_2_defaultSize.jpg"
-                     data-srcset="images/img_2_smallSize.jpg 600w, images/img_2_bigSize.jpg 1000w"
-                     data-alt="forth image to lazy load"
-                     data-title="some title for image 2">
-                </div>
+            <div id="img2" class="justlazy-placeholder"
+                 data-src="images/img_2_defaultSize.jpg"
+                 data-srcset="images/img_2_smallSize.jpg 600w, images/img_2_bigSize.jpg 1000w"
+                 data-alt="forth image to lazy load"
+                 data-title="some title for image 2">
             </div>
             <p>
                 The comment in the lower right corner of the image indicates the size of the image, which has been
@@ -95,6 +93,7 @@
             </p>
         </div>
 
+        <!-- example 3 -->
         <div class="example-container">
             <h3>#3 one more example</h3>
             <pre><!--
@@ -108,9 +107,7 @@
              --></code><!--
          --></pre>
             <a id="loadImg3Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
-            <div class="lazy-container">
-                <div id="img3" class="justlazy-placeholder" data-src="images/img_3.jpg" data-alt="second image to lazy load" data-title="some title for image 3"></div>
-            </div>
+            <div id="img3" class="justlazy-placeholder" data-src="images/img_3.jpg" data-alt="second image to lazy load" data-title="some title for image 3"></div>
         </div>
 
     </section>

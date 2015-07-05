@@ -231,13 +231,6 @@ hr {
 .example-container {
     margin-top: 50px;
 }
-.lazy-container {
-    width: 100%;
-}
-.lazy-container img {
-    width: 100%;
-    height: auto;
-}
 
 a {
     color: #63c0f5;
