@@ -107,7 +107,7 @@ After performing the `Justlazy.lazyLoad` function, the result will be:
 Coming soon ..
 
 ## Contributing
-Just feel free to contribute..
+Just feel free to contribute ..
 
 #### Project setup
 To set up the project you need the grunt-cli:
