@@ -91,8 +91,39 @@ var Justlazy = (function() {
         }
     };
 
+    var _isVisible = function(placeholder) {
+        var windowBottomOffset = window.innerHeight + window.scrollY;
+        return windowBottomOffset - placeholder.offsetTop >= 0;
+    };
+
+    var _loadImgIfVisible = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+        var scrollEventCallback = function(e) {
+            if (_isVisible(imgPlaceholder)) {
+                lazyLoad(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
+
+                if (e.target.removeEventListener) {
+                    e.target.removeEventListener(e.type, scrollEventCallback, false);
+                } else {
+                    e.target.detachEvent(e.type, scrollEventCallback);
+                }
+            }
+        };
+
+        return scrollEventCallback;
+    };
+
+    var registerLazyLoad = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
+        if (window.addEventListener) {
+            window.addEventListener("scroll", loadImgIfVisible, false);
+        } else {
+            window.attachEvent("onscroll", loadImgIfVisible);
+        }
+    };
+
     return {
-        lazyLoad: lazyLoad
+        lazyLoad: lazyLoad,
+        registerLazyLoad: registerLazyLoad
     };
 
 })();
