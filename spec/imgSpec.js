@@ -100,7 +100,7 @@ describe("justlazy should lazy load span", function() {
 
     it("in complex html structure", function(done) {
         var testContainer = document.getElementById("testSpanWithComplexStructure");
-        
+
         expect(testContainer.querySelectorAll(".lazy-span").length).toBe(3);
 
         // load second image of list structure
@@ -387,7 +387,7 @@ describe("justlazy should lazy load div", function() {
         });
     });
 
-    it("with empty data-title attribute", function() {
+    it("with empty data-title attribute", function(done) {
         var div = testCase("testDivWithEmptyTitle", withElements("div"))[0];
         expect(div).toHaveAttr("data-src", base64Image);
         expect(div).toHaveAttr("data-alt", "some alt text");
@@ -400,6 +400,8 @@ describe("justlazy should lazy load div", function() {
             expect(img).not.toHaveAttr("title");
             expect(testCase("testDivWithEmptyTitle", withElements("div"))[0]).not.toExist();
             done();
+        }, function() {
+            fail();
         });
     });
 
