@@ -95,19 +95,20 @@
 
         <!-- example 3 -->
         <div class="example-container">
-            <h3>#3 one more example</h3>
+            <h3>#3 lazy load if image is visible</h3>
             <pre><!--
              --><code><!--
-            -->document.getElementById("loadImg3Btn").onclick = function() {
-<!--        -->    var imgPlaceholder = document.getElementById("img3");
-<!--        -->    Justlazy.lazyLoadImg(imgPlaceholder);
-
-<!--        -->    return false;
-<!--        -->};<!--
+            -->var imgPlaceholders = document.querySelectorAll(".load-if-visible");
+<!--        -->for (var i = 0; i < imgPlaceholders.length; ++i) {
+<!--        -->    Justlazy.registerLazyLoad(imgPlaceholders[i]);
+<!--        -->}<!--
              --></code><!--
          --></pre>
-            <a id="loadImg3Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
-            <div id="img3" class="justlazy-placeholder" data-src="images/img_3.jpg" data-alt="second image to lazy load" data-title="some title for image 3"></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="" data-title=""></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="" data-title=""></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="" data-title=""></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_6.jpg" data-alt="" data-title=""></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_7.jpg" data-alt="" data-title=""></div>
         </div>
 
     </section>
