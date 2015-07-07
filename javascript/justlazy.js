@@ -80,6 +80,7 @@ var Justlazy = (function() {
      *                                           attributes missing).
      */
     var lazyLoad = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+        console.log("lazy load now");
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
@@ -98,6 +99,7 @@ var Justlazy = (function() {
 
     var _loadImgIfVisible = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
         var scrollEventCallback = function(e) {
+            console.log("check visibility");
             if (_isVisible(imgPlaceholder)) {
                 lazyLoad(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
 
@@ -113,6 +115,7 @@ var Justlazy = (function() {
     };
 
     var registerLazyLoad = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+        console.log("register");
         var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
         if (window.addEventListener) {
             window.addEventListener("scroll", loadImgIfVisible, false);
