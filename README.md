@@ -9,8 +9,6 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 - Simplicity and lightness (just lazy loading of images, no special cases)
 - Heavily tested on various devices, browsers and OS versions
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
-
 ## Installation
 #### file include
 Firstly, you can include the `justlazy.js` file as follows in your page.
