@@ -94,12 +94,14 @@ var Justlazy = (function() {
 
     var _isVisible = function(placeholder) {
         var windowBottomOffset = window.innerHeight + window.scrollY;
+        console.log("height: " + window.innerHeight);
+        console.log("scrollY: " + window.scrollY);
+        console.log("offset: " + windowBottomOffset);
         return windowBottomOffset - placeholder.offsetTop >= 0;
     };
 
     var _loadImgIfVisible = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
         var scrollEventCallback = function(e) {
-            console.log("check visibility");
             if (_isVisible(imgPlaceholder)) {
                 lazyLoad(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
 
