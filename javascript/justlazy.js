@@ -97,9 +97,9 @@ var Justlazy = (function() {
     };
 
     var _isVisible = function(placeholder) {
-        var windowBottomOffset = window.innerHeight + _getScrollTop;
+        var windowBottomOffset = window.innerHeight + _getScrollTop();
         console.log("height: " + window.innerHeight);
-        console.log("scrollY: " + _getScrollTop);
+        console.log("scrollY: " + _getScrollTop());
         console.log("offset: " + windowBottomOffset);
         return windowBottomOffset - placeholder.offsetTop >= 0;
     };
