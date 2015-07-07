@@ -92,10 +92,14 @@ var Justlazy = (function() {
         }
     };
 
+    var _getScrollTop = function() {
+        return window.scrollY || document.documentElement.scrollTop;
+    };
+
     var _isVisible = function(placeholder) {
-        var windowBottomOffset = window.innerHeight + window.scrollY;
+        var windowBottomOffset = window.innerHeight + _getScrollTop;
         console.log("height: " + window.innerHeight);
-        console.log("scrollY: " + window.scrollY);
+        console.log("scrollY: " + _getScrollTop);
         console.log("offset: " + windowBottomOffset);
         return windowBottomOffset - placeholder.offsetTop >= 0;
     };
