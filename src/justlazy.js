@@ -91,12 +91,16 @@ var Justlazy = (function() {
         }
     };
 
+    var _getWindowInnerHeight = function() {
+        return window.innerHeight || document.documentElement.clientHeight;
+    };
+
     var _getScrollTop = function() {
         return window.scrollY || document.documentElement.scrollTop;
     };
 
     var _isVisible = function(placeholder) {
-        var windowBottomOffset = window.innerHeight + _getScrollTop();
+        var windowBottomOffset = _getWindowInnerHeight() + _getScrollTop();
         return windowBottomOffset - placeholder.offsetTop >= 0;
     };
 
