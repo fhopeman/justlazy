@@ -39,7 +39,8 @@
         </a>
 
         <p>
-            The examples using a button to trigger the image lazy loading event. But you can use
+            The first two examples using a button to trigger the image lazy loading event. The third example
+            loads the images if they get visible. But you can use
             every other event type to trigger the loading function manually.
         </p>
 
@@ -50,7 +51,7 @@
              --><code><!--
             -->document.getElementById("loadImg1Btn").onclick = function() {
 <!--        -->    var imgPlaceholder = document.getElementById("img1");
-<!--        -->    Justlazy.lazyLoadImg(imgPlaceholder);
+<!--        -->    Justlazy.lazyLoad(imgPlaceholder);
 
 <!--        -->    return false;
 <!--        -->};<!--
@@ -67,7 +68,7 @@
              --><code><!--
             -->document.getElementById("loadImg2Btn").onclick = function() {
 <!--        -->    var imgPlaceholder = document.getElementById("img2");
-<!--        -->    Justlazy.lazyLoadImg(imgPlaceholder);
+<!--        -->    Justlazy.lazyLoad(imgPlaceholder);
 
 <!--        -->    return false;
 <!--        -->};<!--

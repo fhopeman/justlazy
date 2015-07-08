@@ -91,16 +91,11 @@ var Justlazy = (function() {
         }
     };
 
-    var _getWindowInnerHeight = function() {
-        return window.innerHeight || document.documentElement.clientHeight;
-    };
-
-    var _getScrollTop = function() {
-        return window.scrollY || document.documentElement.scrollTop;
-    };
-
     var _isVisible = function(placeholder) {
-        var windowBottomOffset = _getWindowInnerHeight() + _getScrollTop();
+        var windowInnerHeight = window.innerHeight || document.documentElement.clientHeight;
+        var windowScrollY = window.scrollY || document.documentElement.scrollTop;
+        var windowBottomOffset = windowInnerHeight + windowScrollY;
+
         return windowBottomOffset - placeholder.offsetTop >= 0;
     };
 
@@ -109,10 +104,11 @@ var Justlazy = (function() {
             if (_isVisible(imgPlaceholder)) {
                 lazyLoad(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
 
-                if (e.target.removeEventListener) {
-                    e.target.removeEventListener(e.type, scrollEventCallback, false);
+                var target = e.target || e.srcElement;
+                if (target.removeEventListener) {
+                    target.removeEventListener(e.type, scrollEventCallback, false);
                 } else {
-                    e.target.detachEvent(e.type, scrollEventCallback);
+                    target.detachEvent(e.type, scrollEventCallback);
                 }
             }
         };
