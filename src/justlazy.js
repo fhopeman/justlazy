@@ -104,10 +104,11 @@ var Justlazy = (function() {
             if (_isVisible(imgPlaceholder)) {
                 lazyLoad(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
 
-                if (e.target.removeEventListener) {
-                    e.target.removeEventListener(e.type, scrollEventCallback, false);
+                var target = e.target || e.srcElement;
+                if (target.removeEventListener) {
+                    target.removeEventListener(e.type, scrollEventCallback, false);
                 } else {
-                    e.target.detachEvent(e.type, scrollEventCallback);
+                    target.detachEvent(e.type, scrollEventCallback);
                 }
             }
         };
