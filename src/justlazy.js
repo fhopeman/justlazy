@@ -78,10 +78,13 @@ var Justlazy = (function() {
      * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
      *                                The node has to provide the data element data-src and data-alt.
      *                                All other attributes are optional.
-     * @param {Function} onloadCallback Optional callback which is invoked after the image is loaded.
-     * @param {Function} onerrorCallback Optional error handler which is invoked if the
-     *                                   replacement of the lazy placeholder fails (e.g. mandatory
-     *                                   attributes missing).
+     * @param {Object} options Optional object with following attributes:
+     *                           - onloadCallback:
+     *                                 Optional callback which is invoked after the image is loaded.
+     *                           - onerrorCallback:
+     *                                 Optional error handler which is invoked if the
+     *                                 replacement of the lazy placeholder fails (e.g. mandatory
+     *                                 attributes missing).
      */
     var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
@@ -122,6 +125,24 @@ var Justlazy = (function() {
         return scrollEventCallback;
     };
 
+    /**
+     * Registers the lazy loading event. If the image become visible, it will
+     * be loaded automatically.
+     *
+     * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
+     *                                The node has to provide the data element data-src and data-alt.
+     *                                All other attributes are optional.
+     * @param {Object} options Optional object with following attributes:
+     *                           - onloadCallback:
+     *                                 Optional callback which is invoked after the image is loaded.
+     *                           - onerrorCallback:
+     *                                 Optional error handler which is invoked if the
+     *                                 replacement of the lazy placeholder fails (e.g. mandatory
+     *                                 attributes missing).
+     *                           - threshold:
+     *                                 The image is loaded the defined pixels before it appears
+     *                                 on the screen. E.g. 200px before it become visible.
+     */
     var registerLazyLoad = function(imgPlaceholder, options) {
         var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, _validateOptions(options));
 
