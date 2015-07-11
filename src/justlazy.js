@@ -97,7 +97,7 @@ var Justlazy = (function() {
         var windowBottomOffset = windowInnerHeight + windowScrollY;
         var threshold = optionalThreshold || 0;
 
-        return windowBottomOffset + threshold - placeholder.offsetTop >= 0;
+        return windowBottomOffset + threshold >= placeholder.offsetTop;
     };
 
     var _loadImgIfVisible = function(imgPlaceholder, options) {
