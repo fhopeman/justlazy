@@ -63,6 +63,28 @@ describe("justlazy auto loader", function() {
         triggerScrollEvent(5000);
     });
 
+    it("should load placeholder by reached threshold after scroll event", function(done) {
+        // given
+        var placeholder2 = document.getElementById("img2");
+        expect(placeholder2).toHaveAttr("data-src", base64Image2);
+
+        Justlazy.registerLazyLoad(placeholder2, {
+            onloadCallback: function () {
+                // then
+                var img2 = document.getElementsByTagName("img")[0];
+                expect(img2).toHaveAttr("src", base64Image2);
+                done();
+            },
+            onerrorCallback: function () {
+                fail();
+            },
+            threshold: 1000
+        });
+
+        // when
+        triggerScrollEvent(4000);
+    });
+
     it("should not load invisible placeholder", function(done) {
         // given
         var callCount = 0;

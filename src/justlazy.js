@@ -91,21 +91,19 @@ var Justlazy = (function() {
         }
     };
 
-    var _isVisible = function(placeholder) {
+    var _isVisible = function(placeholder, optionalThreshold) {
         var windowInnerHeight = window.innerHeight || document.documentElement.clientHeight;
         var windowScrollY = window.scrollY || document.documentElement.scrollTop;
         var windowBottomOffset = windowInnerHeight + windowScrollY;
+        var threshold = optionalThreshold || 0;
 
-        return windowBottomOffset - placeholder.offsetTop >= 0;
+        return windowBottomOffset + threshold - placeholder.offsetTop >= 0;
     };
 
-    var _loadImgIfVisible = function(imgPlaceholder, onloadCallback, onerrorCallback) {
+    var _loadImgIfVisible = function(imgPlaceholder, options) {
         var scrollEventCallback = function(e) {
-            if (_isVisible(imgPlaceholder)) {
-                lazyLoad(imgPlaceholder, {
-                    onloadCallback: onloadCallback,
-                    onerrorCallback: onerrorCallback
-                });
+            if (_isVisible(imgPlaceholder, options.threshold)) {
+                lazyLoad(imgPlaceholder, options);
 
                 var target = e.target || e.srcElement;
                 if (target.removeEventListener) {
@@ -120,7 +118,7 @@ var Justlazy = (function() {
     };
 
     var registerLazyLoad = function(imgPlaceholder, options) {
-        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, options.onloadCallback, options.onerrorCallback);
+        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, options);
         if (window.addEventListener) {
             window.addEventListener("scroll", loadImgIfVisible, false);
         } else {
