@@ -60,6 +60,7 @@ Justlazy.registerLazyLoad(placeholder[, options]);
 - The mandatory `placeholder` is a html object which represents the
 image placeholder.
 - Possible `options` are:
+
 | Option | Description |
 |--------|-------------|
 |`successCallback`| will be invoked if the placeholder is properly replaced|
