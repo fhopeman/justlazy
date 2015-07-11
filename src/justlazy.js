@@ -116,8 +116,8 @@ var Justlazy = (function() {
         return scrollEventCallback;
     };
 
-    var registerLazyLoad = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
-        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
+    var registerLazyLoad = function(imgPlaceholder, options) {
+        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, options.onloadCallback, options.onLazyLoadErrorCallback);
         if (window.addEventListener) {
             window.addEventListener("scroll", loadImgIfVisible, false);
         } else {

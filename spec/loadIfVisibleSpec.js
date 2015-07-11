@@ -26,13 +26,16 @@ describe("justlazy auto loader", function() {
         var placeholder1 = document.getElementById("img1");
         expect(placeholder1).toHaveAttr("data-src", base64Image);
 
-        Justlazy.registerLazyLoad(placeholder1, function() {
-            // then
-            var img1 = document.getElementsByTagName("img")[0];
-            expect(img1).toHaveAttr("src", base64Image);
-            done();
-        }, function() {
-            fail();
+        Justlazy.registerLazyLoad(placeholder1, {
+            onloadCallback: function() {
+                // then
+                var img1 = document.getElementsByTagName("img")[0];
+                expect(img1).toHaveAttr("src", base64Image);
+                done();
+            },
+            onLazyLoadErrorCallback: function() {
+                fail();
+            }
         });
 
         // when
@@ -44,13 +47,16 @@ describe("justlazy auto loader", function() {
         var placeholder2 = document.getElementById("img2");
         expect(placeholder2).toHaveAttr("data-src", base64Image2);
 
-        Justlazy.registerLazyLoad(placeholder2, function() {
-            // then
-            var img2 = document.getElementsByTagName("img")[0];
-            expect(img2).toHaveAttr("src", base64Image2);
-            done();
-        }, function() {
-            fail();
+        Justlazy.registerLazyLoad(placeholder2, {
+            onloadCallback: function () {
+                // then
+                var img2 = document.getElementsByTagName("img")[0];
+                expect(img2).toHaveAttr("src", base64Image2);
+                done();
+            },
+            onLazyLoadErrorCallback: function () {
+                fail();
+            }
         });
 
         // when
@@ -63,10 +69,13 @@ describe("justlazy auto loader", function() {
         var placeholder3 = document.getElementById("img3");
         expect(placeholder3).toHaveAttr("data-src", base64Image3);
 
-        Justlazy.registerLazyLoad(placeholder3, function() {
-            ++callCount;
-        }, function() {
-            fail();
+        Justlazy.registerLazyLoad(placeholder3, {
+            onloadCallback: function() {
+                ++callCount;
+            },
+            onLazyLoadErrorCallback: function() {
+                fail();
+            }
         });
 
         // when
@@ -84,10 +93,13 @@ describe("justlazy auto loader", function() {
         var callCount = 0;
         var placeholder1 = document.getElementById("img1");
 
-        Justlazy.registerLazyLoad(placeholder1, function() {
-            ++callCount;
-        }, function() {
-            fail();
+        Justlazy.registerLazyLoad(placeholder1, {
+            onloadCallback: function() {
+                ++callCount;
+            },
+            onLazyLoadErrorCallback: function() {
+                fail();
+            }
         });
 
         // when
@@ -106,10 +118,13 @@ describe("justlazy auto loader", function() {
         var callCount = 0;
         var placeholder2 = document.getElementById("img2");
 
-        Justlazy.registerLazyLoad(placeholder2, function() {
-            ++callCount;
-        }, function() {
-            fail();
+        Justlazy.registerLazyLoad(placeholder2, {
+            onloadCallback: function() {
+                ++callCount;
+            },
+            onLazyLoadErrorCallback: function() {
+                fail();
+            }
         });
 
         // when
