@@ -75,18 +75,18 @@ var Justlazy = (function() {
      *                                The node has to provide the data element data-src and data-alt.
      *                                All other attributes are optional.
      * @param {Function} onloadCallback Optional callback which is invoked after the image is loaded.
-     * @param {Function} onLazyLoadErrorCallback Optional error handler which is invoked if the
-     *                                           replacement of the lazy placeholder fails (e.g. mandatory
-     *                                           attributes missing).
+     * @param {Function} onerrorCallback Optional error handler which is invoked if the
+     *                                   replacement of the lazy placeholder fails (e.g. mandatory
+     *                                   attributes missing).
      */
-    var lazyLoad = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+    var lazyLoad = function(imgPlaceholder, onloadCallback, onerrorCallback) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
             _createImage(imgPlaceholder, imgAttributes, onloadCallback);
         } else {
-            if (!!onLazyLoadErrorCallback) {
-                onLazyLoadErrorCallback.call(imgPlaceholder);
+            if (!!onerrorCallback) {
+                onerrorCallback.call(imgPlaceholder);
             }
         }
     };
@@ -99,10 +99,10 @@ var Justlazy = (function() {
         return windowBottomOffset - placeholder.offsetTop >= 0;
     };
 
-    var _loadImgIfVisible = function(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback) {
+    var _loadImgIfVisible = function(imgPlaceholder, onloadCallback, onerrorCallback) {
         var scrollEventCallback = function(e) {
             if (_isVisible(imgPlaceholder)) {
-                lazyLoad(imgPlaceholder, onloadCallback, onLazyLoadErrorCallback);
+                lazyLoad(imgPlaceholder, onloadCallback, onerrorCallback);
 
                 var target = e.target || e.srcElement;
                 if (target.removeEventListener) {
@@ -117,7 +117,7 @@ var Justlazy = (function() {
     };
 
     var registerLazyLoad = function(imgPlaceholder, options) {
-        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, options.onloadCallback, options.onLazyLoadErrorCallback);
+        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, options.onloadCallback, options.onerrorCallback);
         if (window.addEventListener) {
             window.addEventListener("scroll", loadImgIfVisible, false);
         } else {

@@ -33,7 +33,7 @@ describe("justlazy auto loader", function() {
                 expect(img1).toHaveAttr("src", base64Image);
                 done();
             },
-            onLazyLoadErrorCallback: function() {
+            onerrorCallback: function() {
                 fail();
             }
         });
@@ -54,7 +54,7 @@ describe("justlazy auto loader", function() {
                 expect(img2).toHaveAttr("src", base64Image2);
                 done();
             },
-            onLazyLoadErrorCallback: function () {
+            onerrorCallback: function () {
                 fail();
             }
         });
@@ -73,7 +73,7 @@ describe("justlazy auto loader", function() {
             onloadCallback: function() {
                 ++callCount;
             },
-            onLazyLoadErrorCallback: function() {
+            onerrorCallback: function() {
                 fail();
             }
         });
@@ -97,7 +97,7 @@ describe("justlazy auto loader", function() {
             onloadCallback: function() {
                 ++callCount;
             },
-            onLazyLoadErrorCallback: function() {
+            onerrorCallback: function() {
                 fail();
             }
         });
@@ -122,7 +122,7 @@ describe("justlazy auto loader", function() {
             onloadCallback: function() {
                 ++callCount;
             },
-            onLazyLoadErrorCallback: function() {
+            onerrorCallback: function() {
                 fail();
             }
         });
