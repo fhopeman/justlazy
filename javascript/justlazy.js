@@ -108,7 +108,7 @@ var Justlazy = (function() {
                 if (target.removeEventListener) {
                     target.removeEventListener(e.type, scrollEventCallback, false);
                 } else {
-                    target.detachEvent(e.type, scrollEventCallback);
+                    target.detachEvent("on" + e.type, scrollEventCallback);
                 }
             }
         };
