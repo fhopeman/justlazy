@@ -36,27 +36,41 @@ To lazy load an image, first of all a placeholder of your choice (e.g. span, div
 has to be defined. This placeholder itself is a html element which contains
 different data-attributes to provide the image information.
 
-After calling the loading function, the library loads the image with javascript
-in the background and then replaces the whole placeholder with the image.
-You don't have to care about deleting the styling or other relics.
+After calling the manual loading function or the auto loading is triggered, the library
+loads the image with javascript in the background and then replaces the whole
+placeholder with the image. You don't have to care about deleting the styling
+or other relics.
 
 #### Function
+
+###### Manual loading
 The replacement function is defined as follows:
 ```
-Justlazy.lazyLoad(placeholder[, successCallback, errorCallback]);
+Justlazy.lazyLoad(placeholder[, options]);
 ```
+
+###### Auto loading
+The function to register images for auto loading is defined as follows:
+```
+Justlazy.registerLazyLoad(placeholder[, options]);
+```
+
+###### Options
+
 - The mandatory `placeholder` is a html object which represents the
 image placeholder.
-- The optional `successCallback` will be invoked if the placeholder is
-properly replaced.
-- The optional `errorCallback` will be invoked if the placeholder could not be
-replaced. This occurs if mandatory attributes (e.g. `data-src`) aren't available.
+- Possible `options` are:
+| Option | Description |
+|--------|-------------|
+|`successCallback`| will be invoked if the placeholder is properly replaced|
+|`errorCallback`  | will be invoked if the placeholder could not be replaced. This occurs if mandatory attributes (e.g. `data-src`) aren't available.|
+|`threshold`      | (only auto loading) The image is loaded the defined pixels before it appears on the screen. E.g. 200px before it become visible.
 
-#### Attributes
+#### Placeholder attributes
 Following attributes can be used as data-attributes of the image
 placeholder:
 
-| Attribute   | Mandatory   |Description                          |
+| Attribute   | Mandatory   | Description                         |
 |-------------|-------------|-------------------------------------|
 |`data-src`   |yes          |image source                         |
 |`data-alt`   |yes          |alt text of image, `data-alt=""` allowed (not recommended!)|
@@ -68,7 +82,7 @@ placeholder:
 The default loading spinner has the css class `justlazy-placeholder`.
 
 ## Examples
-#### 1. Basic
+#### 1. Manual loading
 ```
 <span id="lazySpan" data-src="some/image/path" data-alt="some alt text"
       class="justlazy-placeholder">
@@ -85,7 +99,7 @@ The result of the function call will be:
 <img src="some/image/path" alt="some alt text"/>
 ```
 
-#### 2. With srcset-attribute
+#### 2. Manual loading with srcset-attribute
 Similar to the img example above, you can easily lazy load responsive img-tags which containing a `srcset` attribute.
 You just have to add the `data-srcset` attribute to the placeholder:
 ```
@@ -101,8 +115,14 @@ After performing the `Justlazy.lazyLoad` function, the result will be:
 />
 ```
 
-#### 3. With picture-tag
-Coming soon ..
+#### 3. Auto loading with threshold
+Instead of calling the manual loading function, you have to use the registration
+function:
+```
+Justlazy.registerLazyLoad(document.getElementById("lazySpan"), {
+    threshold: 100
+});
+```
 
 ## Contributing
 Just feel free to contribute ..
