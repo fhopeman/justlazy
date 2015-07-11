@@ -41,7 +41,7 @@ loads the image with javascript in the background and then replaces the whole
 placeholder with the image. You don't have to care about deleting the styling
 or other relics.
 
-#### Function
+#### Functions
 
 ###### Manual loading
 The replacement function is defined as follows:
@@ -65,7 +65,7 @@ image placeholder.
 |--------|-------------|
 |`successCallback`| will be invoked if the placeholder is properly replaced|
 |`errorCallback`  | will be invoked if the placeholder could not be replaced. This occurs if mandatory attributes (e.g. `data-src`) aren't available.|
-|`threshold`      | (only auto loading) The image is loaded the defined pixels before it appears on the screen. E.g. 200px before it become visible.
+|`threshold`      | (only auto loading) The image is loaded the defined pixels before it appears on the screen. E.g. 200px before it becomes visible.
 
 #### Placeholder attributes
 Following attributes can be used as data-attributes of the image
