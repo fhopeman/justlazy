@@ -68,6 +68,10 @@ var Justlazy = (function() {
         };
     };
 
+    var _validateOptions = function(options) {
+        return options || {};
+    };
+
     /**
      * Lazy loads image with img tag.
      *
@@ -81,6 +85,7 @@ var Justlazy = (function() {
      */
     var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
+        options = _validateOptions(options);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
             _createImage(imgPlaceholder, imgAttributes, options.onloadCallback);
@@ -118,7 +123,8 @@ var Justlazy = (function() {
     };
 
     var registerLazyLoad = function(imgPlaceholder, options) {
-        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, options);
+        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, _validateOptions(options));
+
         if (window.addEventListener) {
             window.addEventListener("scroll", loadImgIfVisible, false);
         } else {

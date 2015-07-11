@@ -18,6 +18,13 @@ describe("justlazy", function() {
         expect(Justlazy).not.toBeUndefined();
     });
 
+    it("should be able to cope with undefined options", function() {
+        loadFixtures("imgTagWithSpan.html");
+        var span = testCase("testSpan", withElements("span"))[0];
+        expect(span).toBeDefined();
+        Justlazy.lazyLoad(span);
+    });
+
 });
 
 describe("justlazy should lazy load span", function() {
