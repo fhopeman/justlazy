@@ -79,14 +79,14 @@ var Justlazy = (function() {
      *                                   replacement of the lazy placeholder fails (e.g. mandatory
      *                                   attributes missing).
      */
-    var lazyLoad = function(imgPlaceholder, onloadCallback, onerrorCallback) {
+    var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
-            _createImage(imgPlaceholder, imgAttributes, onloadCallback);
+            _createImage(imgPlaceholder, imgAttributes, options.onloadCallback);
         } else {
-            if (!!onerrorCallback) {
-                onerrorCallback.call(imgPlaceholder);
+            if (!!options.onerrorCallback) {
+                options.onerrorCallback.call(imgPlaceholder);
             }
         }
     };
@@ -102,7 +102,10 @@ var Justlazy = (function() {
     var _loadImgIfVisible = function(imgPlaceholder, onloadCallback, onerrorCallback) {
         var scrollEventCallback = function(e) {
             if (_isVisible(imgPlaceholder)) {
-                lazyLoad(imgPlaceholder, onloadCallback, onerrorCallback);
+                lazyLoad(imgPlaceholder, {
+                    onloadCallback: onloadCallback,
+                    onerrorCallback: onerrorCallback
+                });
 
                 var target = e.target || e.srcElement;
                 if (target.removeEventListener) {
