@@ -41,7 +41,8 @@
         <p>
             The first two examples use a button click event to trigger the image lazy loading. You can use
             every other event type to trigger the loading function manually. The third example
-            loads the images if they become visible.
+            loads the images if they become visible. The last example performs an auto loading with
+            pre-loading threshold.
         </p>
 
         <!-- example 1 -->
@@ -58,7 +59,7 @@
              --></code><!--
          --></pre>
             <a id="loadImg1Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
-            <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="first image to lazy load" data-title="some title for image 1"></div>
+            <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="Bridge in Hamburg" data-title="Bridge in Hamburg"></div>
         </div>
 
         <!-- example 2 -->
@@ -78,8 +79,8 @@
             <div id="img2" class="justlazy-placeholder"
                  data-src="images/img_2_defaultSize.jpg"
                  data-srcset="images/img_2_smallSize.jpg 600w, images/img_2_bigSize.jpg 1000w"
-                 data-alt="forth image to lazy load"
-                 data-title="some title for image 2">
+                 data-alt="Bridge in Heidelberg"
+                 data-title="Bridge in Heidelberg">
             </div>
             <p>
                 The comment in the lower right corner of the image indicates the size of the image, which has been
@@ -105,16 +106,30 @@
 <!--        -->}<!--
              --></code><!--
          --></pre>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="" data-title=""></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="" data-title=""></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="" data-title=""></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_6.jpg" data-alt="" data-title=""></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_7.jpg" data-alt="" data-title=""></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
+            <div class="load-if-visible justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
+        </div>
+
+        <!-- example 4 -->
+        <div class="example-container">
+            <h3>#4 lazy load with pre-loading threshold</h3>
+            <pre><!--
+             --><code><!--
+             -->var img8Placeholder = document.getElementById("img8");
+<!--         -->Justlazy.registerLazyLoad(img8Placeholder, {
+<!--         -->    threshold: 100
+<!--         -->});<!--
+             --></code><!--
+         --></pre>
+            <div id="img8" class="justlazy-placeholder" data-src="images/img_8.jpg" data-alt="Bridge in Kassel" data-title="Bridge in Kassel"></div>
+            <p>The threshold is set to 100. That means, the image was loaded 100px before it appears on the screen.</p>
         </div>
 
     </section>
 </div>
-
 
 </body>
 </html>

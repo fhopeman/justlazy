@@ -22,4 +22,9 @@
         Justlazy.registerLazyLoad(imgPlaceholders[i]);
     }
 
+    // example 4
+    var img8Placeholder = document.getElementById("img8");
+    Justlazy.registerLazyLoad(img8Placeholder, {
+        threshold: 100
+    });
 })();
