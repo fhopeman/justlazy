@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="justlazy.js is a lightweight javascript plugin to lazy load responsive images. The micro plugin supports auto and manual lazy loading of images.">
 
-    <title>Javascript plugin to lazy load responsive images</title>
+    <title>lightweight javascript plugin to lazy load responsive images</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/justlazy.css" media="screen">
 </head>
@@ -39,9 +39,9 @@
         <h1>Why yet another lazy loading plugin?</h1>
         <p>
             Most of the existing javascript lazy
-            loading plugins using extensive dependencies
-            (e.g. <a href="https://jquery.com/" title="jQuery homepage">jQuery</a>) or supporting just the img-tag
-            without responsive parts. This plugin is supposed to be an lightweight alternative.
+            loading plugins use extensive dependencies
+            (e.g. <a href="https://jquery.com/" title="jQuery homepage">jQuery</a>) or support just the img-tag
+            without responsive parts. This plugin is supposed to be a lightweight alternative.
             The main goals are:
         </p>
         <ul>
@@ -222,7 +222,7 @@
                 <h3>#2: lazy load with srcset attribute</h3>
                 <p>
                     This example demonstrates the usage of the srcset attribute. You just have to
-                    provie the data-srcset attribute with specific value.
+                    provide the data-srcset attribute with specific value.
                 </p>
                 <pre><!--
                  --><code><!--
@@ -277,8 +277,10 @@
             <div class="example">
                 <h3>#4 lazy load image with pre-loading threshold</h3>
                 <p>
-                    The image will be pre-loaded the defined pixels before it appears in the viewport.
-                    A threshold of 100 means, that the image will be loaded 100 pixels before it become
+                    Usually the image will be loaded when it becomes visible in the viewport.
+                    If you set the <code>threshold</code>,
+                    the image will be pre-loaded due to the defined pixels.
+                    A <code>threshold</code> of 100 means, that the image will be loaded 100 pixels before it becomes
                     visible for the user.
                 </p>
                 <pre><!--
