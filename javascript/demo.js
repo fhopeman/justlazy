@@ -17,14 +17,16 @@
     };
 
     // example 3
-    var imgPlaceholders = document.querySelectorAll('.load-if-visible');
-    for (var i = 0; i < imgPlaceholders.length; ++i) {
-        Justlazy.registerLazyLoad(imgPlaceholders[i]);
+    var placeholderExample3 = document.querySelectorAll('.loadIfVisible');
+    for (var i = 0; i < placeholderExample3.length; ++i) {
+        Justlazy.registerLazyLoad(placeholderExample3[i]);
     }
 
     // example 4
-    var img8Placeholder = document.getElementById("img8");
-    Justlazy.registerLazyLoad(img8Placeholder, {
-        threshold: 100
-    });
+    var placeholderExample4 = document.querySelectorAll('.loadWithThreshold');
+    for (var i = 0; i < placeholderExample4.length; ++i) {
+        Justlazy.registerLazyLoad(placeholderExample4[i], {
+            threshold: 100
+        });
+    }
 })();

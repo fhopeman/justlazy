@@ -3,9 +3,9 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="justlazy.js is a lightweight javascript plugin for responsive image lazy loading">
-    
-    <title>justlazy.js</title>
+    <meta name="description" content="justlazy.js is a lightweight javascript plugin to lazy load responsive images. The micro plugin supports auto and manual lazy loading of images.">
+
+    <title>Javascript plugin to lazy load responsive images</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/justlazy.css" media="screen">
 </head>
@@ -15,39 +15,50 @@
 <header>
     <div class="container">
         <h1>justlazy.js</h1>
-        <h2>micro javascript library for responsive image lazy loading</h2>
+        <h2>micro javascript plugin for responsive image lazy loading</h2>
         <section id="downloads">
             <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn">get .zip</a>
             <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn">get .tar.gz</a>
             <a href="https://github.com/fhopeman/justlazy" class="btn btn-github">
                 <span class="icon"></span>
-                view code
+                view code!
             </a>
             <a href="https://github.com/fhopeman/justlazy" class="btn btn-github">
                 <span class="icon"></span>
                 fork me!
             </a>
         </section>
+        <a href="https://travis-ci.org/fhopeman/justlazy">
+            <img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" alt="Build Status">
+        </a>
     </div>
 </header>
 
 <div class="container">
     <section id="main_content">
-        <h1>responsive image lazy loading</h1>
-        <a href="https://travis-ci.org/fhopeman/justlazy">
-            <img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" alt="Build Status">
-        </a>
-
+        <h1>lazy load responsive images</h1>
         <p>
-            The first two examples use a button click event to trigger the image lazy loading. You can use
-            every other event type to trigger the loading function manually. The third example
-            loads the images if they become visible. The last example performs an auto loading with
-            pre-loading threshold.
+            Why yet another lazy loading plugin? Most of the existing javascript lazy
+            loading plugins using extensive dependencies
+            (e.g. <a href="https://jquery.com/">jQuery</a>) or supporting just the img-tag
+            without responsive parts. This plugin is supposed to be an lightweight alternative.
+            The main goals are:
+            <ul>
+                <li>100% performance with plain javascript (no jQuery)</li>
+                <li>100% valid HTML (no empty src tag)</li>
+                <li>Simplicity and lightness (just lazy loading of images, no special cases)</li>
+                <li>Heavily tested on various devices, browsers and OS versions</li>
+            </ul>
         </p>
 
+        <h2>Demo</h2>
         <!-- example 1 -->
         <div class="example-container">
             <h3>#1 lazy load with specific event (e.g. button click)</h3>
+            <p>
+                This example uses a button to trigger the image lazy loading manually. Instead
+                of the click event, you can use any other event of your choice.
+            </p>
             <pre><!--
              --><code><!--
             -->document.getElementById("loadImg1Btn").onclick = function() {
@@ -65,6 +76,10 @@
         <!-- example 2 -->
         <div class="example-container">
             <h3>#2: lazy load with srcset attribute</h3>
+            <p>
+                This example demonstrates the usage of the srcset attribute. You just have to
+                provie the data-srcset attribute with specific value.
+            </p>
             <pre><!--
              --><code><!--
             -->document.getElementById("loadImg2Btn").onclick = function() {
@@ -98,34 +113,43 @@
         <!-- example 3 -->
         <div class="example-container">
             <h3>#3 lazy load if image is visible</h3>
+            <p>
+                This example loads the images automatically if they become visible in the viewport.
+            </p>
             <pre><!--
              --><code><!--
-            -->var imgPlaceholders = document.querySelectorAll(".load-if-visible");
-<!--        -->for (var i = 0; i < imgPlaceholders.length; ++i) {
-<!--        -->    Justlazy.registerLazyLoad(imgPlaceholders[i]);
+            -->var placeholders = document.querySelectorAll(".load-if-visible");
+<!--        -->for (var i = 0; i < placeholders.length; ++i) {
+<!--        -->    Justlazy.registerLazyLoad(placeholders[i]);
 <!--        -->}<!--
              --></code><!--
          --></pre>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
-            <div class="load-if-visible justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
+            <div class="loadIfVisible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
+            <div class="loadIfVisible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
+            <div class="loadIfVisible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
         </div>
 
         <!-- example 4 -->
         <div class="example-container">
-            <h3>#4 lazy load with pre-loading threshold</h3>
+            <h3>#4 lazy load image with pre-loading threshold</h3>
+            <p>
+                The image will be pre-loaded the defined pixels before it appears in the viewport.
+                A threshold of 100 means, that the image will be loaded 100 pixels before it become
+                visible for the user.
+            </p>
             <pre><!--
              --><code><!--
-             -->var img8Placeholder = document.getElementById("img8");
-<!--         -->Justlazy.registerLazyLoad(img8Placeholder, {
-<!--         -->    threshold: 100
-<!--         -->});<!--
-             --></code><!--
+             -->var placeholders = document.querySelectorAll('.loadWithThreshold');
+<!--         -->for (var i = 0; i < placeholders.length; ++i) {
+<!--         -->    Justlazy.registerLazyLoad(placeholders[i], {
+<!--         -->        threshold: 100
+<!--         -->    });
+<!--         -->}<!--
+            --></code><!--
          --></pre>
-            <div id="img8" class="justlazy-placeholder" data-src="images/img_8.jpg" data-alt="Bridge in Kassel" data-title="Bridge in Kassel"></div>
-            <p>The threshold is set to 100. That means, the image was loaded 100px before it appears on the screen.</p>
+            <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
+            <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
+            <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_8.jpg" data-alt="Bridge in Kassel" data-title="Bridge in Kassel"></div>
         </div>
 
     </section>
