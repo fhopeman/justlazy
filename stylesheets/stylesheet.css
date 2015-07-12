@@ -4,8 +4,8 @@ body {
     background: #151515 url("../images/bkg.png") 0 0;
     color: #eaeaea;
     font-size: 16px;
-    line-height: 1.5;
-    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    line-height: 1.8;
+    font-family: "Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;
     text-align: justify;
 }
 
@@ -24,10 +24,6 @@ section {
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0 0 20px;
-}
-
-li {
-    line-height: 1.4;
 }
 
 /* Header, <header>
@@ -137,12 +133,10 @@ ul li {
 
 ul li:before {
     content: ">>";
-    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
     font-size: 13px;
     color: #b5e853;
-    margin-left: -37px;
-    margin-right: 21px;
-    line-height: 16px;
+    margin-left: -10px;
+    margin-right: 10px;
 }
 
 blockquote {
@@ -165,19 +159,22 @@ pre {
     overflow-y: hidden;
 }
 
+code {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
 table {
     width: 100%;
-    margin: 0 0 20px 0;
 }
 
 th {
     text-align: left;
     border-bottom: 1px dashed #b5e853;
-    padding: 5px 10px;
 }
 
-td {
-    padding: 5px 10px;
+th, td {
+    padding: 4px 6px;
+    vertical-align: top;
 }
 
 hr {

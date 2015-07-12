@@ -51,6 +51,84 @@
             </ul>
         </p>
 
+        <h2>Usage</h2>
+        <p>
+            To lazy load an image, first of all a placeholder of your choice (e.g. <code>span</code>,
+            <code>div</code>, ..) has to be defined. This placeholder itself is a html element
+            which contains different data-attributes to provide the image information.
+        </p>
+        <p>
+            The library loads the images with javascript in the background and then replaces the
+            whole placeholder with the image. You don't have to care about deleting the styling
+            or other relics of the placeholder.
+        </p>
+
+        <h3>Auto loading</h3>
+        <p>
+            The following function registers an event listener which loads the
+            image automatically if it becomes visible.
+        </p>
+        <pre><!--
+         --><code><!--
+             -->Justlazy.registerLazyLoad(placeholder[, options]);<!--
+         --></code><!--
+     --></pre>
+
+        <h3>Manual loading</h3>
+        <p>
+            This function has to be called manually to load the image.
+        </p>
+        <pre><!--
+         --><code><!--
+             -->Justlazy.lazyLoad(placeholder[, options]);<!--
+         --></code><!--
+     --></pre>
+
+        <h3>Parameters</h3>
+        <p>
+            The mandatory <code>placeholder</code> is a html object which represents the image placeholder.
+        </p>
+        <p>
+            Possible properties of the "options" object are:
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <code>successCallback</code>
+                    </td>
+                    <td>
+                        the function will be invoked if the placeholder is properly replaced
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>errorCallback</code>
+                    </td>
+                    <td>
+                        the function will be invoked if the placeholder could not be replaced.
+                        This occurs if mandatory attributes (e.g. <code>data-src</code>)
+                        aren't available.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>threshold</code>
+                    </td>
+                    <td>
+                        (only auto loading) The image is loaded the defined pixels before it
+                        appears on the screen. E.g. 200px before it becomes visible.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
         <h2>Demo</h2>
         <!-- example 1 -->
         <div class="example-container">
