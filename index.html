@@ -17,18 +17,18 @@
         <h1>justlazy.js</h1>
         <h2>micro javascript plugin for responsive image lazy loading</h2>
         <div id="downloads">
-            <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn">get .zip</a>
-            <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn">get .tar.gz</a>
-            <a href="https://github.com/fhopeman/justlazy" class="btn btn-github">
+            <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn" title="download zip archive">get .zip</a>
+            <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn" title="download tar.gz archive">get .tar.gz</a>
+            <a href="https://github.com/fhopeman/justlazy" class="btn btn-github" title="plugin code">
                 <span class="icon"></span>
                 view code!
             </a>
-            <a href="https://github.com/fhopeman/justlazy" class="btn btn-github">
+            <a href="https://github.com/fhopeman/justlazy" class="btn btn-github" title="fork plugin">
                 <span class="icon"></span>
                 fork me!
             </a>
         </div>
-        <a href="https://travis-ci.org/fhopeman/justlazy">
+        <a href="https://travis-ci.org/fhopeman/justlazy" title="travis-ci build information">
             <img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" alt="Build Status">
         </a>
     </div>
@@ -40,7 +40,7 @@
         <p>
             Most of the existing javascript lazy
             loading plugins using extensive dependencies
-            (e.g. <a href="https://jquery.com/">jQuery</a>) or supporting just the img-tag
+            (e.g. <a href="https://jquery.com/" title="jQuery homepage">jQuery</a>) or supporting just the img-tag
             without responsive parts. This plugin is supposed to be an lightweight alternative.
             The main goals are:
         </p>
@@ -54,7 +54,7 @@
         <section>
             <h2>Usage</h2>
             <p>
-                To lazy load an image, first of all a <a href="#placeholder" title="placeholder description">placeholder</a>
+                To lazy load an image, first of all a <a href="#placeholder" title="image placeholder description">placeholder</a>
                 of your choice (e.g. <code>span</code>,
                 <code>div</code>, ..) has to be defined. This placeholder itself is a html element
                 which contains different data-attributes to provide the image information.
@@ -213,7 +213,7 @@
 <!--            -->};<!--
                  --></code><!--
              --></pre>
-                <a id="loadImg1Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
+                <a id="loadImg1Btn" href="#" class="btn btn-lazy-load" title="lazy load image" alt="lazy load image">lazy load image</a>
                 <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="Bridge in Hamburg" data-title="Bridge in Hamburg"></div>
             </div>
 
@@ -234,7 +234,7 @@
 <!--            -->};<!--
                  --></code><!--
              --></pre>
-                <a id="loadImg2Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load responsive image</a>
+                <a id="loadImg2Btn" href="#" class="btn btn-lazy-load" title="lazy load image" alt="lazy load image">lazy load responsive image</a>
                 <div id="img2" class="justlazy-placeholder"
                      data-src="images/img_2_defaultSize.jpg"
                      data-srcset="images/img_2_smallSize.jpg 600w, images/img_2_bigSize.jpg 1000w"
