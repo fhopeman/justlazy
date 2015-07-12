@@ -138,24 +138,11 @@ module.exports = function (grunt) {
                 }
             }
         },
-        "saucelabs-jasmine": {
-            all: {
-                options: {
-                    urls: ["http://127.0.0.1:9999/jasmine-standalone/SpecRunner.html"],
-                    build: process.env.TRAVIS_JOB_ID,
-                    browsers: browsers,
-                    testname: "justlazy.js tests",
-                    "max-duration": 240,
-                    tags: ["master"]
-                }
-            }
-        },
         watch: {}
     });
 
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-jasmine");
-    grunt.loadNpmTasks("grunt-saucelabs");
     grunt.loadNpmTasks("grunt-contrib-connect");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -164,8 +151,7 @@ module.exports = function (grunt) {
     grunt.registerTask("minify", ["uglify"]);
     grunt.registerTask("test-jshint", ["jshint"]);
     grunt.registerTask("test-jasmine", ["jasmine"]);
-    grunt.registerTask("test-browsers", ["connect", "saucelabs-jasmine"]);
-    grunt.registerTask("test-all", ["jshint", "jasmine", "connect", "saucelabs-jasmine"]);
+    grunt.registerTask("test-all", ["jshint", "jasmine", "connect"]);
     grunt.registerTask("travis-ci", ["test-jshint", "test-jasmine"]);
 
     grunt.registerTask("default", ["test-jshint", "test-jasmine", "minify"]);
