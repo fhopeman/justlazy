@@ -36,9 +36,9 @@
 
 <div class="container">
     <div id="main-content">
-        <h1>lazy load responsive images</h1>
+        <h1>Why yet another lazy loading plugin?</h1>
         <p>
-            Why yet another lazy loading plugin? Most of the existing javascript lazy
+            Most of the existing javascript lazy
             loading plugins using extensive dependencies
             (e.g. <a href="https://jquery.com/">jQuery</a>) or supporting just the img-tag
             without responsive parts. This plugin is supposed to be an lightweight alternative.
@@ -61,7 +61,7 @@
             </p>
             <p>
                 The library loads the images with javascript in the background and then replaces the
-                whole placeholder with the image. You don't have to care about deleting the styling
+                whole placeholder with the image. You don't have to care about removing the styling
                 or other relics of the placeholder.
             </p>
 
@@ -87,12 +87,58 @@
          --></pre>
 
             <h3>Parameters</h3>
+            <h4 id="placeholder"><code>placeholder</code>  (mandatory)</h4>
+            The <code>placeholder</code> has to be provided as html object. The <code>data-src</code> and
+            <code>data-alt</code> attributes are mandatory, the rest of them are optional.
+            <table>
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>data-src</code> (mandatory)</td>
+                        <td>source of the image</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-alt</code> (mandatory)</td>
+                        <td>alt text of the image, <code>data-alt=""</code> is allowed, but not recommended!</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-title</code></td>
+                        <td>title of the image</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-error</code></td>
+                        <td>error handler of the image</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-srcset</code></td>
+                        <td>responsive image source-set attribute</td>
+                    </tr>
+                </tbody>
+            </table>
             <p>
-                The mandatory <code>placeholder</code> is a html object which represents the image placeholder.
+                Example:
             </p>
-            <p>
-                Possible properties of the "options" object are:
-            </p>
+            <pre><!--
+             --><code><!--
+                 -->&lt;span data-src="default/image" data-alt="some alt text"
+<!--             -->      data-srcset="small/image 600w, big/image 1000w"
+<!--             -->      data-title="some title" data-error="some error handler"
+<!--             -->      class="justlazy-placeholder"&gt;
+<!--             -->&lt;/span&gt;<!--
+             --></code><!--
+         --></pre>
+            As you can see, the default lazy loading spinner is provided by the
+            <code>justlazy-placeholder</code> class.
+
+            <h4><code>options</code> (optional)</h4>
+            The <code>options</code> are provided as object with following
+            properties. All of them are optional and you can provide as many
+            as you need.
             <table>
                 <thead>
                     <tr>
@@ -131,19 +177,19 @@
                 </tbody>
             </table>
             <p>
-                The following function call is an example which contains all available properties:
+                Example:
             </p>
             <pre><!--
              --><code><!--
                  -->Justlazy.registerLazyLoad(placeholder, {
-    <!--         -->    successCallback: function() {
-    <!--         -->        // do something
-    <!--         -->    },
-    <!--         -->    errorCallback: function() {
-    <!--         -->        // do something
-    <!--         -->    },
-    <!--         -->    threshold: 150
-    <!--         -->});<!--
+<!--             -->    successCallback: function() {
+<!--             -->        // do something
+<!--             -->    },
+<!--             -->    errorCallback: function() {
+<!--             -->        // do something
+<!--             -->    },
+<!--             -->    threshold: 150
+<!--             -->});<!--
              --></code><!--
          --></pre>
         </section>
@@ -160,11 +206,11 @@
                 <pre><!--
                  --><code><!--
                 -->document.getElementById("loadImg1Btn").onclick = function() {
-    <!--        -->    var imgPlaceholder = document.getElementById("img1");
-    <!--        -->    Justlazy.lazyLoad(imgPlaceholder);
+<!--            -->    var imgPlaceholder = document.getElementById("img1");
+<!--            -->    Justlazy.lazyLoad(imgPlaceholder);
 
-    <!--        -->    return false;
-    <!--        -->};<!--
+<!--            -->    return false;
+<!--            -->};<!--
                  --></code><!--
              --></pre>
                 <a id="loadImg1Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
@@ -181,11 +227,11 @@
                 <pre><!--
                  --><code><!--
                 -->document.getElementById("loadImg2Btn").onclick = function() {
-    <!--        -->    var imgPlaceholder = document.getElementById("img2");
-    <!--        -->    Justlazy.lazyLoad(imgPlaceholder);
+<!--            -->    var imgPlaceholder = document.getElementById("img2");
+<!--            -->    Justlazy.lazyLoad(imgPlaceholder);
 
-    <!--        -->    return false;
-    <!--        -->};<!--
+<!--            -->    return false;
+<!--            -->};<!--
                  --></code><!--
              --></pre>
                 <a id="loadImg2Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load responsive image</a>
@@ -217,9 +263,9 @@
                 <pre><!--
                  --><code><!--
                 -->var placeholders = document.querySelectorAll(".load-if-visible");
-    <!--        -->for (var i = 0; i < placeholders.length; ++i) {
-    <!--        -->    Justlazy.registerLazyLoad(placeholders[i]);
-    <!--        -->}<!--
+<!--            -->for (var i = 0; i < placeholders.length; ++i) {
+<!--            -->    Justlazy.registerLazyLoad(placeholders[i]);
+<!--            -->}<!--
                  --></code><!--
              --></pre>
                 <div class="loadIfVisible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
@@ -238,11 +284,11 @@
                 <pre><!--
                  --><code><!--
                  -->var placeholders = document.querySelectorAll('.loadWithThreshold');
-    <!--         -->for (var i = 0; i < placeholders.length; ++i) {
-    <!--         -->    Justlazy.registerLazyLoad(placeholders[i], {
-    <!--         -->        threshold: 100
-    <!--         -->    });
-    <!--         -->}<!--
+<!--             -->for (var i = 0; i < placeholders.length; ++i) {
+<!--             -->    Justlazy.registerLazyLoad(placeholders[i], {
+<!--             -->        threshold: 100
+<!--             -->    });
+<!--             -->}<!--
                 --></code><!--
              --></pre>
                 <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
