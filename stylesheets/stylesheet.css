@@ -19,18 +19,11 @@ body {
 
 section {
     display: block;
-    margin: 0 0 20px 0;
+    margin-top: 60px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0 0 20px;
+h1 {
 }
-
-/* Header, <header>
-   header   - container
-   h1       - project name
-   h2       - project description
-*/
 
 header {
     background: rgba(0, 0, 0, 0.1);
@@ -68,13 +61,13 @@ header h2 {
 #downloads .btn {
     display: inline-block;
     text-align: center;
-    margin: 0;
+    margin-bottom: 15px;
 }
 
 /* Main Content
 */
 
-#main_content {
+#main-content {
     width: 100%;
     -webkit-font-smoothing: antialiased;
 }
@@ -93,29 +86,29 @@ h1, h2, h3, h4, h5, h6 {
     0 0 10px rgba(181, 232, 83, 0.1);
 }
 
-#main_content h1 {
+#main-content h1 {
     font-size: 30px;
 }
 
-#main_content h2 {
+#main-content h2 {
     font-size: 24px;
 }
 
-#main_content h3 {
+#main-content h3 {
     font-size: 18px;
 }
 
-#main_content h4 {
+#main-content h4 {
     font-size: 14px;
 }
 
-#main_content h5 {
+#main-content h5 {
     font-size: 12px;
     text-transform: uppercase;
     margin: 0 0 5px 0;
 }
 
-#main_content h6 {
+#main-content h6 {
     font-size: 12px;
     text-transform: uppercase;
     color: #999;
@@ -225,11 +218,7 @@ hr {
     margin-bottom: 5px;
 }
 
-.example-container {
-    margin-top: 50px;
-}
-
-.load-if-visible {
+.example {
     margin-bottom: 50px;
 }
 
