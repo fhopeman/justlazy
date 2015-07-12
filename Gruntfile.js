@@ -166,7 +166,7 @@ module.exports = function (grunt) {
     grunt.registerTask("test-jasmine", ["jasmine"]);
     grunt.registerTask("test-browsers", ["connect", "saucelabs-jasmine"]);
     grunt.registerTask("test-all", ["jshint", "jasmine", "connect", "saucelabs-jasmine"]);
-    grunt.registerTask("travis-ci", ["test-jshint", "test-jasmine"]);
+    grunt.registerTask("travis-ci", ["test-all"]);
 
     grunt.registerTask("default", ["test-jshint", "test-jasmine", "minify"]);
 
