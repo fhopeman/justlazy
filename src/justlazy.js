@@ -102,10 +102,9 @@ var Justlazy = (function() {
     var _isVisible = function(placeholder, optionalThreshold) {
         var windowInnerHeight = window.innerHeight || document.documentElement.clientHeight;
         var windowScrollY = window.scrollY || document.documentElement.scrollTop;
-        var windowBottomOffset = windowInnerHeight + windowScrollY;
         var threshold = optionalThreshold || 0;
 
-        return windowBottomOffset + threshold >= placeholder.offsetTop;
+        return windowInnerHeight + windowScrollY + threshold >= placeholder.offsetTop;
     };
 
     var _loadImgIfVisible = function(imgPlaceholder, options) {
