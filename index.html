@@ -52,202 +52,203 @@
         </ul>
 
         <section>
-        <h2>Usage</h2>
-        <p>
-            To lazy load an image, first of all a placeholder of your choice (e.g. <code>span</code>,
-            <code>div</code>, ..) has to be defined. This placeholder itself is a html element
-            which contains different data-attributes to provide the image information.
-        </p>
-        <p>
-            The library loads the images with javascript in the background and then replaces the
-            whole placeholder with the image. You don't have to care about deleting the styling
-            or other relics of the placeholder.
-        </p>
+            <h2>Usage</h2>
+            <p>
+                To lazy load an image, first of all a <a href="#placeholder" title="placeholder description">placeholder</a>
+                of your choice (e.g. <code>span</code>,
+                <code>div</code>, ..) has to be defined. This placeholder itself is a html element
+                which contains different data-attributes to provide the image information.
+            </p>
+            <p>
+                The library loads the images with javascript in the background and then replaces the
+                whole placeholder with the image. You don't have to care about deleting the styling
+                or other relics of the placeholder.
+            </p>
 
-        <h3>Auto loading</h3>
-        <p>
-            The following function registers an event listener which loads the
-            image automatically if it becomes visible.
-        </p>
-        <pre><!--
-         --><code><!--
-             -->Justlazy.registerLazyLoad(placeholder[, options]);<!--
-         --></code><!--
-     --></pre>
+            <h3>Auto loading</h3>
+            <p>
+                The following function registers an event listener which loads the
+                image automatically if it becomes visible.
+            </p>
+            <pre><!--
+             --><code><!--
+                 -->Justlazy.registerLazyLoad(placeholder[, options]);<!--
+             --></code><!--
+         --></pre>
 
-        <h3>Manual loading</h3>
-        <p>
-            This function has to be called manually to load the image.
-        </p>
-        <pre><!--
-         --><code><!--
-             -->Justlazy.lazyLoad(placeholder[, options]);<!--
-         --></code><!--
-     --></pre>
+            <h3>Manual loading</h3>
+            <p>
+                This function has to be called manually to load the image.
+            </p>
+            <pre><!--
+             --><code><!--
+                 -->Justlazy.lazyLoad(placeholder[, options]);<!--
+             --></code><!--
+         --></pre>
 
-        <h3>Parameters</h3>
-        <p>
-            The mandatory <code>placeholder</code> is a html object which represents the image placeholder.
-        </p>
-        <p>
-            Possible properties of the "options" object are:
-        </p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Property</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <code>successCallback</code>
-                    </td>
-                    <td>
-                        the function will be invoked if the placeholder is properly replaced
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <code>errorCallback</code>
-                    </td>
-                    <td>
-                        the function will be invoked if the placeholder could not be replaced.
-                        This occurs if mandatory attributes (e.g. <code>data-src</code>)
-                        aren't available.
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <code>threshold</code>
-                    </td>
-                    <td>
-                        (only auto loading) The image is loaded the defined pixels before it
-                        appears on the screen. E.g. 200px before it becomes visible.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            The following function call is an example which contains all available properties:
-        </p>
-        <pre><!--
-         --><code><!--
-             -->Justlazy.registerLazyLoad(placeholder, {
-<!--         -->    successCallback: function() {
-<!--         -->        // do something
-<!--         -->    },
-<!--         -->    errorCallback: function() {
-<!--         -->        // do something
-<!--         -->    },
-<!--         -->    threshold: 150
-<!--         -->});<!--
-         --></code><!--
-     --></pre>
+            <h3>Parameters</h3>
+            <p>
+                The mandatory <code>placeholder</code> is a html object which represents the image placeholder.
+            </p>
+            <p>
+                Possible properties of the "options" object are:
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <code>successCallback</code>
+                        </td>
+                        <td>
+                            the function will be invoked if the placeholder is properly replaced
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>errorCallback</code>
+                        </td>
+                        <td>
+                            the function will be invoked if the placeholder could not be replaced.
+                            This occurs if mandatory attributes (e.g. <code>data-src</code>)
+                            aren't available.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>threshold</code>
+                        </td>
+                        <td>
+                            (only auto loading) The image is loaded the defined pixels before it
+                            appears on the screen. E.g. 200px before it becomes visible.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                The following function call is an example which contains all available properties:
+            </p>
+            <pre><!--
+             --><code><!--
+                 -->Justlazy.registerLazyLoad(placeholder, {
+    <!--         -->    successCallback: function() {
+    <!--         -->        // do something
+    <!--         -->    },
+    <!--         -->    errorCallback: function() {
+    <!--         -->        // do something
+    <!--         -->    },
+    <!--         -->    threshold: 150
+    <!--         -->});<!--
+             --></code><!--
+         --></pre>
         </section>
 
         <section>
-        <h2>Demo</h2>
-        <!-- example 1 -->
-        <div class="example">
-            <h3>#1 lazy load with specific event (e.g. button click)</h3>
-            <p>
-                This example uses a button to trigger the image lazy loading manually. Instead
-                of the click event, you can use any other event of your choice.
-            </p>
-            <pre><!--
-             --><code><!--
-            -->document.getElementById("loadImg1Btn").onclick = function() {
-<!--        -->    var imgPlaceholder = document.getElementById("img1");
-<!--        -->    Justlazy.lazyLoad(imgPlaceholder);
+            <h2>Demo</h2>
+            <!-- example 1 -->
+            <div class="example">
+                <h3>#1 lazy load with specific event (e.g. button click)</h3>
+                <p>
+                    This example uses a button to trigger the image lazy loading manually. Instead
+                    of the click event, you can use any other event of your choice.
+                </p>
+                <pre><!--
+                 --><code><!--
+                -->document.getElementById("loadImg1Btn").onclick = function() {
+    <!--        -->    var imgPlaceholder = document.getElementById("img1");
+    <!--        -->    Justlazy.lazyLoad(imgPlaceholder);
 
-<!--        -->    return false;
-<!--        -->};<!--
-             --></code><!--
-         --></pre>
-            <a id="loadImg1Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
-            <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="Bridge in Hamburg" data-title="Bridge in Hamburg"></div>
-        </div>
-
-        <!-- example 2 -->
-        <div class="example">
-            <h3>#2: lazy load with srcset attribute</h3>
-            <p>
-                This example demonstrates the usage of the srcset attribute. You just have to
-                provie the data-srcset attribute with specific value.
-            </p>
-            <pre><!--
-             --><code><!--
-            -->document.getElementById("loadImg2Btn").onclick = function() {
-<!--        -->    var imgPlaceholder = document.getElementById("img2");
-<!--        -->    Justlazy.lazyLoad(imgPlaceholder);
-
-<!--        -->    return false;
-<!--        -->};<!--
-             --></code><!--
-         --></pre>
-            <a id="loadImg2Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load responsive image</a>
-            <div id="img2" class="justlazy-placeholder"
-                 data-src="images/img_2_defaultSize.jpg"
-                 data-srcset="images/img_2_smallSize.jpg 600w, images/img_2_bigSize.jpg 1000w"
-                 data-alt="Bridge in Heidelberg"
-                 data-title="Bridge in Heidelberg">
+    <!--        -->    return false;
+    <!--        -->};<!--
+                 --></code><!--
+             --></pre>
+                <a id="loadImg1Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load image</a>
+                <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="Bridge in Hamburg" data-title="Bridge in Hamburg"></div>
             </div>
-            <p>
-                The comment in the lower right corner of the image indicates the size of the image, which has been
-                loaded. The srcset attribute defines, that the small size is loaded if your screen width is lower or equals
-                than 600 pixels. All screen sizes above will load the big image. If the browser doesn't support
-                the srcset, the default image will be loaded.
-            </p>
-            <p>
-                If the big image is loaded once, you have to disable or
-                clear the browser cache to see the small image again with a browser horizontal width <= 600px. Otherwise
-                the cached big image will be used in all cases.
-            </p>
-        </div>
 
-        <!-- example 3 -->
-        <div class="example">
-            <h3>#3 lazy load if image is visible</h3>
-            <p>
-                This example loads the images automatically if they become visible in the viewport.
-            </p>
-            <pre><!--
-             --><code><!--
-            -->var placeholders = document.querySelectorAll(".load-if-visible");
-<!--        -->for (var i = 0; i < placeholders.length; ++i) {
-<!--        -->    Justlazy.registerLazyLoad(placeholders[i]);
-<!--        -->}<!--
-             --></code><!--
-         --></pre>
-            <div class="loadIfVisible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
-            <div class="loadIfVisible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
-            <div class="loadIfVisible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
-        </div>
+            <!-- example 2 -->
+            <div class="example">
+                <h3>#2: lazy load with srcset attribute</h3>
+                <p>
+                    This example demonstrates the usage of the srcset attribute. You just have to
+                    provie the data-srcset attribute with specific value.
+                </p>
+                <pre><!--
+                 --><code><!--
+                -->document.getElementById("loadImg2Btn").onclick = function() {
+    <!--        -->    var imgPlaceholder = document.getElementById("img2");
+    <!--        -->    Justlazy.lazyLoad(imgPlaceholder);
 
-        <!-- example 4 -->
-        <div class="example">
-            <h3>#4 lazy load image with pre-loading threshold</h3>
-            <p>
-                The image will be pre-loaded the defined pixels before it appears in the viewport.
-                A threshold of 100 means, that the image will be loaded 100 pixels before it become
-                visible for the user.
-            </p>
-            <pre><!--
-             --><code><!--
-             -->var placeholders = document.querySelectorAll('.loadWithThreshold');
-<!--         -->for (var i = 0; i < placeholders.length; ++i) {
-<!--         -->    Justlazy.registerLazyLoad(placeholders[i], {
-<!--         -->        threshold: 100
-<!--         -->    });
-<!--         -->}<!--
-            --></code><!--
-         --></pre>
-            <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
-            <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
-            <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_8.jpg" data-alt="Bridge in Kassel" data-title="Bridge in Kassel"></div>
-        </div>
+    <!--        -->    return false;
+    <!--        -->};<!--
+                 --></code><!--
+             --></pre>
+                <a id="loadImg2Btn" href="#" class="btn btn-lazy-load" alt="lazy load responsive image">lazy load responsive image</a>
+                <div id="img2" class="justlazy-placeholder"
+                     data-src="images/img_2_defaultSize.jpg"
+                     data-srcset="images/img_2_smallSize.jpg 600w, images/img_2_bigSize.jpg 1000w"
+                     data-alt="Bridge in Heidelberg"
+                     data-title="Bridge in Heidelberg">
+                </div>
+                <p>
+                    The comment in the lower right corner of the image indicates the size of the image, which has been
+                    loaded. The srcset attribute defines, that the small size is loaded if your screen width is lower or equals
+                    than 600 pixels. All screen sizes above will load the big image. If the browser doesn't support
+                    the srcset, the default image will be loaded.
+                </p>
+                <p>
+                    If the big image is loaded once, you have to disable or
+                    clear the browser cache to see the small image again with a browser horizontal width <= 600px. Otherwise
+                    the cached big image will be used in all cases.
+                </p>
+            </div>
+
+            <!-- example 3 -->
+            <div class="example">
+                <h3>#3 lazy load if image is visible</h3>
+                <p>
+                    This example loads the images automatically if they become visible in the viewport.
+                </p>
+                <pre><!--
+                 --><code><!--
+                -->var placeholders = document.querySelectorAll(".load-if-visible");
+    <!--        -->for (var i = 0; i < placeholders.length; ++i) {
+    <!--        -->    Justlazy.registerLazyLoad(placeholders[i]);
+    <!--        -->}<!--
+                 --></code><!--
+             --></pre>
+                <div class="loadIfVisible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
+                <div class="loadIfVisible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
+                <div class="loadIfVisible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
+            </div>
+
+            <!-- example 4 -->
+            <div class="example">
+                <h3>#4 lazy load image with pre-loading threshold</h3>
+                <p>
+                    The image will be pre-loaded the defined pixels before it appears in the viewport.
+                    A threshold of 100 means, that the image will be loaded 100 pixels before it become
+                    visible for the user.
+                </p>
+                <pre><!--
+                 --><code><!--
+                 -->var placeholders = document.querySelectorAll('.loadWithThreshold');
+    <!--         -->for (var i = 0; i < placeholders.length; ++i) {
+    <!--         -->    Justlazy.registerLazyLoad(placeholders[i], {
+    <!--         -->        threshold: 100
+    <!--         -->    });
+    <!--         -->}<!--
+                --></code><!--
+             --></pre>
+                <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
+                <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
+                <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_8.jpg" data-alt="Bridge in Kassel" data-title="Bridge in Kassel"></div>
+            </div>
         </section>
 
     </div>
