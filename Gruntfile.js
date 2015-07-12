@@ -95,8 +95,8 @@ module.exports = function (grunt) {
         }, {
             browserName: "android",
             platform: "Linux",
-            deviceName: "Motorola Droid Razr Emulator",
-            version: "4.0"
+            deviceName: "Android Emulator",
+            version: "5.1"
         }, {
             browserName: "android",
             platform: "Linux",
