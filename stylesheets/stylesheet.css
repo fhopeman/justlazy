@@ -22,9 +22,6 @@ section {
     margin-top: 65px;
 }
 
-h1 {
-}
-
 header {
     background: rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -33,7 +30,7 @@ header {
     margin: 0 0 40px 0;
 }
 
-header h1 {
+header .headline {
     font-size: 30px;
     line-height: 1.5;
     margin: 0 0 0 -40px;
@@ -47,12 +44,12 @@ header h1 {
     -webkit-font-smoothing: antialiased;
 }
 
-header h1:before {
+header .headline:before {
     content: "./ ";
     font-size: 24px;
 }
 
-header h2 {
+header h1 {
     font-size: 18px;
     font-weight: 300;
     color: #666;
@@ -87,31 +84,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #main-content h1 {
-    font-size: 28px;
+    font-size: 26px;
 }
 
 #main-content h2 {
-    font-size: 24px;
-}
-
-#main-content h3 {
     font-size: 18px;
 }
 
-#main-content h4 {
+#main-content h3 {
     font-size: 14px;
+}
+
+#main-content h4 {
+    font-size: 12px;
 }
 
 #main-content h5 {
     font-size: 12px;
     text-transform: uppercase;
-    margin: 0 0 5px 0;
-}
-
-#main-content h6 {
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #999;
     margin: 0 0 5px 0;
 }
 

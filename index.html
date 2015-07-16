@@ -14,8 +14,8 @@
 
 <header>
     <div class="container">
-        <h1>justlazy.js</h1>
-        <h2>micro javascript image lazy loading plugin</h2>
+        <h2 class="headline">justlazy.js</h2>
+        <h1>micro javascript image lazy loading plugin</h1>
         <div id="downloads">
             <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn" title="download zip archive">get .zip</a>
             <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn" title="download tar.gz archive">get .tar.gz</a>
@@ -53,7 +53,7 @@
         <img src="https://saucelabs.com/browser-matrix/fhopeman.svg" title="test status" alt="test status">
 
         <section>
-            <h2>Usage</h2>
+            <h1>Usage</h1>
             <p>
                 To lazy load an image, first of all a <a href="#placeholder" title="image placeholder description">placeholder</a>
                 of your choice (e.g. <code>span</code>,
@@ -66,7 +66,7 @@
                 or other relics of the placeholder.
             </p>
 
-            <h3>Auto loading</h3>
+            <h2>Auto image lazy loading</h2>
             <p>
                 The following function registers an event listener which loads the
                 image automatically if it becomes visible.
@@ -77,7 +77,7 @@
              --></code><!--
          --></pre>
 
-            <h3>Manual loading</h3>
+            <h2>Manual image lazy loading</h2>
             <p>
                 This function has to be called manually to load the image.
             </p>
@@ -87,8 +87,8 @@
              --></code><!--
          --></pre>
 
-            <h3>Parameters</h3>
-            <h4 id="placeholder"><code>placeholder</code>  (mandatory)</h4>
+            <h2>Parameters</h2>
+            <h3 id="placeholder"><code>placeholder</code>  (mandatory)</h3>
             The <code>placeholder</code> has to be provided as html object. The <code>data-src</code> and
             <code>data-alt</code> attributes are mandatory, the rest of them are optional.
             <table>
@@ -136,7 +136,7 @@
             As you can see, the default lazy loading spinner is provided by the
             <code>justlazy-placeholder</code> class.
 
-            <h4><code>options</code> (optional)</h4>
+            <h3><code>options</code> (optional)</h3>
             The <code>options</code> are provided as object with following
             properties. All of them are optional and you can provide as many
             as you need.
@@ -196,10 +196,10 @@
         </section>
 
         <section>
-            <h2>Demo</h2>
+            <h1>Demo</h1>
             <!-- example 1 -->
             <div class="example">
-                <h3>#1 lazy load with specific event (e.g. button click)</h3>
+                <h2>#1 lazy loading with specific event (e.g. button click)</h2>
                 <p>
                     This example uses a button to trigger the image lazy loading manually. Instead
                     of the click event, you can use any other event of your choice.
@@ -220,7 +220,7 @@
 
             <!-- example 2 -->
             <div class="example">
-                <h3>#2: lazy load with srcset attribute</h3>
+                <h2>#2: lazy loading with srcset attribute</h2>
                 <p>
                     This example demonstrates the usage of the srcset attribute. You just have to
                     provide the data-srcset attribute with specific value.
@@ -257,7 +257,7 @@
 
             <!-- example 3 -->
             <div class="example">
-                <h3>#3 lazy load if image is visible</h3>
+                <h2>#3 lazy loading if image is visible</h2>
                 <p>
                     This example loads the images automatically if they become visible in the viewport.
                 </p>
@@ -276,7 +276,7 @@
 
             <!-- example 4 -->
             <div class="example">
-                <h3>#4 lazy load image with pre-loading threshold</h3>
+                <h2>#4 lazy loading image with pre-loading threshold</h2>
                 <p>
                     Usually the image will be loaded when it becomes visible in the viewport.
                     If you set the <code>threshold</code>,
@@ -318,3 +318,4 @@
 
 </body>
 </html>
+
