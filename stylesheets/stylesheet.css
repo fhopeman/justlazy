@@ -30,7 +30,7 @@ header {
     margin: 0 0 40px 0;
 }
 
-header .headline {
+header h1 {
     font-size: 30px;
     line-height: 1.5;
     margin: 0 0 0 -40px;
@@ -44,12 +44,12 @@ header .headline {
     -webkit-font-smoothing: antialiased;
 }
 
-header .headline:before {
+header h1:before {
     content: "./ ";
     font-size: 24px;
 }
 
-header h1 {
+header h2 {
     font-size: 18px;
     font-weight: 300;
     color: #666;

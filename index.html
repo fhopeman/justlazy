@@ -3,9 +3,9 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="justlazy.js is a lightweight javascript plugin to lazy load responsive images. The micro plugin supports auto and manual lazy loading of images.">
+    <meta name="description" content="justlazy is a lightweight javascript plugin for responsive image lazy loading. The micro plugin supports auto and manual lazy loading of images.">
 
-    <title>javascript image lazy loading plugin</title>
+    <title>image lazy loading javascript plugin | justlazy</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/justlazy.css" media="screen">
 </head>
@@ -14,8 +14,8 @@
 
 <header>
     <div class="container">
-        <h2 class="headline">justlazy.js</h2>
-        <h1>micro javascript image lazy loading plugin</h1>
+        <h1>justlazy.js</h1>
+        <h2>micro javascript image lazy loading plugin</h2>
         <div id="downloads">
             <a href="https://github.com/fhopeman/justlazy/zipball/master" class="btn" title="download zip archive">get .zip</a>
             <a href="https://github.com/fhopeman/justlazy/tarball/master" class="btn" title="download tar.gz archive">get .tar.gz</a>
@@ -69,7 +69,10 @@
             <h2>Auto image lazy loading</h2>
             <p>
                 The following function registers an event listener which loads the
-                image automatically if it becomes visible.
+                image automatically if it becomes visible. The parameters
+                <a href="#placeholder" title="placeholder parameter description">placeholder</a> and
+                <a href="#options" title="options parameter description">options</a> are described
+                below.
             </p>
             <pre><!--
              --><code><!--
@@ -136,7 +139,7 @@
             As you can see, the default lazy loading spinner is provided by the
             <code>justlazy-placeholder</code> class.
 
-            <h3><code>options</code> (optional)</h3>
+            <h3 id="options"><code>options</code> (optional)</h3>
             The <code>options</code> are provided as object with following
             properties. All of them are optional and you can provide as many
             as you need.
