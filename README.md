@@ -34,7 +34,7 @@ To install it via npm, the git URL has to be added to the `package.json` file:
 `x.y.z` has to be replaced with the current [tag number](https://github.com/fhopeman/justlazy/releases).
 
 ## Contributing
-Just feel free to contribute..
+Just feel free to contribute ..
 
 #### Project setup
 To set up the project you need the grunt-cli:
