@@ -1,5 +1,5 @@
 /**
- * justlazy 0.8.0-SNAPSHOT
+ * justlazy 0.8.0
  *
  * https://github.com/fhopeman/justlazy
  */

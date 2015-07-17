@@ -18,6 +18,10 @@ module.exports = function (grunt) {
             browserName: "chrome",
             platform: "Linux",
             version: "30.0"
+        }, {
+            browserName: "chrome",
+            platform: "Windows 8",
+            version: "43.0"
         },
         // firefox
         {
@@ -32,6 +36,10 @@ module.exports = function (grunt) {
             browserName: "firefox",
             platform: "Linux",
             version: "35.0"
+        }, {
+            browserName: "firefox",
+            platform: "Windows 8",
+            version: "39.0"
         },
         // internet explorer
         {
@@ -85,6 +93,12 @@ module.exports = function (grunt) {
             deviceName: "iPhone Simulator",
             "device-orientation": "portrait",
             version: "7.1"
+        }, {
+            browserName: "iphone",
+            platform: "OS X 10.10",
+            deviceName: "iPhone Simulator",
+            "device-orientation": "portrait",
+            version: "8.2"
         },
         // android
         {
