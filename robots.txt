@@ -1,4 +1,0 @@
-### robots.txt allows all ###
-
-User-agent: *
-Allow: /
