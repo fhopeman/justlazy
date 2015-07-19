@@ -24,14 +24,9 @@ If you want to use the lazy spinner, following css file is needed:
 ```
 
 #### npm
-To install it via npm, the git URL has to be added to the `package.json` file:
 ```
-"dependencies": {
-    [some other dependencies],
-    "justlazy": "git://github.com/fhopeman/justlazy.git#x.y.z"
-}
+npm install justlazy
 ```
-`x.y.z` has to be replaced with the current [tag number](https://github.com/fhopeman/justlazy/releases).
 
 ## Contributing
 Just feel free to contribute ..
