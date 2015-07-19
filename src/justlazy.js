@@ -156,4 +156,4 @@ var Justlazy = (function() {
         registerLazyLoad: registerLazyLoad
     };
 
-})();
+}());
