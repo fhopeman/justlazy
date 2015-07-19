@@ -14,7 +14,7 @@ var triggerScrollEvent = function(y) {
 };
 
 
-describe("justlazy auto loader", function() {
+describe("justlazy auto loader by html object", function() {
 
     beforeEach(function() {
         triggerScrollEvent(0);
@@ -159,5 +159,70 @@ describe("justlazy auto loader", function() {
             done();
         }, 30);
     });
+});
 
+describe("justlazy auto loader by class", function() {
+
+    beforeEach(function() {
+        loadFixtures("loadIfVisible.html");
+    });
+
+    it("should register all placeholders with specific class", function() {
+        // given
+        var justlazy = Justlazy;
+        var options = {
+            onloadCallback: function success() {},
+            onerrorCallback: function error() {}
+        };
+
+        spyOn(justlazy, "registerLazyLoad");
+
+        // when
+        Justlazy.registerLazyLoadByClass("load-if-visible", options);
+
+        // then
+        expect(justlazy.registerLazyLoad.calls.count()).toEqual(2);
+        expect(justlazy.registerLazyLoad).toHaveBeenCalledWith(
+            document.getElementById("img1"),
+            options
+        );
+        expect(justlazy.registerLazyLoad).toHaveBeenCalledWith(
+            document.getElementById("img3"),
+            options
+        );
+    });
+
+    it("should work with undefined options", function() {
+        // given
+        var justlazy = Justlazy;
+
+        spyOn(justlazy, "registerLazyLoad");
+
+        // when
+        Justlazy.registerLazyLoadByClass("load-if-visible");
+
+        // then
+        expect(justlazy.registerLazyLoad.calls.count()).toEqual(2);
+        expect(justlazy.registerLazyLoad).toHaveBeenCalledWith(
+            document.getElementById("img1"),
+            undefined
+        );
+        expect(justlazy.registerLazyLoad).toHaveBeenCalledWith(
+            document.getElementById("img3"),
+            undefined
+        );
+    });
+
+    it("should register nothing if class doesn't match", function() {
+        // given
+        var justlazy = Justlazy;
+
+        spyOn(justlazy, "registerLazyLoad");
+
+        // when
+        Justlazy.registerLazyLoadByClass("unavailable-class");
+
+        // then
+        expect(justlazy.registerLazyLoad.calls.count()).toEqual(0);
+    });
 });
