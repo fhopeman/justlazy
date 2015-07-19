@@ -13,10 +13,11 @@
     "url": "https://github.com/fhopeman/justlazy/issues"
   },
   "keywords": [
-    "image",
     "lazy",
+    "load",
     "loading",
-    "load"
+    "image",
+    "images"
   ],
   "license": "MIT",
   "devDependencies": {
