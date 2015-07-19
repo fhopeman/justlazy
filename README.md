@@ -17,6 +17,8 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 ```
 $ npm install justlazy
 ```
+Then include the source code with `node_modules/justlazy/src/justlazy.js` or
+use [browserify](https://github.com/substack/node-browserify).
 
 #### file include
 You can include the `justlazy.js` file as follows in your page.
