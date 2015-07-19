@@ -1,7 +1,8 @@
 /**
  * justlazy 1.1.0
  *
- * https://github.com/fhopeman/justlazy
+ * Repo: https://github.com/fhopeman/justlazy
+ * Demo: http://fhopeman.github.io/justlazy
  */
 var Justlazy = (function() {
     'use strict';
