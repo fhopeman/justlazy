@@ -25,7 +25,7 @@ If you want to use the lazy spinner, following css file is needed:
 
 #### npm
 ```
-npm install justlazy
+$ npm install justlazy
 ```
 
 ## Contributing
@@ -34,17 +34,17 @@ Just feel free to contribute ..
 #### Project setup
 To set up the project you need the grunt-cli:
 ```
-sudo npm install -g grunt-cli
+$ sudo npm install -g grunt-cli
 ```
 
 Then you just have to clone the repository and run the install command:
 ```
-npm install
+$ npm install
 ```
 
 #### Testing
-To run tests manually you can use the `grunt` command to perform jshint and jasmine tests with phantomjs.
-Furthermore you can run `grunt server` to call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
+To run tests manually you can use the `$ grunt` command to perform jshint and jasmine tests with phantomjs.
+Furthermore you can run `$ grunt server` to call the jasmine runner in your browser [localhost:9999](http://localhost:9999)
 
 #### Continuous Integration
 `justlazy` has CI set up through [Travis CI](https://travis-ci.org) and [Sauce Labs](https://saucelabs.com) (free for open-source projects).

@@ -1,11 +1,23 @@
 {
   "name": "justlazy",
+  "main": "src/justlazy.js",
+  "author": "Fabian Hoffmann",
   "description": "Lightweight javascript plugin to lazy load images",
   "version": "1.1.0",
+  "homepage": "http://fhopeman.github.io/justlazy",
   "repository": {
     "type": "git",
     "url": "https://github.com/fhopeman/justlazy"
   },
+  "bugs": {
+    "url": "https://github.com/fhopeman/justlazy/issues"
+  },
+  "keywords": [
+    "image",
+    "lazy",
+    "loading",
+    "load"
+  ],
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.5",
