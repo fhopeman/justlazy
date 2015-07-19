@@ -12,8 +12,14 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
 
 ## Installation
+
+#### npm
+```
+$ npm install justlazy
+```
+
 #### file include
-Firstly, you can include the `justlazy.js` file as follows in your page.
+You can include the `justlazy.js` file as follows in your page.
 ```
 <script src="javascript/justlazy.js" type="text/javascript"></script>
 ```
@@ -21,11 +27,6 @@ Firstly, you can include the `justlazy.js` file as follows in your page.
 If you want to use the lazy spinner, following css file is needed:
 ```
 <link href="stylesheets/justlazy.css" type="text/css" rel="stylesheet">
-```
-
-#### npm
-```
-$ npm install justlazy
 ```
 
 ## Contributing
