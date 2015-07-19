@@ -1,7 +1,8 @@
 /**
  * justlazy 1.1.0
  *
- * https://github.com/fhopeman/justlazy
+ * Repo: https://github.com/fhopeman/justlazy
+ * Demo: http://fhopeman.github.io/justlazy
  */
 var Justlazy = (function() {
     'use strict';
@@ -151,9 +152,17 @@ var Justlazy = (function() {
         }
     };
 
+    var registerLazyLoadByClass = function(imgPlaceholderClass, options) {
+        var placeholders = document.querySelectorAll("." + imgPlaceholderClass);
+        for (var i = 0; i < placeholders.length; ++i) {
+            Justlazy.registerLazyLoad(placeholders[i], options);
+        }
+    };
+
     return {
         lazyLoad: lazyLoad,
-        registerLazyLoad: registerLazyLoad
+        registerLazyLoad: registerLazyLoad,
+        registerLazyLoadByClass: registerLazyLoadByClass
     };
 
 }());

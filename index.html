@@ -60,7 +60,7 @@
             <p>
                 To lazy load an image, first of all a <a href="#placeholder" title="image placeholder description">placeholder</a>
                 of your choice (e.g. <code>span</code>,
-                <code>div</code>, ..) has to be defined. This placeholder itself is a html element
+                <code>div</code>, ..) has to be defined. This placeholder itself is an html element
                 which contains different data-attributes to provide the image information.
             </p>
             <p>
@@ -68,14 +68,45 @@
                 whole placeholder with the image. You don't have to care about removing the styling
                 or other relics of the placeholder.
             </p>
+            <p>
+                There are three possibilities to trigger the image lazy loading:
+                <ul>
+                    <li>
+                        <a href="#register-by-class" title="register by class">register all</a>
+                        images by a specific class and load them if they become visible
+                    </li>
+                    <li>
+                        <a href="#register-by-object" title="register object to laod">register only one</a>
+                        image by an html object and load it if it becomes visible
+                    </li>
+                    <li>
+                        <a title="manual loading" href="#manual-loading">load manually</a> with a custom event
+                    </li>
+                </ul>
+            </p>
 
-            <h3>Auto image lazy loading</h3>
+            <h3 id="register-by-class">1. Auto image lazy loading by class</h3>
+            <p>
+                The most comfortable function of this library registers an event listener for all images
+                with a specific
+                css class. The images will be loaded automatically if they become visible. The parameters
+                are the <a href="#css-class" title="css-class parameter">css-class</a> as string and optional
+                <a href="#options" title="options parameter description">options</a>.
+            </p>
+            <pre><!--
+             --><code><!--
+                 -->Justlazy.registerLazyLoadByClass(css-class[, options]);<!--
+             --></code><!--
+         --></pre>
+
+            <h3 id="register-by-object">2. Auto image lazy loading with placeholder object</h3>
             <p>
                 The following function registers an event listener which loads the
-                image automatically if it becomes visible. The parameters
-                <a href="#placeholder" title="placeholder parameter description">placeholder</a> and
-                <a href="#options" title="options parameter description">options</a> are described
-                below.
+                image automatically if it becomes visible. The parameters are the
+                <a href="#placeholder" title="placeholder parameter description">placeholder</a>
+                as object and
+                <a href="#options" title="options parameter description">options</a> if you need
+                them.
             </p>
             <pre><!--
              --><code><!--
@@ -83,9 +114,11 @@
              --></code><!--
          --></pre>
 
-            <h3>Manual image lazy loading</h3>
+            <h3 id="manual-loading">3. Manual image lazy loading</h3>
             <p>
-                This function has to be called manually to load the image.
+                This function has to be called manually to load the image. The advantage is
+                that you can use your custom events to trigger the lazy loading of the image.
+                Parameters are the placeholder as object and options.
             </p>
             <pre><!--
              --><code><!--
@@ -94,8 +127,20 @@
          --></pre>
 
             <h3>Parameters</h3>
-            <h4 id="placeholder"><code>placeholder</code>  (mandatory)</h4>
-            The <code>placeholder</code> has to be provided as html object. The <code>data-src</code> and
+            <h4 id="css-class"><code>css-class</code></h4>
+            The <code>css-class</code> is a string object which has to be provided
+            without the selector dot as prefix.
+            <p>
+                Example:
+            </p>
+            <pre><!--
+             --><code><!--
+                 -->Justlazy.registerLazyLoadByClass("load-if-visible");<!--
+             --></code><!--
+         --></pre>
+
+            <h4 id="placeholder"><code>placeholder</code></h4>
+            The <code>placeholder</code> has to be defined in your html. The <code>data-src</code> and
             <code>data-alt</code> attributes are mandatory, the rest of them are optional.
             <table>
                 <thead>
@@ -132,17 +177,22 @@
             </p>
             <pre><!--
              --><code><!--
-                 -->&lt;span data-src="default/image" data-alt="some alt text"
+                 -->// html representation
+<!--             -->&lt;span id="some-id"
+<!--             -->      data-src="default/image" data-alt="some alt text"
 <!--             -->      data-srcset="small/image 600w, big/image 1000w"
 <!--             -->      data-title="some title" data-error="some error handler"
 <!--             -->      class="justlazy-placeholder"&gt;
-<!--             -->&lt;/span&gt;<!--
+<!--             -->&lt;/span&gt;
+<!--             -->
+<!--             -->// javascript call with placeholder as parameter
+<!--             -->Justlazy.registerLazyLoad(document.getElementById("some-id"));<!--
              --></code><!--
          --></pre>
             As you can see, the default lazy loading spinner is provided by the
             <code>justlazy-placeholder</code> class.
 
-            <h4 id="options"><code>options</code> (optional)</h4>
+            <h4 id="options"><code>options</code></h4>
             The <code>options</code> are provided as object with following
             properties. All of them are optional and you can provide as many
             as you need.
@@ -195,7 +245,7 @@
 <!--             -->    errorCallback: function() {
 <!--             -->        // do something
 <!--             -->    },
-<!--             -->    threshold: 150
+<!--             -->    threshold: 200
 <!--             -->});<!--
              --></code><!--
          --></pre>
