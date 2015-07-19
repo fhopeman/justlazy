@@ -14,7 +14,8 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 ## Installation
 
 #### file include
-You can include the `justlazy.js` file as follows in your page.
+You can download the latest [release](https://github.com/fhopeman/justlazy/releases) and include
+the `justlazy.js` file as follows in your page:
 ```
 <script src="javascript/justlazy.js" type="text/javascript"></script>
 ```
