@@ -28,13 +28,6 @@ If you want to use the lazy spinner, following css file is needed:
 ```
 $ npm install justlazy
 ```
-Then include a script and link tag to your page as follows:
-```
-<script src="node_modules/justlazy/src/justlazy.js" type="text/javascript"></script>
-<link href="node_modules/justlazy/src/justlazy.css" type="text/css" rel="stylesheet">
-```
-As an alternative you can use [browserify](https://github.com/substack/node-browserify).
-
 ## Contributing
 Just feel free to contribute..
 
