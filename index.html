@@ -23,13 +23,16 @@
                 <span class="icon"></span>
                 view code!
             </a>
-            <a href="https://github.com/fhopeman/justlazy" class="btn btn-github" title="fork plugin">
-                <span class="icon"></span>
-                fork me!
-            </a>
         </div>
         <a href="https://travis-ci.org/fhopeman/justlazy" title="travis-ci build information">
             <img src="https://travis-ci.org/fhopeman/justlazy.svg?branch=master" title="build status" alt="build status">
+        </a>
+        <a href="https://twitter.com/share" class="twitter-share-button"
+           data-url="http://fhopeman.github.io/justlazy"
+           data-text="justlazy.js - micro javascript image lazy loading plugin without jQuery"
+           data-via="fabianhoffmann7"
+           data-count="none">
+            Tweet
         </a>
     </div>
 </header>
@@ -318,8 +321,17 @@
 
     ga('create', 'UA-33320475-4', 'auto');
     ga('send', 'pageview');
+    // twitter
+    !function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
 </script>
 
 </body>
 </html>
-

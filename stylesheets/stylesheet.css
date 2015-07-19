@@ -9,8 +9,6 @@ body {
     text-align: justify;
 }
 
-/* General & 'Reset' Stuff */
-
 .container {
     width: 90%;
     max-width: 600px;
@@ -60,9 +58,6 @@ header h1 {
     text-align: center;
     margin-bottom: 15px;
 }
-
-/* Main Content
-*/
 
 #main-content {
     width: 100%;
@@ -214,11 +209,9 @@ hr {
 }
 
 a {
-    color: #63c0f5;
-    text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
+    color: #73d0fe;
+    text-decoration: none;
 }
-
-/* Clearfix */
 
 .cf:before, .cf:after {
     content: "";
