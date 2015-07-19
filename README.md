@@ -13,13 +13,6 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 
 ## Installation
 
-#### npm
-```
-$ npm install justlazy
-```
-Then include a script tag with `node_modules/justlazy/src/justlazy.js` in your page
-or use [browserify](https://github.com/substack/node-browserify).
-
 #### file include
 You can include the `justlazy.js` file as follows in your page.
 ```
@@ -30,6 +23,17 @@ If you want to use the lazy spinner, following css file is needed:
 ```
 <link href="stylesheets/justlazy.css" type="text/css" rel="stylesheet">
 ```
+
+#### npm
+```
+$ npm install justlazy
+```
+Then include a script and link tag to your page as follows:
+```
+<script src="node_modules/justlazy/src/justlazy.js" type="text/javascript"></script>
+<link href="node_modules/justlazy/src/justlazy.css" type="text/css" rel="stylesheet">
+```
+As an alternative you can use [browserify](https://github.com/substack/node-browserify).
 
 ## Contributing
 Just feel free to contribute..
