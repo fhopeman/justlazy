@@ -83,6 +83,7 @@
                         <a title="manual loading" href="#manual-loading">load manually</a> with a custom event
                     </li>
                 </ul>
+                If you are too lazy for the details: <a title="demo" href="#demo">Jump to the demo</a>.
             </p>
 
             <h3 id="register-by-class">1. Auto image lazy loading by class</h3>
@@ -252,10 +253,52 @@
         </section>
 
         <section>
-            <h2>Demo</h2>
+            <h2 id="demo">Demo</h2>
             <!-- example 1 -->
             <div class="example">
-                <h3>#1 lazy loading with specific event (e.g. button click)</h3>
+                <h3>#1 lazy loading if image is visible</h3>
+                <p>
+                    This example loads the images automatically if they become visible in the viewport
+                    and uses the registration by class function.
+                </p>
+                <pre><!--
+                 --><code><!--
+                -->Justlazy.registerLazyLoadByClass("load-if-visible");<!--
+                 --></code><!--
+             --></pre>
+                <div class="load-if-visible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
+                <div class="load-if-visible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
+                <div class="load-if-visible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
+            </div>
+
+            <!-- example 2 -->
+            <div class="example">
+                <h3>#2 lazy loading image with pre-loading threshold</h3>
+                <p>
+                    Usually the image will be loaded when it becomes visible in the viewport.
+                    If you set the <code>threshold</code>,
+                    the image will be pre-loaded due to the defined pixels.
+                    A <code>threshold</code> of 100 means, that the image will be loaded 100 pixels before it becomes
+                    visible for the user. This example uses the registration by placeholder object function.
+                </p>
+                <pre><!--
+                 --><code><!--
+                 -->var placeholders = document.querySelectorAll('.loadWithThreshold');
+<!--             -->for (var i = 0; i &lt; placeholders.length; ++i) {
+<!--             -->    Justlazy.registerLazyLoad(placeholders[i], {
+<!--             -->        threshold: 100
+<!--             -->    });
+<!--             -->}<!--
+                --></code><!--
+             --></pre>
+                <div class="load-with-threshold justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
+                <div class="load-with-threshold justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
+                <div class="load-with-threshold justlazy-placeholder" data-src="images/img_8.jpg" data-alt="Bridge in Kassel" data-title="Bridge in Kassel"></div>
+            </div>
+
+            <!-- example 3 -->
+            <div class="example">
+                <h3>#3 lazy loading with specific event (e.g. button click)</h3>
                 <p>
                     This example uses a button to trigger the image lazy loading manually. Instead
                     of the click event, you can use any other event of your choice and register
@@ -275,9 +318,9 @@
                 <div id="img1" class="justlazy-placeholder" data-src="images/img_1.jpg" data-alt="Bridge in Hamburg" data-title="Bridge in Hamburg"></div>
             </div>
 
-            <!-- example 2 -->
+            <!-- example 4 -->
             <div class="example">
-                <h3>#2: lazy loading with srcset attribute</h3>
+                <h3>#4: lazy loading with srcset attribute</h3>
                 <p>
                     This example demonstrates the usage of the srcset attribute. You just have to
                     provide the data-srcset attribute with specific value.
@@ -310,50 +353,6 @@
                     clear the browser cache to see the small image again with a browser horizontal width &lt;= 600px. Otherwise
                     the cached big image will be used in all cases.
                 </p>
-            </div>
-
-            <!-- example 3 -->
-            <div class="example">
-                <h3>#3 lazy loading if image is visible</h3>
-                <p>
-                    This example loads the images automatically if they become visible in the viewport.
-                </p>
-                <pre><!--
-                 --><code><!--
-                -->var placeholders = document.querySelectorAll(".load-if-visible");
-<!--            -->for (var i = 0; i &lt; placeholders.length; ++i) {
-<!--            -->    Justlazy.registerLazyLoad(placeholders[i]);
-<!--            -->}<!--
-                 --></code><!--
-             --></pre>
-                <div class="loadIfVisible justlazy-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
-                <div class="loadIfVisible justlazy-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
-                <div class="loadIfVisible justlazy-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
-            </div>
-
-            <!-- example 4 -->
-            <div class="example">
-                <h3>#4 lazy loading image with pre-loading threshold</h3>
-                <p>
-                    Usually the image will be loaded when it becomes visible in the viewport.
-                    If you set the <code>threshold</code>,
-                    the image will be pre-loaded due to the defined pixels.
-                    A <code>threshold</code> of 100 means, that the image will be loaded 100 pixels before it becomes
-                    visible for the user.
-                </p>
-                <pre><!--
-                 --><code><!--
-                 -->var placeholders = document.querySelectorAll('.loadWithThreshold');
-<!--             -->for (var i = 0; i &lt; placeholders.length; ++i) {
-<!--             -->    Justlazy.registerLazyLoad(placeholders[i], {
-<!--             -->        threshold: 100
-<!--             -->    });
-<!--             -->}<!--
-                --></code><!--
-             --></pre>
-                <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
-                <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
-                <div class="loadWithThreshold justlazy-placeholder" data-src="images/img_8.jpg" data-alt="Bridge in Kassel" data-title="Bridge in Kassel"></div>
             </div>
         </section>
 
