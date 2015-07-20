@@ -1,5 +1,5 @@
 /**
- * justlazy 1.1.0
+ * justlazy 1.2.0
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
