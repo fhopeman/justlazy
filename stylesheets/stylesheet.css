@@ -4,15 +4,19 @@ body {
     background: #151515 url("../images/bkg.png") 0 0;
     color: #eaeaea;
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.9;
     font-family: "Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;
     text-align: justify;
 }
 
 .container {
     width: 90%;
-    max-width: 600px;
     margin: 0 auto;
+}
+@media (min-width: 600px) {
+    .container {
+        max-width: 600px;
+    }
 }
 
 section {
@@ -92,18 +96,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #main-content h4 {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #main-content h5 {
-    font-size: 12px;
-    text-transform: uppercase;
+    font-size: 15px;
     margin: 0 0 5px 0;
 }
 
 dt {
     font-style: italic;
     font-weight: bold;
+}
+
+ol li {
+    color: #b5e853;
+}
+ol li span {
+    color: #eaeaea;
+}
+b {
+    color: #b5e853;
 }
 
 ul li {
@@ -140,6 +153,7 @@ pre {
 
 code {
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 14px;
 }
 
 table {

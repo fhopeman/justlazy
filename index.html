@@ -43,23 +43,25 @@
         <p>
             Most of the existing javascript lazy
             loading plugins use extensive dependencies
-            (e.g. <a href="https://jquery.com/" title="jQuery homepage">jQuery</a>) or support just the img-tag
-            without responsive parts. This plugin is supposed to be a lightweight alternative.
-            The main goals are:
+            (e.g. <a href="https://jquery.com/" title="jQuery homepage" target="_blank">jQuery</a>)
+            or support just the <code>img</code>-tag without responsive parts. This plugin is supposed to
+            be a lightweight alternative. The main goals are:
+            <ul>
+                <li>100% performance with plain javascript (no jQuery)</li>
+                <li>100% valid HTML (no empty src attribute)</li>
+                <li>Simplicity and lightness (just lazy loading of images, no special cases)</li>
+                <li>Heavily tested on various devices, browsers and OS versions</li>
+            </ul>
+            <img src="https://saucelabs.com/browser-matrix/fhopeman.svg" title="test status" alt="test status">
         </p>
-        <ul>
-            <li>100% performance with plain javascript (no jQuery)</li>
-            <li>100% valid HTML (no empty src attribute)</li>
-            <li>Simplicity and lightness (just lazy loading of images, no special cases)</li>
-            <li>Heavily tested on various devices, browsers and OS versions</li>
-        </ul>
-        <img src="https://saucelabs.com/browser-matrix/fhopeman.svg" title="test status" alt="test status">
 
         <section>
             <h2>Usage</h2>
-            Too lazy for the details? <a title="demo" href="#demo">Jump to the demo!</a>
             <p>
-                To lazy load an image, first of all a <a href="#placeholder" title="image placeholder description">placeholder</a>
+                Too lazy for the details? <a title="demo" href="#demo">Jump to the demo!</a>
+            </p>
+            <p>
+                To lazy load an image, first of all a placeholder
                 of your choice (e.g. <code>span</code>,
                 <code>div</code>, ..) has to be defined. This placeholder itself is an html element
                 which contains several data-attributes to provide the image information.
@@ -70,29 +72,78 @@
                 or other relics of the placeholder.
             </p>
             <p>
-                There are three possibilities to trigger the image lazy loading:
-                <ul>
-                    <li>
-                        <a href="#register-by-class" title="register by class">register all</a>
-                        images by a specific class and load them if they become visible
-                    </li>
-                    <li>
-                        <a href="#register-by-object" title="register object to laod">register only one</a>
-                        image by an html object and load it if it becomes visible
-                    </li>
-                    <li>
-                        <a title="manual loading" href="#manual-loading">load manually</a> with a custom event
-                    </li>
-                </ul>
+                <b>Steps to do</b>
+                <ol>
+                    <li><span>Define placeholder</span></li>
+                    <li><span>Register event</span></li>
+                </ol>
             </p>
 
-            <h3 id="register-by-class">1. Auto image lazy loading by class</h3>
+            <h3>1. Define placeholder</h3>
             <p>
-                The most comfortable function of this library registers an event listener for all images
+                The placeholder has to be defined in your html. The <code>data-src</code> and
+                <code>data-alt</code> attributes are mandatory, the rest of them are optional. You can define
+                as many placeholders as you need.
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>data-src</code> (mandatory)</td>
+                    <td>Source of the image</td>
+                </tr>
+                <tr>
+                    <td><code>data-alt</code> (mandatory)</td>
+                    <td>Alt text of the image, <code>data-alt=""</code> is allowed, but not recommended!</td>
+                </tr>
+                <tr>
+                    <td><code>data-title</code></td>
+                    <td>Title of the image</td>
+                </tr>
+                <tr>
+                    <td><code>data-error-handler</code></td>
+                    <td>Error handler of the image</td>
+                </tr>
+                <tr>
+                    <td><code>data-srcset</code></td>
+                    <td>Responsive image source-set attribute</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                Example:
+            </p>
+            <pre><!--
+             --><code><!--
+<!--             -->&lt;span data-src="default/image" data-alt="some alt text"
+<!--             -->      data-srcset="small/image 600w, big/image 1000w"
+<!--             -->      data-title="some title" data-error-handler="some handler"
+<!--             -->      class="justlazy-placeholder"&gt;
+<!--             -->&lt;/span&gt;<!--
+             --></code><!--
+         --></pre>
+            <p>
+                As you can see, the default lazy loading spinner is provided by the
+                <code>justlazy-placeholder</code> class.
+            </p>
+
+            <h3>2. Register event</h3>
+            <p>
+                There are three possiblities to trigger the lazy loading of the image(s).
+            </p>
+            <p>
+                The most comfortable one registers an event listener for all placeholders
                 with a specific
-                css class. The images will be loaded automatically if they become visible. The parameters
+                css class (e.g. <code>justlazy-placeholder</code>). The images will be loaded
+                automatically if they become visible. The parameters
                 are the <a href="#css-class" title="css-class parameter">css-class</a> as string and optional
                 <a href="#options" title="options parameter description">options</a>.
+                (<a href="#example-by-class" title="example by class">Demo 1</a>)
             </p>
             <pre><!--
              --><code><!--
@@ -100,14 +151,16 @@
              --></code><!--
          --></pre>
 
-            <h3 id="register-by-object">2. Auto image lazy loading with placeholder object</h3>
             <p>
-                The following function registers an event listener which loads the
-                image automatically if it becomes visible. The parameters are the
+                If you need some more flexibility, the next function accepts as first
+                parameter the html object of the placeholder. So you can decide how to
+                extract the placeholder objects out of the html.
+                The parameters are the
                 <a href="#placeholder" title="placeholder parameter description">placeholder</a>
                 as object and
                 <a href="#options" title="options parameter description">options</a> if you need
                 them.
+                (<a href="#example-by-placeholder" title="example by placeholder">Demo 2</a>)
             </p>
             <pre><!--
              --><code><!--
@@ -115,12 +168,13 @@
              --></code><!--
          --></pre>
 
-            <h3 id="manual-loading">3. Manual image lazy loading</h3>
             <p>
-                This function has to be called manually to load the image. The advantage is
-                that you can use your custom events to trigger the lazy loading of the image.
-                Parameters are the <a href="#placeholder" title="placeholder parameter description">placeholder</a>
+                The most flexible way is to use the last function, which has to be called manually
+                to load the image. The advantage is, that you can use custom events (e.g. a
+                sliding event of a gallery) to trigger the lazy loading.
+                The parameters are <a href="#placeholder" title="placeholder parameter description">placeholder</a>
                 as object and <a href="#options" title="options parameter description">options</a>.
+                (<a href="#example-by-custom-event" title="example by custom event">Demo 3/4</a>)
             </p>
             <pre><!--
              --><code><!--
@@ -128,10 +182,12 @@
              --></code><!--
          --></pre>
 
-            <h3>Parameters</h3>
-            <h4 id="css-class"><code>css-class</code></h4>
-            The <code>css-class</code> is a string object which has to be provided
-            without the class selector dot as prefix.
+            <h4>Parameters</h4>
+            <h5 id="css-class"><code>css-class</code></h5>
+            <p>
+                The <code>css-class</code> is a string which has to be provided
+                without the class selector dot as prefix.
+            </p>
             <p>
                 Example:
             </p>
@@ -141,66 +197,23 @@
              --></code><!--
          --></pre>
 
-            <h4 id="placeholder"><code>placeholder</code></h4>
-            The <code>placeholder</code> has to be defined in your html. The <code>data-src</code> and
-            <code>data-alt</code> attributes are mandatory, the rest of them are optional.
-            <table>
-                <thead>
-                    <tr>
-                        <th>Attribute</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>data-src</code> (mandatory)</td>
-                        <td>source of the image</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-alt</code> (mandatory)</td>
-                        <td>alt text of the image, <code>data-alt=""</code> is allowed, but not recommended!</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-title</code></td>
-                        <td>title of the image</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-error</code></td>
-                        <td>error handler of the image</td>
-                    </tr>
-                    <tr>
-                        <td><code>data-srcset</code></td>
-                        <td>responsive image source-set attribute</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h5 id="placeholder"><code>placeholder</code></h5>
+            The <code>placeholder</code> has to be provided as plain javascript object.
             <p>
                 Example:
             </p>
             <pre><!--
              --><code><!--
-                 -->// html representation
-<!--             -->&lt;span id="some-id"
-<!--             -->      data-src="default/image" data-alt="some alt text"
-<!--             -->      data-srcset="small/image 600w, big/image 1000w"
-<!--             -->      data-title="some title" data-error="some error handler"
-<!--             -->      class="justlazy-placeholder"&gt;
-<!--             -->&lt;/span&gt;
-<!--             -->
-<!--             -->// javascript call with placeholder as parameter
-<!--             -->Justlazy.registerLazyLoad(document.getElementById("some-id"));
-
-<!--             -->// or by class
-<!--             -->Justlazy.registerLazyLoadByClass("justlazy-placeholder");<!--
+                 -->Justlazy.registerLazyLoad(document.getElementById("placeholder-1"));<!--
              --></code><!--
          --></pre>
-            As you can see, the default lazy loading spinner is provided by the
-            <code>justlazy-placeholder</code> class.
 
-            <h4 id="options"><code>options</code></h4>
-            The <code>options</code> are provided as object with following
-            properties. All of them are optional and you can provide as many
-            as you need.
+            <h5 id="options"><code>options</code></h5>
+            <p>
+                The <code>options</code> are provided as object with following
+                properties. All of them are optional and you can provide as many
+                as you need.
+            </p>
             <table>
                 <thead>
                     <tr>
@@ -214,7 +227,7 @@
                             <code>successCallback</code>
                         </td>
                         <td>
-                            the function will be invoked if the placeholder is properly replaced
+                            The function will be invoked if the placeholder is properly replaced.
                         </td>
                     </tr>
                     <tr>
@@ -222,7 +235,7 @@
                             <code>errorCallback</code>
                         </td>
                         <td>
-                            the function will be invoked if the placeholder could not be replaced.
+                            The function will be invoked if the placeholder could not be replaced.
                             This occurs if mandatory attributes (e.g. <code>data-src</code>)
                             aren't available.
                         </td>
@@ -232,7 +245,7 @@
                             <code>threshold</code>
                         </td>
                         <td>
-                            (only auto loading) The image is loaded the defined pixels before it
+                            The image is loaded the defined pixels before it
                             appears on the screen. E.g. 200px before it becomes visible.
                         </td>
                     </tr>
@@ -260,7 +273,7 @@
             <h2 id="demo">Demo</h2>
             <!-- example 1 -->
             <div class="example">
-                <h3>#1 lazy loading if image is visible</h3>
+                <h3 id="example-by-class">#1 lazy loading if images are visible</h3>
                 <p>
                     This example loads the images automatically if they become visible in the viewport
                     and uses the registration by class function.
@@ -277,7 +290,7 @@
 
             <!-- example 2 -->
             <div class="example">
-                <h3>#2 lazy loading image with pre-loading threshold</h3>
+                <h3 id="example-by-placeholder">#2 lazy loading images with pre-loading threshold</h3>
                 <p>
                     Usually the image will be loaded when it becomes visible in the viewport.
                     If you set the <code>threshold</code>,
@@ -302,7 +315,7 @@
 
             <!-- example 3 -->
             <div class="example">
-                <h3>#3 lazy loading with specific event (e.g. button click)</h3>
+                <h3 id="example-by-custom-event">#3 lazy loading with specific event (e.g. button click)</h3>
                 <p>
                     This example uses a button to trigger the image lazy loading manually. Instead
                     of the click event, you can use any other event of your choice and register
@@ -327,7 +340,7 @@
                 <h3>#4: lazy loading with srcset attribute</h3>
                 <p>
                     This example demonstrates the usage of the srcset attribute. You just have to
-                    provide the data-srcset attribute with specific value.
+                    provide the <code>data-srcset</code> attribute with a specific value.
                 </p>
                 <pre><!--
                  --><code><!--
@@ -367,6 +380,7 @@
 <script type="text/javascript" src="javascript/demo.js"></script>
 
 <script>
+    // analytics
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
