@@ -12,16 +12,16 @@
     }
 
     // example 3
-    document.getElementById("loadImg1Btn").onclick = function() {
-        var imgPlaceholder = document.getElementById("img1");
+    document.getElementById("btn-load-1").onclick = function() {
+        var imgPlaceholder = document.getElementById("img-1");
         Justlazy.lazyLoad(imgPlaceholder);
 
         return false;
     };
 
     // example 4
-    document.getElementById("loadImg2Btn").onclick = function() {
-        var imgPlaceholder = document.getElementById("img2");
+    document.getElementById("btn-load-2").onclick = function() {
+        var imgPlaceholder = document.getElementById("img-2");
         Justlazy.lazyLoad(imgPlaceholder);
 
         return false;
