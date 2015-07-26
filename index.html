@@ -340,8 +340,8 @@
             <div class="example">
                 <h3>#4: lazy loading with srcset attribute</h3>
                 <p>
-                    This example demonstrates the usage of the srcset attribute. You just have to
-                    provide the <code>data-srcset</code> attribute with a specific value.
+                    This example demonstrates the usage of the <code>srcset</code> attribute. You just have to
+                    provide a placeholder with the <code>data-srcset</code> attribute.
                 </p>
                 <pre><!--
                  --><code><!--
@@ -362,9 +362,10 @@
                 </div>
                 <p>
                     The comment in the lower right corner of the image indicates the size of the image, which has been
-                    loaded. The srcset attribute defines, that the small size is loaded if your screen width is lower or equals
+                    loaded. The <code>srcset</code> attribute defines, that the small size is loaded if your screen
+                    width is lower or equals
                     than 600 pixels. All screen sizes above will load the big image. If the browser doesn't support
-                    the srcset, the default image will be loaded.
+                    the <code>srcset</code>, the default image will be loaded.
                 </p>
                 <p>
                     If the big image is loaded once, you have to disable or
