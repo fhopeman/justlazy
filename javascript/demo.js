@@ -4,10 +4,10 @@
     Justlazy.registerLazyLoadByClass("load-if-visible");
 
     // example 2
-    var placeholderExample4 = document.querySelectorAll('.with-threshold');
-    for (var i = 0; i < placeholderExample4.length; ++i) {
-        Justlazy.registerLazyLoad(placeholderExample4[i], {
-            threshold: 100
+    var placeholdersExample2 = document.querySelectorAll('.with-threshold');
+    for (var i = 0; i < placeholdersExample2.length; ++i) {
+        Justlazy.registerLazyLoad(placeholdersExample2[i], {
+            threshold: 300
         });
     }
 

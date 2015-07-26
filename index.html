@@ -153,7 +153,7 @@
          --></pre>
 
             <p>
-                If you need some more flexibility, the next function accepts as first
+                If you need more flexibility, the next function accepts as first
                 parameter the html object of the placeholder. So you can decide how to
                 extract the placeholder objects out of the html.
                 The parameters are the
@@ -277,7 +277,7 @@
                 <h3 id="example-by-class">#1 lazy loading if images are visible</h3>
                 <p>
                     This example loads the images automatically if they become visible in the viewport
-                    and uses the registration by class function.
+                    and uses the event registration by class function.
                 </p>
                 <pre><!--
                  --><code><!--
@@ -296,7 +296,7 @@
                     Usually the image will be loaded when it becomes visible in the viewport.
                     If you set the <code>threshold</code>,
                     the image will be pre-loaded due to the defined pixels.
-                    A <code>threshold</code> of 100 means, that the image will be loaded 100 pixels before it becomes
+                    A <code>threshold</code> of 300 means, that the image will be loaded 300 pixels before it becomes
                     visible for the user. This example uses the registration by placeholder function.
                 </p>
                 <pre><!--
@@ -304,7 +304,7 @@
                  -->var placeholders = document.querySelectorAll(".with-threshold");
 <!--             -->for (var i = 0; i &lt; placeholders.length; ++i) {
 <!--             -->    Justlazy.registerLazyLoad(placeholders[i], {
-<!--             -->        threshold: 100
+<!--             -->        threshold: 300
 <!--             -->    });
 <!--             -->}<!--
                 --></code><!--
