@@ -1,5 +1,5 @@
 /**
- * justlazy 1.3.0-SNAPSHOT
+ * justlazy 1.3.0
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
@@ -13,7 +13,7 @@
         root.Justlazy = factory();
     }
 }(this, function() {
-    'use strict';
+    "use strict";
 
     /**
      * Creates an img html node and sets the attributes of the
