@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         }, {
             browserName: "firefox",
             platform: "Windows 8",
-            version: "39.0"
+            version: "40.0"
         },
         // internet explorer
         {
@@ -54,6 +54,12 @@ module.exports = function (grunt) {
             browserName: "internet explorer",
             platform: "Windows 8.1",
             version: "11.0"
+        },
+        // edge
+        {
+            browserName: "microsoftedge",
+            platform: "Windows 10",
+            version: "20.10240"
         },
         // opera
         {
@@ -80,7 +86,7 @@ module.exports = function (grunt) {
             platform: "OS X 10.10",
             deviceName: "iPhone Simulator",
             "device-orientation": "portrait",
-            version: "6.1"
+            version: "9.0"
         }, {
             browserName: "iphone",
             platform: "OS X 10.10",
@@ -104,7 +110,7 @@ module.exports = function (grunt) {
         {
             browserName: "android",
             platform: "Linux",
-            deviceName: "Samsung Galaxy S2 Emulator",
+            deviceName: "LG Nexus 4 Emulator",
             version: "4.2"
         }, {
             browserName: "android",
@@ -114,7 +120,7 @@ module.exports = function (grunt) {
         }, {
             browserName: "android",
             platform: "Linux",
-            deviceName: "Samsung Galaxy S3 Emulator",
+            deviceName: "Android Emulator",
             version: "4.1"
         }];
 
