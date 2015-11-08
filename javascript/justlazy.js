@@ -1,11 +1,19 @@
 /**
- * justlazy 1.2.0
+ * justlazy 1.3.0
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
  */
-var Justlazy = (function() {
-    'use strict';
+(function(root, factory) {
+    if (typeof define === "function" && define.amd) {
+        define([], factory);
+    } else if (typeof module === "object" && module.exports) {
+        module.exports = factory();
+    } else {
+        root.Justlazy = factory();
+    }
+}(this, function() {
+    "use strict";
 
     /**
      * Creates an img html node and sets the attributes of the
@@ -17,7 +25,7 @@ var Justlazy = (function() {
      * @param {Function} onloadCallback Optional onload callback function.
      *
      */
-    var _createImage = function (imgPlaceholder, imgAttributes, onloadCallback) {
+    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback) {
         var img = document.createElement("img");
 
         img.onload = function() {
@@ -45,7 +53,7 @@ var Justlazy = (function() {
      * @param {Object} imgPlaceholder Image placeholder html node.
      * @param {Object} img Image node itself.
      */
-    var _replacePlacholderWithImage = function (imgPlaceholder, img) {
+    var _replacePlacholderWithImage = function(imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
         if (!!parentNode) {
             parentNode.replaceChild(img, imgPlaceholder);
@@ -164,5 +172,4 @@ var Justlazy = (function() {
         registerLazyLoad: registerLazyLoad,
         registerLazyLoadByClass: registerLazyLoadByClass
     };
-
-}());
+}));
