@@ -229,7 +229,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <code>successCallback</code>
+                            <code>onloadCallback</code>
                         </td>
                         <td>
                             The function will be invoked if the placeholder is properly replaced.
@@ -237,7 +237,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <code>errorCallback</code>
+                            <code>onerrorCallback</code>
                         </td>
                         <td>
                             The function will be invoked if the placeholder could not be replaced.
@@ -262,10 +262,10 @@
             <pre><!--
              --><code><!--
                  -->Justlazy.registerLazyLoadByClass("load-if-visible", {
-<!--             -->    successCallback: function() {
+<!--             -->    onloadCallback: function() {
 <!--             -->        // do something
 <!--             -->    },
-<!--             -->    errorCallback: function() {
+<!--             -->    onerrorCallback: function() {
 <!--             -->        // do something
 <!--             -->    },
 <!--             -->    threshold: 200
