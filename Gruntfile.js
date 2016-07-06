@@ -32,11 +32,7 @@ module.exports = function (grunt) {
             browserName: "firefox",
             platform: "Linux",
             version: "35.0"
-        }, {
-            browserName: "firefox",
-            platform: "Windows 10",
-            version: "47.0"
-        },
+        }
         // internet explorer
         {
             browserName: "internet explorer",
