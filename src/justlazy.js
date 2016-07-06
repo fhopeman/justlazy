@@ -110,10 +110,9 @@
 
     var _isVisible = function(placeholder, optionalThreshold) {
         var windowInnerHeight = window.innerHeight || document.documentElement.clientHeight;
-        var windowScrollY = window.scrollY || document.documentElement.scrollTop;
         var threshold = optionalThreshold || 0;
 
-        return windowInnerHeight + windowScrollY + threshold >= placeholder.offsetTop;
+        return placeholder.getBoundingClientRect().top - windowInnerHeight <= threshold;
     };
 
     var _loadImgIfVisible = function(imgPlaceholder, options) {
