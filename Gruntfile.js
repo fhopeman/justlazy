@@ -13,15 +13,7 @@ module.exports = function (grunt) {
         }, {
             browserName: "chrome",
             platform: "Windows 8.1",
-            version: "40.0"
-        }, {
-            browserName: "chrome",
-            platform: "Linux",
             version: "30.0"
-        }, {
-            browserName: "chrome",
-            platform: "Windows 8",
-            version: "43.0"
         }, {
             browserName: "chrome",
             platform: "Linux",
@@ -40,10 +32,6 @@ module.exports = function (grunt) {
             browserName: "firefox",
             platform: "Linux",
             version: "35.0"
-        }, {
-            browserName: "firefox",
-            platform: "Windows 8",
-            version: "40.0"
         }, {
             browserName: "firefox",
             platform: "Windows 10",
