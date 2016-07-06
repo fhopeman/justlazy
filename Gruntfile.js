@@ -107,11 +107,6 @@ module.exports = function (grunt) {
             platform: "Linux",
             deviceName: "Android Emulator",
             version: "5.1"
-        }, {
-            browserName: "android",
-            platform: "Linux",
-            deviceName: "Android Emulator",
-            version: "4.1"
         }];
 
     grunt.initConfig({
@@ -155,7 +150,7 @@ module.exports = function (grunt) {
                     build: process.env.TRAVIS_JOB_ID,
                     browsers: browsers,
                     testname: "justlazy.js tests",
-                    "max-duration": 240,
+                    "max-duration": 300,
                     tags: ["master"]
                 }
             }
