@@ -22,6 +22,10 @@ module.exports = function (grunt) {
             browserName: "chrome",
             platform: "Windows 8",
             version: "43.0"
+        }, {
+            browserName: "chrome",
+            platform: "Linux",
+            version: "51.0"
         },
         // firefox
         {
@@ -40,6 +44,10 @@ module.exports = function (grunt) {
             browserName: "firefox",
             platform: "Windows 8",
             version: "40.0"
+        }, {
+            browserName: "firefox",
+            platform: "Windows 10",
+            version: "47.0"
         },
         // internet explorer
         {
