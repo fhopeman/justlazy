@@ -170,5 +170,4 @@ module.exports = function (grunt) {
     grunt.registerTask("travis-ci", ["test-all"]);
 
     grunt.registerTask("default", ["test-jshint", "test-jasmine", "minify"]);
-
 };
