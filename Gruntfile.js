@@ -71,38 +71,6 @@ module.exports = function (grunt) {
             browserName: "safari",
             platform: "OS X 10.8",
             version: "6.0"
-        },
-        // apple
-        {
-            browserName: "iphone",
-            platform: "OS X 10.10",
-            deviceName: "iPhone Simulator",
-            "device-orientation": "portrait",
-            version: "9.0"
-        }, {
-            browserName: "iphone",
-            platform: "OS X 10.10",
-            deviceName: "iPhone Simulator",
-            "device-orientation": "portrait",
-            version: "7.1"
-        }, {
-            browserName: "iphone",
-            platform: "OS X 10.10",
-            deviceName: "iPhone Simulator",
-            "device-orientation": "portrait",
-            version: "8.2"
-        },
-        // android
-        {
-            browserName: "android",
-            platform: "Linux",
-            deviceName: "LG Nexus 4 Emulator",
-            version: "4.2"
-        }, {
-            browserName: "android",
-            platform: "Linux",
-            deviceName: "Android Emulator",
-            version: "5.1"
         }];
 
     grunt.initConfig({
