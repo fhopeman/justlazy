@@ -1,4 +1,4 @@
-# justlazy.js [![Build Status](https://travis-ci.org/fhopeman/justlazy.svg?branch=master)](https://travis-ci.org/fhopeman/justlazy)
+# justlazy.js [![Build Status](https://travis-ci.org/fhopeman/justlazy.svg?branch=master)](https://travis-ci.org/fhopeman/justlazy) [![Sauce Test Status](https://saucelabs.com/buildstatus/fhopeman)](https://saucelabs.com/u/fhopeman)
 Lightweight javascript plugin to lazy load responsive images. Most of the existing javascript plugins using extensive dependencies or
 supporting just the img-tag without responsive parts. This plugin is supposed to be an alternative.
 
@@ -9,7 +9,7 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 - Simplicity and lightness (just lazy loading of images, no special cases)
 - Heavily tested on various devices, browsers and OS versions
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/fhopeman)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/fhopeman.svg)](https://saucelabs.com/u/)
 
 ## Installation
 
