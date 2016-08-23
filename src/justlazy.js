@@ -150,12 +150,16 @@
      *                                 on the screen. E.g. 200px before it become visible.
      */
     var registerLazyLoad = function(imgPlaceholder, options) {
-        var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, _validateOptions(options));
-
-        if (window.addEventListener) {
-            window.addEventListener("scroll", loadImgIfVisible, false);
+        var validatedOptions = _validateOptions(options);
+        if (_isVisible(imgPlaceholder, validatedOptions.threshold)) {
+            lazyLoad(imgPlaceholder, options);
         } else {
-            window.attachEvent("onscroll", loadImgIfVisible);
+            var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, validatedOptions);
+            if (window.addEventListener) {
+                window.addEventListener("scroll", loadImgIfVisible, false);
+            } else {
+                window.attachEvent("onscroll", loadImgIfVisible);
+            }
         }
     };
 
