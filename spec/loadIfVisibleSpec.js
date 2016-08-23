@@ -21,7 +21,7 @@ describe("justlazy auto loader by html object", function() {
         loadFixtures("loadIfVisible.html");
     });
 
-    it("should load visible placeholder", function(done) {
+    it("should load visible placeholder after load", function(done) {
         // given
         var placeholder1 = document.getElementById("img1");
         expect(placeholder1).toHaveAttr("data-src", base64Image);
@@ -37,9 +37,6 @@ describe("justlazy auto loader by html object", function() {
                 fail();
             }
         });
-
-        // when
-        triggerScrollEvent(0);
     });
 
    it("should load visible placeholder after scroll event", function(done) {
@@ -108,6 +105,10 @@ describe("justlazy auto loader by html object", function() {
             expect(callCount).toBe(0);
             done();
         }, 30);
+
+        // placeholder was not changed
+        expect(document.getElementById("img3")).toHaveAttr("data-src", base64Image3);
+
     });
 
     it("should remove event listener after image loading", function(done) {
