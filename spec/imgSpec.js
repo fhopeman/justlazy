@@ -2,23 +2,23 @@ var base64Image = "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAA
 var base64Image2 = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 var base64ImageDefault = "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNg+M9QDwADgQF/e5IkGQAAAABJRU5ErkJggg==";
 
-var testCase = function(testCaseId, tagName) {
+var testCase = function (testCaseId, tagName) {
     return document
         .getElementById(testCaseId)
         .getElementsByTagName(tagName);
 };
 
-var withElements = function(tagName) {
+var withElements = function (tagName) {
     return tagName;
 };
 
-describe("justlazy", function() {
+describe("justlazy", function () {
 
     it("should be initialized", function () {
         expect(Justlazy).not.toBeUndefined();
     });
 
-    it("should be able to cope with undefined options", function() {
+    it("should be able to cope with undefined options", function () {
         loadFixtures("imgTagWithSpan.html");
         var span = testCase("testSpan", withElements("span"))[0];
         expect(span).toBeDefined();
@@ -27,13 +27,13 @@ describe("justlazy", function() {
 
 });
 
-describe("justlazy should lazy load span", function() {
+describe("justlazy should lazy load span", function () {
 
-    beforeEach(function() {
+    beforeEach(function () {
         loadFixtures("imgTagWithSpan.html");
     });
 
-    it("without extra stuff", function(done) {
+    it("without extra stuff", function (done) {
         var span = testCase("testSpan", withElements("span"))[0];
 
         Justlazy.lazyLoad(span, {
@@ -48,7 +48,7 @@ describe("justlazy should lazy load span", function() {
         });
     });
 
-    it("with just mandatory attributes", function(done) {
+    it("with just mandatory attributes", function (done) {
         var span = testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0];
 
         Justlazy.lazyLoad(span, {
@@ -67,7 +67,7 @@ describe("justlazy should lazy load span", function() {
         });
     });
 
-    it("with content (remove content)", function(done) {
+    it("with content (remove content)", function (done) {
         var span = testCase("testSpanWithContent", withElements("span"))[0];
         expect(span).toHaveText("some content here");
 
@@ -83,7 +83,7 @@ describe("justlazy should lazy load span", function() {
         });
     });
 
-    it("with style attribute (remove styling)", function(done) {
+    it("with style attribute (remove styling)", function (done) {
         var span = testCase("testSpanWithCss", withElements("span"))[0];
         expect(span).toHaveCss({display: "none"});
 
@@ -115,7 +115,23 @@ describe("justlazy should lazy load span", function() {
         });
     });
 
-    it("in complex html structure", function(done) {
+    it("call error handler when image can not be loaded", function (done) {
+        var span = testCase("testSpanWithNotExistingImage", withElements("span"))[0];
+
+        expect(span).toHaveAttr("data-src", "http://some.server/foobar.gif");
+        expect(span).toHaveAttr("data-error-handler", "this.onerror=null;this.src='"+base64Image+"'");
+
+        Justlazy.lazyLoad(span);
+
+        setTimeout(function() {
+            var theImage = testCase("testSpanWithNotExistingImage", withElements("img"))[0];
+            expect(theImage.src).toBe(base64Image);
+            done();
+        }, 50);
+
+    });
+
+    it("in complex html structure", function (done) {
         var testContainer = document.getElementById("testSpanWithComplexStructure");
 
         expect(testContainer.querySelectorAll(".lazy-span").length).toBe(3);
@@ -177,7 +193,7 @@ describe("justlazy should lazy load span", function() {
         });
     });
 
-    it("with srcset attribute", function(done) {
+    it("with srcset attribute", function (done) {
         var span = testCase("testSpanWithSrcset", withElements("span"))[0];
         var srcsetValue = base64Image + " 400w, " + base64Image2 + " 800w";
 
@@ -216,7 +232,7 @@ describe("justlazy should lazy load span", function() {
         });
     });
 
-    it("and invoke onload callback", function(done) {
+    it("and invoke onload callback", function (done) {
         var span = testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0];
 
         expect(span).not.toHaveAttr("data-some-test-attr");
@@ -238,9 +254,9 @@ describe("justlazy should lazy load span", function() {
 
 });
 
-describe("justlazy shouldnt lazy load span", function() {
+describe("justlazy shouldnt lazy load span", function () {
 
-    beforeEach(function() {
+    beforeEach(function () {
         loadFixtures("imgTagWithSpan.html");
     });
 
@@ -262,7 +278,7 @@ describe("justlazy shouldnt lazy load span", function() {
     it("and shouldn't call onLazyLoadError callback if not defined", function () {
         var span = testCase("testSpanWithSrcError", withElements("span"))[0];
 
-        Justlazy.lazyLoad(span, function() {
+        Justlazy.lazyLoad(span, function () {
             fail();
         }, undefined);
 
@@ -306,7 +322,7 @@ describe("justlazy shouldnt lazy load span", function() {
         });
     });
 
-    it("without data-src and data-alt attribute", function(done) {
+    it("without data-src and data-alt attribute", function (done) {
         var span = testCase("testSpanWithSrcAndAltError", withElements("span"))[0];
 
         expect(span).not.toHaveAttr("data-src");
@@ -325,9 +341,9 @@ describe("justlazy shouldnt lazy load span", function() {
     });
 });
 
-describe("justlazy should lazy load div", function() {
+describe("justlazy should lazy load div", function () {
 
-    beforeEach(function() {
+    beforeEach(function () {
         loadFixtures("imgTagWithDiv.html");
     });
 
@@ -363,7 +379,7 @@ describe("justlazy should lazy load div", function() {
         });
     });
 
-    it("with style attribute (remove styling)", function(done) {
+    it("with style attribute (remove styling)", function (done) {
         var div = testCase("testDivWithStyling", withElements("div"))[0];
         expect(div).toHaveCss({display: "none"});
 
@@ -398,7 +414,7 @@ describe("justlazy should lazy load div", function() {
         });
     });
 
-    it("with empty data-error-handler attribute", function(done) {
+    it("with empty data-error-handler attribute", function (done) {
         var div = testCase("testDivWithEmptyErrorHandler", withElements("div"))[0];
 
         expect(div).toHaveAttr("data-src", base64Image);
@@ -419,7 +435,7 @@ describe("justlazy should lazy load div", function() {
         });
     });
 
-    it("without data-error-handler attribute", function(done) {
+    it("without data-error-handler attribute", function (done) {
         var div = testCase("testDivWithoutErrorHandler", withElements("div"))[0];
 
         expect(div).toHaveAttr("data-src", base64Image);
@@ -438,7 +454,7 @@ describe("justlazy should lazy load div", function() {
         });
     });
 
-    it("with empty data-title attribute", function(done) {
+    it("with empty data-title attribute", function (done) {
         var div = testCase("testDivWithEmptyTitle", withElements("div"))[0];
         expect(div).toHaveAttr("data-src", base64Image);
         expect(div).toHaveAttr("data-alt", "some alt text");
