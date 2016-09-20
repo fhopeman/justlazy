@@ -115,7 +115,7 @@ describe("justlazy should lazy load span", function () {
         });
     });
 
-    it("call error handler when image can not be loaded", function (done) {
+    it("and call error handler when image can not be loaded", function (done) {
         var span = testCase("testSpanWithNotExistingImage", withElements("span"))[0];
 
         expect(span).toHaveAttr("data-src", "http://some.server/foobar.gif");
