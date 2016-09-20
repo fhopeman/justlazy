@@ -1,8 +1,9 @@
 /**
- * justlazy 1.5.0
+ * justlazy 1.5.1
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
+ * bug fix: https://github.com/micharegel/justlazy
  */
 (function(root, factory) {
     if (typeof define === "function" && define.amd) {
@@ -29,12 +30,10 @@
         var img = document.createElement("img");
 
         img.onload = function() {
-            _replacePlacholderWithImage(imgPlaceholder, img);
             if (!!onloadCallback) {
                 onloadCallback.call(img);
             }
         };
-        img.src = imgAttributes.src;
         img.alt = imgAttributes.alt;
         if (!!imgAttributes.title) {
             img.title = imgAttributes.title;
@@ -45,6 +44,8 @@
         if (!!imgAttributes.srcset) {
             img.setAttribute("srcset", imgAttributes.srcset);
         }
+        img.src = imgAttributes.src;
+        _replacePlaceholderWithImage(imgPlaceholder, img);
     };
 
     /**
@@ -53,7 +54,7 @@
      * @param {Object} imgPlaceholder Image placeholder html node.
      * @param {Object} img Image node itself.
      */
-    var _replacePlacholderWithImage = function(imgPlaceholder, img) {
+    var _replacePlaceholderWithImage = function(imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
         if (!!parentNode) {
             parentNode.replaceChild(img, imgPlaceholder);
