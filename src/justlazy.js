@@ -3,7 +3,6 @@
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
- * bug fix: https://github.com/micharegel/justlazy
  */
 (function(root, factory) {
     if (typeof define === "function" && define.amd) {
