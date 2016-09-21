@@ -23,12 +23,12 @@
   "devDependencies": {
     "grunt": "~1.0.1",
     "grunt-cli": "~1.2.0",
-    "grunt-contrib-jshint": "~1.0.0",
-    "grunt-contrib-jasmine": "~1.0.3",
-    "grunt-saucelabs": "~8.6.3",
     "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-jasmine": "~1.0.3",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-uglify": "~2.0.0",
     "grunt-contrib-watch": "~1.0.0",
-    "grunt-contrib-uglify": "~1.0.1"
+    "grunt-saucelabs": "~9.0.0"
   },
   "scripts": {
     "test": "grunt travis-ci"
