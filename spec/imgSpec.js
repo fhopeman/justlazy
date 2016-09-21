@@ -115,20 +115,24 @@ describe("justlazy should lazy load span", function () {
         });
     });
 
-    it("and call error handler when image can not be loaded", function (done) {
+    it("although the image could not be loaded and call error handler to load default image.", function (done) {
         var span = testCase("testSpanWithNotExistingImage", withElements("span"))[0];
 
-        expect(span).toHaveAttr("data-src", "http://some.server/foobar.gif");
+        expect(span).toHaveAttr("data-src", "http://some.non.existing.server/foobar.gif");
         expect(span).toHaveAttr("data-error-handler", "this.onerror=null;this.src='"+base64Image+"'");
 
-        Justlazy.lazyLoad(span);
-
-        setTimeout(function() {
-            var theImage = testCase("testSpanWithNotExistingImage", withElements("img"))[0];
-            expect(theImage.src).toBe(base64Image);
-            done();
-        }, 50);
-
+        Justlazy.lazyLoad(span, {
+            onloadCallback: function () {
+                // this callback will only be invoked if the data-error-handler sets a correct
+                // image (the base64 encoded one).
+                var img = testCase("testSpanWithNotExistingImage", withElements("img"))[0];
+                expect(img).toExist();
+                done();
+            },
+            onerrorCallback: function () {
+                fail();
+            }
+        });
     });
 
     it("in complex html structure", function (done) {

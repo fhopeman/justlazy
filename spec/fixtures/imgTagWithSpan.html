@@ -102,5 +102,8 @@
 </div>
 
 <div id="testSpanWithNotExistingImage">
-    <span data-src="http://some.server/foobar.gif" data-alt="some alt text" data-error-handler="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs='"></span>
+    <span data-src="http://some.non.existing.server/foobar.gif"
+          data-alt="some alt text"
+          data-error-handler="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs='"
+    ></span>
 </div>
