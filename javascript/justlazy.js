@@ -17,8 +17,8 @@
 
     /**
      * Creates an img html node and sets the attributes of the
-     * image. If the image is loaded successfully, the placeholder
-     * will be replaced with the image.
+     * image. The placeholder will be replaced by the generated
+     * image.
      *
      * @param {Object} imgPlaceholder Placeholder element of the img to lazy load.
      * @param {Object} imgAttributes Attributes of the image which will be created.
@@ -33,7 +33,6 @@
                 onloadCallback.call(img);
             }
         };
-        img.alt = imgAttributes.alt;
         if (!!imgAttributes.title) {
             img.title = imgAttributes.title;
         }
@@ -43,7 +42,9 @@
         if (!!imgAttributes.srcset) {
             img.setAttribute("srcset", imgAttributes.srcset);
         }
+        img.alt = imgAttributes.alt;
         img.src = imgAttributes.src;
+
         _replacePlaceholderWithImage(imgPlaceholder, img);
     };
 
