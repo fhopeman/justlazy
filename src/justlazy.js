@@ -42,6 +42,9 @@
         if (!!imgAttributes.srcset) {
             img.setAttribute("srcset", imgAttributes.srcset);
         }
+        if (!!imgAttributes.class) {
+            img.setAttribute("class", imgAttributes.class);
+        }
         img.alt = imgAttributes.alt;
         img.src = imgAttributes.src;
 
@@ -71,6 +74,7 @@
     var _resolveImageAttributes = function(imgPlaceholder) {
         return {
             src: imgPlaceholder.getAttribute("data-src"),
+            class: imgPlaceholder.getAttribute("data-class"),
             alt: imgPlaceholder.getAttribute("data-alt"),
             title: imgPlaceholder.getAttribute("data-title"),
             errorHandler: imgPlaceholder.getAttribute("data-error-handler"),
@@ -100,7 +104,7 @@
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
         options = _validateOptions(options);
 
-        if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
+        if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "") && (!!imgAttributes.class || imgAttributes.class === "")) {
             _createImage(imgPlaceholder, imgAttributes, options.onloadCallback);
         } else {
             if (!!options.onerrorCallback) {
