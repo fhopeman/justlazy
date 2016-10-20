@@ -1,5 +1,5 @@
 /**
- * justlazy 1.5.1
+ * justlazy 1.5.2
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
@@ -104,7 +104,7 @@
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
         options = _validateOptions(options);
 
-        if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "") && (!!imgAttributes.class || imgAttributes.class === "")) {
+        if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
             _createImage(imgPlaceholder, imgAttributes, options.onloadCallback);
         } else {
             if (!!options.onerrorCallback) {
