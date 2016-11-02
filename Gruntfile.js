@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         }, {
             browserName: "firefox",
             platform: "Linux",
-            version: "49.0"
+            version: "45.0"
         },
         // internet explorer
         {
@@ -82,7 +82,7 @@ module.exports = function (grunt) {
         }, {
             browserName: "safari",
             platform: "OS X 10.11",
-            version: "10.0"
+            version: "9.0"
         }];
 
     grunt.initConfig({

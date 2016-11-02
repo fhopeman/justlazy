@@ -1,5 +1,5 @@
 /**
- * justlazy 1.5.1
+ * justlazy 1.6.0
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
@@ -34,7 +34,6 @@
                 onloadCallback.call(img);
             }
         };
-
         if (!!imgAttributes.title) {
             img.title = imgAttributes.title;
         }
@@ -56,7 +55,9 @@
      *
      * @param {Object} imgPlaceholder Image placeholder html node.
      * @param {Object} img Image node itself.
-     * @param {Function} onReplaceCallback Optional onReplace callback function.
+     * @param {Function} onreplaceCallback Optional callback function which
+     *                                     will be invoked directly after the replacement
+     *                                     of the placeholder.
      */
     var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
         var parentNode = imgPlaceholder.parentNode;
@@ -103,17 +104,18 @@
      *                                 replacement of the lazy placeholder fails (e.g. mandatory
      *                                 attributes missing).
      *                           - onreplaceCallback:
-     *                                 Optional callback which is invoked after the image placeholder is replaced with the image
+     *                                 Optional callback which will be invoked after the image placeholder
+     *                                 is replaced with the image.
      */
     var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
-        options = _validateOptions(options);
+        var validatedOptions = _validateOptions(options);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
-            _createImage(imgPlaceholder, imgAttributes, options.onloadCallback, options.onreplaceCallback);
+            _createImage(imgPlaceholder, imgAttributes, validatedOptions.onloadCallback, validatedOptions.onreplaceCallback);
         } else {
-            if (!!options.onerrorCallback) {
-                options.onerrorCallback.call(imgPlaceholder);
+            if (!!validatedOptions.onerrorCallback) {
+                validatedOptions.onerrorCallback.call(imgPlaceholder);
             }
         }
     };
@@ -155,6 +157,9 @@
      *                                 Optional error handler which is invoked if the
      *                                 replacement of the lazy placeholder fails (e.g. mandatory
      *                                 attributes missing).
+     *                           - onreplaceCallback:
+     *                                 Optional callback which will be invoked after the image placeholder
+     *                                 is replaced with the image.
      *                           - threshold:
      *                                 The image is loaded the defined pixels before it appears
      *                                 on the screen. E.g. 200px before it become visible.
