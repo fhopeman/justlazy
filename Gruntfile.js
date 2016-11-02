@@ -18,6 +18,10 @@ module.exports = function (grunt) {
             browserName: "chrome",
             platform: "Windows 10",
             version: "51.0"
+        }, {
+            browserName: "chrome",
+            platform: "Windows 10",
+            version: "54.0"
         },
         // firefox
         {
@@ -32,6 +36,10 @@ module.exports = function (grunt) {
             browserName: "firefox",
             platform: "Linux",
             version: "35.0"
+        }, {
+            browserName: "firefox",
+            platform: "Linux",
+            version: "49.0"
         },
         // internet explorer
         {
@@ -49,9 +57,9 @@ module.exports = function (grunt) {
         },
         // edge
         {
-            browserName: "microsoftedge",
+            browserName: "MicrosoftEdge",
             platform: "Windows 10",
-            version: "20.10240"
+            version: "14.14393"
         },
         // opera
         {
@@ -71,6 +79,10 @@ module.exports = function (grunt) {
             browserName: "safari",
             platform: "OS X 10.8",
             version: "6.0"
+        }, {
+            browserName: "safari",
+            platform: "OS X 10.11",
+            version: "10.0"
         }];
 
     grunt.initConfig({
