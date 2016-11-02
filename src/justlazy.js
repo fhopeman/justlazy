@@ -23,9 +23,10 @@
      * @param {Object} imgPlaceholder Placeholder element of the img to lazy load.
      * @param {Object} imgAttributes Attributes of the image which will be created.
      * @param {Function} onloadCallback Optional onload callback function.
+     * @param {Function} onreplaceCallback Optional onreplace callback function.
      *
      */
-    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback) {
+    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onreplaceCallback) {
         var img = document.createElement("img");
 
         img.onload = function() {
@@ -33,6 +34,7 @@
                 onloadCallback.call(img);
             }
         };
+
         if (!!imgAttributes.title) {
             img.title = imgAttributes.title;
         }
@@ -42,10 +44,11 @@
         if (!!imgAttributes.srcset) {
             img.setAttribute("srcset", imgAttributes.srcset);
         }
+
         img.alt = imgAttributes.alt;
         img.src = imgAttributes.src;
 
-        _replacePlaceholderWithImage(imgPlaceholder, img);
+        _replacePlaceholderWithImage(imgPlaceholder, img, onreplaceCallback);
     };
 
     /**
@@ -53,11 +56,15 @@
      *
      * @param {Object} imgPlaceholder Image placeholder html node.
      * @param {Object} img Image node itself.
+     * @param {Function} onReplaceCallback Optional onReplace callback function.
      */
-    var _replacePlaceholderWithImage = function(imgPlaceholder, img) {
+    var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
         var parentNode = imgPlaceholder.parentNode;
         if (!!parentNode) {
             parentNode.replaceChild(img, imgPlaceholder);
+            if (!!onreplaceCallback) {
+                onreplaceCallback.call(img);
+            }
         }
     };
 
@@ -95,13 +102,15 @@
      *                                 Optional error handler which is invoked if the
      *                                 replacement of the lazy placeholder fails (e.g. mandatory
      *                                 attributes missing).
+     *                           - onreplaceCallback:
+     *                                 Optional callback which is invoked after the image placeholder is replaced with the image
      */
     var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
         options = _validateOptions(options);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
-            _createImage(imgPlaceholder, imgAttributes, options.onloadCallback);
+            _createImage(imgPlaceholder, imgAttributes, options.onloadCallback, options.onreplaceCallback);
         } else {
             if (!!options.onerrorCallback) {
                 options.onerrorCallback.call(imgPlaceholder);
