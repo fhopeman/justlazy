@@ -297,7 +297,10 @@
                 </p>
                 <pre><!--
                  --><code><!--
-                -->Justlazy.registerLazyLoadByClass("load-if-visible-placeholder");<!--
+                -->Justlazy.registerLazyLoadByClass("load-if-visible-placeholder", {
+<!--             -->    onreplaceCallback: hideIncompleteLoadedImage,
+<!--             -->    onloadCallback: showImageAndRemoveSpinner
+<!--             -->});<!--
                  --></code><!--
              --></pre>
                 <div class="justlazy-spinner">
@@ -323,9 +326,11 @@
                 </p>
                 <pre><!--
                  --><code><!--
-                 -->var placeholders = document.querySelectorAll(".load-with-threshold-placeholder");
-<!--             -->for (var i = 0; i &lt; placeholders.length; ++i) {
+                 -->var placeholders = document.querySelectorAll('.load-with-threshold-placeholder');
+<!--             -->for (var i = 0; i < placeholders.length; ++i) {
 <!--             -->    Justlazy.registerLazyLoad(placeholders[i], {
+<!--             -->        onreplaceCallback: hideIncompleteLoadedImage,
+<!--             -->        onloadCallback: showImageAndRemoveSpinner,
 <!--             -->        threshold: 300
 <!--             -->    });
 <!--             -->}<!--
@@ -353,11 +358,14 @@
                 <pre><!--
                  --><code><!--
                 -->document.getElementById("custom-event-btn").onclick = function() {
-<!--            -->    var imgPlaceholder = document.getElementById("custom-event-placeholder");
-<!--            -->    Justlazy.lazyLoad(imgPlaceholder);
+<!--             -->    var imgPlaceholder = document.getElementById("custom-event-placeholder");
+<!--             -->    Justlazy.lazyLoad(imgPlaceholder, {
+<!--             -->        onreplaceCallback: hideIncompleteLoadedImage,
+<!--             -->        onloadCallback: showImageAndRemoveSpinner
+<!--             -->    });
 
-<!--            -->    return false;
-<!--            -->};<!--
+<!--             -->    return false;
+<!--             -->};<!--
                  --></code><!--
              --></pre>
                 <a id="custom-event-btn" href="#" class="btn btn-lazy-load" title="lazy load image">lazy load image</a>
@@ -376,11 +384,14 @@
                 <pre><!--
                  --><code><!--
                 -->document.getElementById("srcset-btn").onclick = function() {
-<!--            -->    var imgPlaceholder = document.getElementById("srcset-placeholder");
-<!--            -->    Justlazy.lazyLoad(imgPlaceholder);
+<!--             -->    var imgPlaceholder = document.getElementById("srcset-placeholder");
+<!--             -->    Justlazy.lazyLoad(imgPlaceholder, {
+<!--             -->        onreplaceCallback: hideIncompleteLoadedImage,
+<!--             -->        onloadCallback: showImageAndRemoveSpinner
+<!--             -->    });
 
-<!--            -->    return false;
-<!--            -->};<!--
+<!--             -->    return false;
+<!--             -->};<!--
                  --></code><!--
              --></pre>
                 <a id="srcset-btn" href="#" class="btn btn-lazy-load" title="lazy load image">lazy load responsive image</a>
