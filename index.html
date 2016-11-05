@@ -127,13 +127,13 @@
 <!--             -->&lt;span data-src="default/image" data-alt="some alt text"
 <!--             -->      data-srcset="small/image 600w, big/image 1000w"
 <!--             -->      data-title="some title" data-error-handler="some handler"
-<!--             -->      class="justlazy-placeholder"&gt;
+<!--             -->      class="justlazy-spinner"&gt;
 <!--             -->&lt;/span&gt;<!--
              --></code><!--
          --></pre>
             <p>
                 As you can see, the default lazy loading spinner is provided by the
-                <code>justlazy-placeholder</code> class.
+                <code>justlazy-spinner</code> class.
             </p>
 
             <h3>2. Register event</h3>
@@ -143,7 +143,7 @@
             <p>
                 The most comfortable one registers an event listener for all placeholders
                 with a specific
-                css class (e.g. <code>justlazy-placeholder</code>). The images will be loaded
+                css class (e.g. <code>justlazy-spinner</code>). The images will be loaded
                 automatically if they become visible. The parameters
                 are the <a href="#css-class" title="css-class parameter">css-class</a> as string and optional
                 <a href="#options" title="options parameter description">options</a>.
@@ -197,7 +197,7 @@
             </p>
             <pre><!--
              --><code><!--
-                 -->Justlazy.registerLazyLoadByClass("load-if-visible");<!--
+                 -->Justlazy.registerLazyLoadByClass("load-if-visible-placeholder");<!--
              --></code><!--
          --></pre>
 
@@ -270,7 +270,7 @@
             </p>
             <pre><!--
              --><code><!--
-                 -->Justlazy.registerLazyLoadByClass("load-if-visible", {
+                 -->Justlazy.registerLazyLoadByClass("load-if-visible-placeholder", {
 <!--             -->    onreplaceCallback: function() {
 <!--             -->        // do something after replacement
 <!--             -->    },
@@ -297,12 +297,18 @@
                 </p>
                 <pre><!--
                  --><code><!--
-                -->Justlazy.registerLazyLoadByClass("load-if-visible");<!--
+                -->Justlazy.registerLazyLoadByClass("load-if-visible-placeholder");<!--
                  --></code><!--
              --></pre>
-                <div class="load-if-visible" data-src="images/img_1.jpg" data-alt="Bridge in Hamburg" data-title="Bridge in Hamburg"></div>
-                <div class="load-if-visible" data-src="images/img_2.jpg" data-alt="Bridge in Heidelberg" data-title="Bridge in Heidelberg"></div>
-                <div class="load-if-visible" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
+                <div class="justlazy-spinner">
+                    <div class="load-if-visible-placeholder" data-src="images/img_1.jpg" data-alt="Bridge in Hamburg" data-title="Bridge in Hamburg"></div>
+                </div>
+                <div class="justlazy-spinner">
+                    <div class="load-if-visible-placeholder" data-src="images/img_2.jpg" data-alt="Bridge in Heidelberg" data-title="Bridge in Heidelberg"></div>
+                </div>
+                <div class="justlazy-spinner">
+                    <div class="load-if-visible-placeholder" data-src="images/img_3.jpg" data-alt="Bridge in Elmshorn" data-title="Bridge in Elmshorn"></div>
+                </div>
             </div>
 
             <!-- example 2 -->
@@ -317,7 +323,7 @@
                 </p>
                 <pre><!--
                  --><code><!--
-                 -->var placeholders = document.querySelectorAll(".with-threshold");
+                 -->var placeholders = document.querySelectorAll(".load-with-threshold-placeholder");
 <!--             -->for (var i = 0; i &lt; placeholders.length; ++i) {
 <!--             -->    Justlazy.registerLazyLoad(placeholders[i], {
 <!--             -->        threshold: 300
@@ -325,9 +331,15 @@
 <!--             -->}<!--
                 --></code><!--
              --></pre>
-                <div class="with-threshold" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
-                <div class="with-threshold" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
-                <div class="with-threshold" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
+                <div class="justlazy-spinner">
+                    <div class="load-with-threshold-placeholder" data-src="images/img_4.jpg" data-alt="Bridge in San Francisco" data-title="Bridge in San Francisco"></div>
+                </div>
+                <div class="justlazy-spinner">
+                    <div class="load-with-threshold-placeholder" data-src="images/img_6.jpg" data-alt="Bridge in Taroko" data-title="Bridge in Taroko"></div>
+                </div>
+                <div class="justlazy-spinner">
+                    <div class="load-with-threshold-placeholder" data-src="images/img_5.jpg" data-alt="Bridge in Dresden" data-title="Bridge in Dresden"></div>
+                </div>
             </div>
 
             <!-- example 3 -->
@@ -340,16 +352,18 @@
                 </p>
                 <pre><!--
                  --><code><!--
-                -->document.getElementById("btn-load-1").onclick = function() {
-<!--            -->    var imgPlaceholder = document.getElementById("img-1");
+                -->document.getElementById("custom-event-btn").onclick = function() {
+<!--            -->    var imgPlaceholder = document.getElementById("custom-event-placeholder");
 <!--            -->    Justlazy.lazyLoad(imgPlaceholder);
 
 <!--            -->    return false;
 <!--            -->};<!--
                  --></code><!--
              --></pre>
-                <a id="btn-load-1" href="#" class="btn btn-lazy-load" title="lazy load image">lazy load image</a>
-                <div id="img-1" class="justlazy-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
+                <a id="custom-event-btn" href="#" class="btn btn-lazy-load" title="lazy load image">lazy load image</a>
+                <div class="justlazy-spinner">
+                    <div id="custom-event-placeholder" data-src="images/img_7.jpg" data-alt="Bridge in Chenggong" data-title="Bridge in Chenggong"></div>
+                </div>
             </div>
 
             <!-- example 4 -->
@@ -361,20 +375,22 @@
                 </p>
                 <pre><!--
                  --><code><!--
-                -->document.getElementById("btn-load-2").onclick = function() {
-<!--            -->    var imgPlaceholder = document.getElementById("img-2");
+                -->document.getElementById("srcset-btn").onclick = function() {
+<!--            -->    var imgPlaceholder = document.getElementById("srcset-placeholder");
 <!--            -->    Justlazy.lazyLoad(imgPlaceholder);
 
 <!--            -->    return false;
 <!--            -->};<!--
                  --></code><!--
              --></pre>
-                <a id="btn-load-2" href="#" class="btn btn-lazy-load" title="lazy load image">lazy load responsive image</a>
-                <div id="img-2" class="justlazy-placeholder"
-                     data-src="images/img_8_defaultSize.jpg"
-                     data-srcset="images/img_8_smallSize.jpg 600w, images/img_8_bigSize.jpg 1000w"
-                     data-alt="Bridge in Dresden"
-                     data-title="Bridge in Dresden">
+                <a id="srcset-btn" href="#" class="btn btn-lazy-load" title="lazy load image">lazy load responsive image</a>
+                <div class="justlazy-spinner">
+                    <div id="srcset-placeholder"
+                         data-src="images/img_8_defaultSize.jpg"
+                         data-srcset="images/img_8_smallSize.jpg 600w, images/img_8_bigSize.jpg 1000w"
+                         data-alt="Bridge in Dresden"
+                         data-title="Bridge in Dresden">
+                    </div>
                 </div>
                 <p>
                     The comment in the lower right corner of the image indicates the size of the image, which has been

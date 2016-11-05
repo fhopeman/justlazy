@@ -24,7 +24,7 @@
         transform: rotate(360deg);
     }
 }
-.justlazy-placeholder {
+.justlazy-spinner {
     position: relative;
     border-top: 0.6em solid rgba(255, 255, 255, 0.2);
     border-right: 0.6em solid rgba(255, 255, 255, 0.2);
@@ -35,8 +35,8 @@
     -moz-animation: rotate360 1s infinite linear;
     -o-animation: rotate360 1s infinite linear;
 }
-.justlazy-placeholder,
-.justlazy-placeholder:after {
+.justlazy-spinner,
+.justlazy-spinner:after {
     border-radius: 50%;
     width: 4em;
     height: 4em;
