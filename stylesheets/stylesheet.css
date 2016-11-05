@@ -224,6 +224,7 @@ hr {
 }
 .example img {
     display: block;
+    margin-bottom: 10px;
 }
 
 a {
