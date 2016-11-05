@@ -1,7 +1,14 @@
 (function init() {
 
     // example 1
-    Justlazy.registerLazyLoadByClass("load-if-visible");
+    Justlazy.registerLazyLoadByClass("load-if-visible", {
+        onreplaceCallback: function() {
+            this.classList.add("justlazy-placeholder");
+        },
+        onloadCallback: function() {
+            this.classList.remove("justlazy-placeholder");
+        }
+    });
 
     // example 2
     var placeholdersExample2 = document.querySelectorAll('.with-threshold');
