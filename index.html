@@ -231,8 +231,9 @@
                             <code>onreplaceCallback</code>
                         </td>
                         <td>
-                            The function will be invoked immediately after the placeholder
-                            is replaced with the image tag.
+                            The function will be invoked immediately before the placeholder
+                            is replaced with the image tag. E.g. this hook can be used to add
+                            classes to the image.
                         </td>
                     </tr>
                     <tr>
@@ -272,7 +273,7 @@
              --><code><!--
                  -->Justlazy.registerLazyLoadByClass("load-if-visible-placeholder", {
 <!--             -->    onreplaceCallback: function() {
-<!--             -->        // do something after replacement
+<!--             -->        // do something immediately before replacement
 <!--             -->    },
 <!--             -->    onloadCallback: function() {
 <!--             -->        // do something after image loading
