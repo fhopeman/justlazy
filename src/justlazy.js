@@ -15,11 +15,6 @@
 }(this, function() {
     "use strict";
 
-    /**
-     * Creates an img html node and sets the attributes of the
-     * image. The placeholder will be replaced by the generated
-     * image.
-     */
     var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onreplaceCallback) {
         var img = document.createElement("img");
 
@@ -44,9 +39,6 @@
         _replacePlaceholderWithImage(imgPlaceholder, img, onreplaceCallback);
     };
 
-    /**
-     * Replaces the img placeholder (html node of any type) with the img.
-     */
     var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
         var parentNode = imgPlaceholder.parentNode;
         if (!!parentNode) {
@@ -57,9 +49,6 @@
         }
     };
 
-    /**
-     * Reads out the relevant attributes of the imagePlaceholder.
-     */
     var _resolveImageAttributes = function(imgPlaceholder) {
         return {
             src: imgPlaceholder.getAttribute("data-src"),
@@ -72,6 +61,29 @@
 
     var _validateOptions = function(options) {
         return options || {};
+    };
+
+    var _isVisible = function(placeholder, optionalThreshold) {
+        var windowInnerHeight = window.innerHeight || document.documentElement.clientHeight;
+        var threshold = optionalThreshold || 0;
+
+        return placeholder.getBoundingClientRect().top - windowInnerHeight <= threshold;
+    };
+
+    var _loadImgIfVisible = function(imgPlaceholder, options) {
+        var scrollEventCallback = function(e) {
+            if (_isVisible(imgPlaceholder, options.threshold)) {
+                lazyLoad(imgPlaceholder, options);
+
+                if (window.removeEventListener) {
+                    window.removeEventListener(e.type, scrollEventCallback, false);
+                } else {
+                    window.detachEvent("on" + e.type, scrollEventCallback);
+                }
+            }
+        };
+
+        return scrollEventCallback;
     };
 
     /**
@@ -102,29 +114,6 @@
                 validatedOptions.onerrorCallback.call(imgPlaceholder);
             }
         }
-    };
-
-    var _isVisible = function(placeholder, optionalThreshold) {
-        var windowInnerHeight = window.innerHeight || document.documentElement.clientHeight;
-        var threshold = optionalThreshold || 0;
-
-        return placeholder.getBoundingClientRect().top - windowInnerHeight <= threshold;
-    };
-
-    var _loadImgIfVisible = function(imgPlaceholder, options) {
-        var scrollEventCallback = function(e) {
-            if (_isVisible(imgPlaceholder, options.threshold)) {
-                lazyLoad(imgPlaceholder, options);
-
-                if (window.removeEventListener) {
-                    window.removeEventListener(e.type, scrollEventCallback, false);
-                } else {
-                    window.detachEvent("on" + e.type, scrollEventCallback);
-                }
-            }
-        };
-
-        return scrollEventCallback;
     };
 
     /**
