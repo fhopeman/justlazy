@@ -323,7 +323,8 @@
                 </p>
                 <pre><!--
                  --><code><!--
-                 -->var placeholders = document.querySelectorAll(".load-with-threshold-placeholder");
+                 -->var placeholders =
+<!--             -->    document.querySelectorAll(".load-with-threshold-placeholder");
 <!--             -->for (var i = 0; i &lt; placeholders.length; ++i) {
 <!--             -->    Justlazy.registerLazyLoad(placeholders[i], {
 <!--             -->        threshold: 300
@@ -353,7 +354,8 @@
                 <pre><!--
                  --><code><!--
                 -->document.getElementById("custom-event-btn").onclick = function() {
-<!--            -->    var imgPlaceholder = document.getElementById("custom-event-placeholder");
+<!--            -->    var imgPlaceholder =
+<!--            -->        document.getElementById("custom-event-placeholder");
 <!--            -->    Justlazy.lazyLoad(imgPlaceholder);
 
 <!--            -->    return false;
