@@ -46,4 +46,11 @@
 
         return false;
     };
+
+    // more lazy images
+    Justlazy.registerLazyLoadByClass("lazy-image-placeholder", {
+        onreplaceCallback: hideIncompleteLoadedImage,
+        onloadCallback: showImageAndRemoveSpinner,
+        threshold: 300
+    });
 })();
