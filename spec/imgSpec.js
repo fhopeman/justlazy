@@ -238,22 +238,20 @@ describe("justlazy should lazy load span", function () {
 
     it("and invoke onreplace callback", function (done) {
         var span = testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0];
-
-        expect(span).not.toHaveAttr("data-some-test-attr");
+        expect(span).not.toHaveAttr("someKey");
 
         Justlazy.lazyLoad(span, {
             onloadCallback: function () {
-
+                var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
+                expect(img).toExist();
+                expect(img).toHaveAttr("someKey", "someValue");
+                done();
             },
             onerrorCallback: function () {
                 fail();
             },
             onreplaceCallback: function () {
-                this.setAttribute("someOtherKey", "someOtherValue");
-                var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
-                expect(img).toExist();
-                expect(img).toHaveAttr("someOtherKey", "someOtherValue");
-                done();
+                this.setAttribute("someKey", "someValue");
             }
         });
     });
@@ -261,15 +259,10 @@ describe("justlazy should lazy load span", function () {
     it("and invoke onload callback", function (done) {
         var span = testCase("testSpanWithMandatoryAttributesOnly", withElements("span"))[0];
 
-        expect(span).not.toHaveAttr("data-some-test-attr");
-
         Justlazy.lazyLoad(span, {
             onloadCallback: function () {
-                this.setAttribute("someKey", "someValue");
-
                 var img = testCase("testSpanWithMandatoryAttributesOnly", withElements("img"))[0];
                 expect(img).toExist();
-                expect(img).toHaveAttr("someKey", "someValue");
                 done();
             },
             onerrorCallback: function () {

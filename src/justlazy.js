@@ -19,12 +19,6 @@
      * Creates an img html node and sets the attributes of the
      * image. The placeholder will be replaced by the generated
      * image.
-     *
-     * @param {Object} imgPlaceholder Placeholder element of the img to lazy load.
-     * @param {Object} imgAttributes Attributes of the image which will be created.
-     * @param {Function} onloadCallback Optional onload callback function.
-     * @param {Function} onreplaceCallback Optional onreplace callback function.
-     *
      */
     var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onreplaceCallback) {
         var img = document.createElement("img");
@@ -52,29 +46,19 @@
 
     /**
      * Replaces the img placeholder (html node of any type) with the img.
-     *
-     * @param {Object} imgPlaceholder Image placeholder html node.
-     * @param {Object} img Image node itself.
-     * @param {Function} onreplaceCallback Optional callback function which
-     *                                     will be invoked directly after the replacement
-     *                                     of the placeholder.
      */
     var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
         var parentNode = imgPlaceholder.parentNode;
         if (!!parentNode) {
-            parentNode.replaceChild(img, imgPlaceholder);
             if (!!onreplaceCallback) {
                 onreplaceCallback.call(img);
             }
+            parentNode.replaceChild(img, imgPlaceholder);
         }
     };
 
     /**
      * Reads out the relevant attributes of the imagePlaceholder.
-     *
-     * @param {Object} imgPlaceholder Lazy image placeholder which holds image attributes.
-     *
-     * @returns {Object} Object with image attributes.
      */
     var _resolveImageAttributes = function(imgPlaceholder) {
         return {
@@ -104,8 +88,8 @@
      *                                 replacement of the lazy placeholder fails (e.g. mandatory
      *                                 attributes missing).
      *                           - onreplaceCallback:
-     *                                 Optional callback which will be invoked after the image placeholder
-     *                                 is replaced with the image.
+     *                                 Optional callback which will be invoked immediately before
+     *                                 the image placeholder is replaced with the image.
      */
     var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
@@ -144,25 +128,13 @@
     };
 
     /**
-     * Registers the lazy loading event. If the image become visible, it will
-     * be loaded automatically.
+     * Registers the lazy loading event. If the placeholder becomes visible, the image
+     * will be loaded automatically.
      *
      * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
      *                                The node has to provide the data element data-src and data-alt.
      *                                All other attributes are optional.
-     * @param {Object} options Optional object with following attributes:
-     *                           - onloadCallback:
-     *                                 Optional callback which is invoked after the image is loaded.
-     *                           - onerrorCallback:
-     *                                 Optional error handler which is invoked if the
-     *                                 replacement of the lazy placeholder fails (e.g. mandatory
-     *                                 attributes missing).
-     *                           - onreplaceCallback:
-     *                                 Optional callback which will be invoked after the image placeholder
-     *                                 is replaced with the image.
-     *                           - threshold:
-     *                                 The image is loaded the defined pixels before it appears
-     *                                 on the screen. E.g. 200px before it become visible.
+     * @param {Object} options Optional object of options.
      */
     var registerLazyLoad = function(imgPlaceholder, options) {
         var validatedOptions = _validateOptions(options);
@@ -178,6 +150,13 @@
         }
     };
 
+    /**
+     * Registers the lazy loading by the defined class of the placeholder(s). If the
+     * placeholders become visible, the images will be loaded automatically.
+     *
+     * @param imgPlaceholderClass Class of the placeholder.
+     * @param {Object} options Optional object of options.
+     */
     var registerLazyLoadByClass = function(imgPlaceholderClass, options) {
         var placeholders = document.querySelectorAll("." + imgPlaceholderClass);
         for (var i = 0; i < placeholders.length; ++i) {
