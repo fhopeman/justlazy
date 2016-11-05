@@ -228,10 +228,20 @@
                 <tbody>
                     <tr>
                         <td>
+                            <code>onreplaceCallback</code>
+                        </td>
+                        <td>
+                            The function will be invoked immediately after the placeholder
+                            is replaced with the image tag.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <code>onloadCallback</code>
                         </td>
                         <td>
-                            The function will be invoked if the placeholder is properly replaced.
+                            The function will be invoked if the placeholder is properly replaced and
+                            the image is <b>entirely</b> loaded.
                         </td>
                     </tr>
                     <tr>
@@ -261,11 +271,14 @@
             <pre><!--
              --><code><!--
                  -->Justlazy.registerLazyLoadByClass("load-if-visible", {
+<!--             -->    onreplaceCallback: function() {
+<!--             -->        // do something after replacement
+<!--             -->    },
 <!--             -->    onloadCallback: function() {
-<!--             -->        // do something
+<!--             -->        // do something after image loading
 <!--             -->    },
 <!--             -->    onerrorCallback: function() {
-<!--             -->        // do something
+<!--             -->        // do something if an error occurs
 <!--             -->    },
 <!--             -->    threshold: 200
 <!--             -->});<!--
