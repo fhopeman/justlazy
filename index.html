@@ -73,7 +73,8 @@
             <p>
                 The library loads the images with javascript in the background and then replaces the
                 whole placeholder with the image. You don't have to care about removing the styling
-                or other relics of the placeholder.
+                or other relics of the placeholder. The replacement occurs in case of successful (within onload)
+                and in case of faulty (within onerror) image loading.
             </p>
             <p>
                 <b>Steps to do</b>
@@ -110,10 +111,6 @@
                     <td>Title of the image</td>
                 </tr>
                 <tr>
-                    <td><code>data-error-handler</code></td>
-                    <td>Error handler of the image</td>
-                </tr>
-                <tr>
                     <td><code>data-srcset</code></td>
                     <td>Responsive image source-set attribute</td>
                 </tr>
@@ -126,7 +123,7 @@
              --><code><!--
 <!--             -->&lt;span data-src="default/image" data-alt="some alt text"
 <!--             -->      data-srcset="small/image 600w, big/image 1000w"
-<!--             -->      data-title="some title" data-error-handler="some handler"
+<!--             -->      data-title="some title"
 <!--             -->      class="justlazy-spinner"&gt;
 <!--             -->&lt;/span&gt;<!--
              --></code><!--
@@ -228,21 +225,12 @@
                 <tbody>
                     <tr>
                         <td>
-                            <code>onreplaceCallback</code>
-                        </td>
-                        <td>
-                            The function will be invoked immediately before the placeholder
-                            is replaced with the image tag. E.g. this hook can be used to add
-                            classes to the image.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <code>onloadCallback</code>
                         </td>
                         <td>
-                            The function will be invoked if the placeholder is properly replaced and
-                            the image is <b>entirely</b> loaded.
+                            The function will be invoked if the image is properly loaded.
+                            After the invocation the placeholder will be replaced with the
+                            entirely loaded image.
                         </td>
                     </tr>
                     <tr>
@@ -250,9 +238,19 @@
                             <code>onerrorCallback</code>
                         </td>
                         <td>
-                            The function will be invoked if the placeholder could not be replaced.
-                            This occurs if mandatory attributes (e.g. <code>data-src</code>)
-                            aren't available.
+                            The function will be invoked if the image could not be loaded.
+                            After the invocation the placeholder will be replaced with the
+                            image tag. E.g. you can define a dummy or hide the broken
+                            image.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>onreplaceCallback</code>
+                        </td>
+                        <td>
+                            The function will be invoked after the placeholder
+                            is replaced with the image tag.
                         </td>
                     </tr>
                     <tr>
@@ -272,14 +270,14 @@
             <pre><!--
              --><code><!--
                  -->Justlazy.registerLazyLoadByClass("load-if-visible-placeholder", {
-<!--             -->    onreplaceCallback: function() {
-<!--             -->        // do something immediately before replacement
-<!--             -->    },
 <!--             -->    onloadCallback: function() {
-<!--             -->        // do something after image loading
+<!--             -->        // do something after image loading (before replacement)
 <!--             -->    },
 <!--             -->    onerrorCallback: function() {
-<!--             -->        // do something if an error occurs
+<!--             -->        // do something if an error occurs (before replacement)
+<!--             -->    },
+<!--             -->    onreplaceCallback: function() {
+<!--             -->        // do something after replacement
 <!--             -->    },
 <!--             -->    threshold: 200
 <!--             -->});<!--

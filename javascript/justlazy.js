@@ -15,21 +15,21 @@
 }(this, function() {
     "use strict";
 
-    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onerrorCallback) {
+    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onerrorCallback, onreplaceCallback) {
         var img = document.createElement("img");
 
         img.onload = function() {
             if (!!onloadCallback) {
                 onloadCallback.call(img);
             }
-            _replacePlaceholderWithImage(imgPlaceholder, img);
+            _replacePlaceholderWithImage(imgPlaceholder, img, onreplaceCallback);
         };
 
         img.onerror = function() {
             if (!!onerrorCallback) {
                 onerrorCallback.call(img);
             }
-            _replacePlaceholderWithImage(imgPlaceholder, img);
+            _replacePlaceholderWithImage(imgPlaceholder, img, onreplaceCallback);
         };
 
         if (!!imgAttributes.title) {
@@ -43,10 +43,13 @@
         img.src = imgAttributes.src;
     };
 
-    var _replacePlaceholderWithImage = function(imgPlaceholder, img) {
+    var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
         var parentNode = imgPlaceholder.parentNode;
         if (!!parentNode) {
             parentNode.replaceChild(img, imgPlaceholder);
+            if (!!onreplaceCallback) {
+                onreplaceCallback.call(img);
+            }
         }
     };
 
@@ -55,7 +58,6 @@
             src: imgPlaceholder.getAttribute("data-src"),
             alt: imgPlaceholder.getAttribute("data-alt"),
             title: imgPlaceholder.getAttribute("data-title"),
-            errorHandler: imgPlaceholder.getAttribute("data-error-handler"),
             srcset: imgPlaceholder.getAttribute("data-srcset")
         };
     };
@@ -95,22 +97,27 @@
      *                                All other attributes are optional.
      * @param {Object} options Optional object with following attributes:
      *                           - onloadCallback:
-     *                                 Optional callback which is invoked after the image is loaded.
+     *                                 Optional callback which is invoked after the image is loaded
+     *                                 successfully but before the actual replacement.
      *                           - onerrorCallback:
-     *                                 Optional error handler which is invoked if the
-     *                                 replacement of the lazy placeholder fails (e.g. mandatory
-     *                                 attributes missing).
+     *                                 Optional error handler which is invoked before the actual
+     *                                 replacement if the image could not be loaded.
+     *                           - onreplaceCallback
+     *                                 Optional callback which is invoked directly after the
+     *                                 replacement of the placeholder.
      */
     var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
         var validatedOptions = _validateOptions(options);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
-            _createImage(imgPlaceholder, imgAttributes, validatedOptions.onloadCallback, validatedOptions.onerrorCallback);
-        } else {
-            if (!!validatedOptions.onerrorCallback) {
-                validatedOptions.onerrorCallback.call(imgPlaceholder);
-            }
+            _createImage(
+                imgPlaceholder,
+                imgAttributes,
+                validatedOptions.onloadCallback,
+                validatedOptions.onerrorCallback,
+                validatedOptions.onreplaceCallback
+            );
         }
     };
 
