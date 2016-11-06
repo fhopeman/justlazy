@@ -15,19 +15,25 @@
 }(this, function() {
     "use strict";
 
-    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onreplaceCallback) {
+    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onerrorCallback) {
         var img = document.createElement("img");
 
         img.onload = function() {
             if (!!onloadCallback) {
                 onloadCallback.call(img);
             }
+            _replacePlaceholderWithImage(imgPlaceholder, img);
         };
+
+        img.onerror = function() {
+            if (!!onerrorCallback) {
+                onerrorCallback.call(img);
+            }
+            _replacePlaceholderWithImage(imgPlaceholder, img);
+        };
+
         if (!!imgAttributes.title) {
             img.title = imgAttributes.title;
-        }
-        if (!!imgAttributes.errorHandler) {
-            img.setAttribute("onerror", imgAttributes.errorHandler);
         }
         if (!!imgAttributes.srcset) {
             img.setAttribute("srcset", imgAttributes.srcset);
@@ -35,16 +41,11 @@
 
         img.alt = imgAttributes.alt;
         img.src = imgAttributes.src;
-
-        _replacePlaceholderWithImage(imgPlaceholder, img, onreplaceCallback);
     };
 
-    var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
+    var _replacePlaceholderWithImage = function(imgPlaceholder, img) {
         var parentNode = imgPlaceholder.parentNode;
         if (!!parentNode) {
-            if (!!onreplaceCallback) {
-                onreplaceCallback.call(img);
-            }
             parentNode.replaceChild(img, imgPlaceholder);
         }
     };
@@ -99,16 +100,13 @@
      *                                 Optional error handler which is invoked if the
      *                                 replacement of the lazy placeholder fails (e.g. mandatory
      *                                 attributes missing).
-     *                           - onreplaceCallback:
-     *                                 Optional callback which will be invoked immediately before
-     *                                 the image placeholder is replaced with the image.
      */
     var lazyLoad = function(imgPlaceholder, options) {
         var imgAttributes = _resolveImageAttributes(imgPlaceholder);
         var validatedOptions = _validateOptions(options);
 
         if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
-            _createImage(imgPlaceholder, imgAttributes, validatedOptions.onloadCallback, validatedOptions.onreplaceCallback);
+            _createImage(imgPlaceholder, imgAttributes, validatedOptions.onloadCallback, validatedOptions.onerrorCallback);
         } else {
             if (!!validatedOptions.onerrorCallback) {
                 validatedOptions.onerrorCallback.call(imgPlaceholder);
