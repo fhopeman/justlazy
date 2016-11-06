@@ -5,7 +5,7 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 
 [>> View demo and usage](http://fhopeman.github.io/justlazy/)
 
-[>> History](https://github.com/fhopeman/justlazy/releases)
+[>> View history and migration path](https://github.com/fhopeman/justlazy/releases)
 
 - 100% performance with plain javascript (no jQuery)
 - 100% valid HTML (no empty src tag)
