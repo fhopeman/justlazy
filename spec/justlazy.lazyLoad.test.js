@@ -144,6 +144,18 @@ describe("justlazy.lazyLoad should lazy load image", function () {
         });
     });
 
+    it("if progressive enabled", function (done) {
+        var testCase = selectTestCase("spanWithMandatoryAttributesOnly", withPlaceholder("span"));
+
+        Justlazy.lazyLoad(testCase.placeholder(), {
+            onreplaceCallback: function () {
+                expect(testCase.image()).toExist();
+                done();
+            },
+            progressive: true
+        });
+    });
+
     it("of onerrorCallback if image could not be loaded and replace placeholder", function (done) {
         var testCase = selectTestCase("spanWithoutExistingImage", withPlaceholder("span"));
         expect(testCase.placeholder()).toHaveAttr("data-src", "http://some.non.existing.server/foobar.gif");

@@ -1,5 +1,5 @@
 /**
- * justlazy 1.6.0
+ * justlazy 1.7.0-SNAPSHOT
  *
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
@@ -15,21 +15,26 @@
 }(this, function() {
     "use strict";
 
-    var _createImage = function(imgPlaceholder, imgAttributes, onloadCallback, onerrorCallback, onreplaceCallback) {
+    var _createImage = function(imgPlaceholder, imgAttributes, options) {
         var img = document.createElement("img");
+        var progressive = options.progressive || false;
 
         img.onload = function() {
-            if (!!onloadCallback) {
-                onloadCallback.call(img);
+            if (!!options.onloadCallback) {
+                options.onloadCallback.call(img);
             }
-            _replacePlaceholderWithImage(imgPlaceholder, img, onreplaceCallback);
+            if (!progressive) {
+                _replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
+            }
         };
 
         img.onerror = function() {
-            if (!!onerrorCallback) {
-                onerrorCallback.call(img);
+            if (!!options.onerrorCallback) {
+                options.onerrorCallback.call(img);
             }
-            _replacePlaceholderWithImage(imgPlaceholder, img, onreplaceCallback);
+            if (!progressive) {
+                _replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
+            }
         };
 
         if (!!imgAttributes.title) {
@@ -41,6 +46,10 @@
 
         img.alt = imgAttributes.alt;
         img.src = imgAttributes.src;
+
+        if (progressive) {
+            _replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
+        }
     };
 
     var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
@@ -114,9 +123,7 @@
             _createImage(
                 imgPlaceholder,
                 imgAttributes,
-                validatedOptions.onloadCallback,
-                validatedOptions.onerrorCallback,
-                validatedOptions.onreplaceCallback
+                validatedOptions
             );
         }
     };
