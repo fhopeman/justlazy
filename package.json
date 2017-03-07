@@ -1,36 +1,36 @@
 {
-  "name": "justlazy",
-  "main": "src/justlazy.js",
-  "author": "Fabian Hoffmann",
-  "description": "Lightweight javascript plugin to lazy load images",
-  "version": "1.6.0",
-  "homepage": "http://fhopeman.github.io/justlazy",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fhopeman/justlazy"
-  },
-  "bugs": {
-    "url": "https://github.com/fhopeman/justlazy/issues"
-  },
-  "keywords": [
-    "lazy",
-    "load",
-    "loading",
-    "image",
-    "images"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "grunt": "~1.0.1",
-    "grunt-cli": "~1.2.0",
-    "grunt-contrib-connect": "~1.0.2",
-    "grunt-contrib-jasmine": "~1.0.3",
-    "grunt-contrib-jshint": "~1.0.0",
-    "grunt-contrib-uglify": "~2.0.0",
-    "grunt-contrib-watch": "~1.0.0",
-    "grunt-saucelabs": "~9.0.0"
-  },
-  "scripts": {
-    "test": "grunt travis-ci"
-  }
+    "name": "justlazy",
+    "main": "src/justlazy.js",
+    "author": "Fabian Hoffmann",
+    "description": "Lightweight javascript plugin to lazy load images",
+    "version": "1.6.1",
+    "homepage": "http://fhopeman.github.io/justlazy",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fhopeman/justlazy"
+    },
+    "bugs": {
+        "url": "https://github.com/fhopeman/justlazy/issues"
+    },
+    "keywords": [
+        "lazy",
+        "load",
+        "loading",
+        "image",
+        "images"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "grunt": "~1.0.1",
+        "grunt-cli": "~1.2.0",
+        "grunt-contrib-connect": "~1.0.2",
+        "grunt-contrib-jasmine": "~1.0.3",
+        "grunt-contrib-jshint": "~1.0.0",
+        "grunt-contrib-uglify": "~2.0.0",
+        "grunt-contrib-watch": "~1.0.0",
+        "grunt-saucelabs": "~9.0.0"
+    },
+    "scripts": {
+        "test": "grunt travis-ci"
+    }
 }
