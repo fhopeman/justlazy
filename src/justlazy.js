@@ -161,7 +161,7 @@
     var registerLazyLoadByClass = function(imgPlaceholderClass, options) {
         var placeholders = document.querySelectorAll("." + imgPlaceholderClass);
         for (var i = 0; i < placeholders.length; ++i) {
-            Justlazy.registerLazyLoad(placeholders[i], options);
+            this.registerLazyLoad(placeholders[i], options);
         }
     };
 
