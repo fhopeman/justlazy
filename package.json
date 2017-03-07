@@ -3,7 +3,7 @@
     "main": "src/justlazy.js",
     "author": "Fabian Hoffmann",
     "description": "Lightweight javascript plugin to lazy load images",
-    "version": "1.6.1",
+    "version": "1.6.2",
     "homepage": "http://fhopeman.github.io/justlazy",
     "repository": {
         "type": "git",
