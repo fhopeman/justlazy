@@ -18,7 +18,7 @@ supporting just the img-tag without responsive parts. This plugin is supposed to
 
 ## Installation
 
-#### file include
+### file include
 You can download the latest [release](https://github.com/fhopeman/justlazy/releases) and include
 the `justlazy.js` file as follows in your page:
 ```
@@ -30,10 +30,31 @@ If you want to use the lazy spinner, following css file is needed:
 <link href="stylesheets/justlazy.css" type="text/css" rel="stylesheet">
 ```
 
-#### npm
+### NPM
 ```
 $ npm install justlazy
 ```
+
+#### Usage
+
+Import the CSS file:
+
+```
+@import "justlazy/src/justlazy.css";
+```
+
+Import/require the JavaScript file:
+
+```
+var justLazy = require('justlazy/src/justlazy.js');
+```
+
+Or
+
+```
+import justLazy from 'justlazy/src/justlazy.js';
+```
+
 ## Contributing
 Just feel free to contribute ..
 
