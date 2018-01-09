@@ -4,10 +4,6 @@ module.exports = function (grunt) {
         // chrome
         {
             browserName: "chrome",
-            platform: "Windows XP",
-            version: "26.0"
-        }, {
-            browserName: "chrome",
             platform: "OS X 10.9",
             version: "38.0"
         }, {
@@ -25,10 +21,6 @@ module.exports = function (grunt) {
         },
         // firefox
         {
-            browserName: "firefox",
-            platform: "Windows XP",
-            version: "10.0"
-        }, {
             browserName: "firefox",
             platform: "Windows 7",
             version: "17.0"
@@ -57,25 +49,8 @@ module.exports = function (grunt) {
             platform: "Windows 10",
             version: "14.14393"
         },
-        // opera
-        {
-            browserName: "opera",
-            platform: "Windows 7",
-            version: "11"
-        }, {
-            browserName: "opera",
-            platform: "Linux",
-            version: "12"
         // safari
-        }, {
-            browserName: "safari",
-            platform: "Windows 7",
-            version: "5.1"
-        }, {
-            browserName: "safari",
-            platform: "OS X 10.8",
-            version: "6.0"
-        }, {
+        {
             browserName: "safari",
             platform: "OS X 10.11",
             version: "9.0"
