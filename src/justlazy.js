@@ -4,170 +4,140 @@
  * Repo: https://github.com/fhopeman/justlazy
  * Demo: http://fhopeman.github.io/justlazy
  */
-(function(root, factory) {
-    if (typeof define === "function" && define.amd) {
-        define([], factory);
-    } else if (typeof module === "object" && module.exports) {
-        module.exports = factory();
-    } else {
-        root.Justlazy = factory();
+
+const imageAttributes = ['alt', 'src', 'srcset', 'title'];
+
+function createImage (imgPlaceholder, imgAttributes, options) {
+    const img = document.createElement("img"),
+          progressive = options.progressive || false;
+
+    img.onload = function() {
+        if (options.onloadCallback)
+            options.onloadCallback.call(img);
+        if (!progressive)
+            replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
+    };
+
+    img.onerror = function() {
+        if (options.onerrorCallback)
+            options.onerrorCallback.call(img);
+        if (!progressive)
+            replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
+    };
+
+    for (let attribute of imageAttributes)
+        if (attribute in imgAttributes)
+            img.setAttribute(attribute, imgAttributes[attribute]);
+
+    if (progressive)
+        replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
+}
+
+
+function replacePlaceholderWithImage (imgPlaceholder, img, onreplaceCallback) {
+    if (imgPlaceholder.parentNode) {
+        imgPlaceholder.parentNode.replaceChild(img, imgPlaceholder);
+        if (onreplaceCallback)
+            onreplaceCallback.call(img);
     }
-}(this, function() {
-    "use strict";
+}
 
-    var _createImage = function(imgPlaceholder, imgAttributes, options) {
-        var img = document.createElement("img");
-        var progressive = options.progressive || false;
 
-        img.onload = function() {
-            if (!!options.onloadCallback) {
-                options.onloadCallback.call(img);
-            }
-            if (!progressive) {
-                _replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
-            }
-        };
+function resolveImageAttributes (imgPlaceholder) {
+    const result = {};
+    for (let attribute of imageAttributes)
+        if (attribute in imgPlaceholder.dataset)
+            result[attribute] = imgPlaceholder.dataset[attribute];
+    return result;
+}
 
-        img.onerror = function() {
-            if (!!options.onerrorCallback) {
-                options.onerrorCallback.call(img);
-            }
-            if (!progressive) {
-                _replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
-            }
-        };
 
-        if (!!imgAttributes.title) {
-            img.title = imgAttributes.title;
-        }
-        if (!!imgAttributes.srcset) {
-            img.setAttribute("srcset", imgAttributes.srcset);
-        }
+function findContainingDetails(element) {
+    const result = [];
+    let detailElement = element.closest('details');
+    while (detailElement) {
+        result.push(detailElement);
+        detailElement = detailElement.parentElement.closest('details');
+    }
+    return result;
+}
 
-        img.alt = imgAttributes.alt;
-        img.src = imgAttributes.src;
 
-        if (progressive) {
-            _replacePlaceholderWithImage(imgPlaceholder, img, options.onreplaceCallback);
-        }
-    };
+export function isVisible (element, optionalThreshold, containingDetails) {
+    for (let detailElement of containingDetails)
+        if (! detailElement.open)
+            return false;
 
-    var _replacePlaceholderWithImage = function(imgPlaceholder, img, onreplaceCallback) {
-        var parentNode = imgPlaceholder.parentNode;
-        if (!!parentNode) {
-            parentNode.replaceChild(img, imgPlaceholder);
-            if (!!onreplaceCallback) {
-                onreplaceCallback.call(img);
-            }
-        }
-    };
+    let windowInnerHeight = window.innerHeight || document.documentElement.clientHeight,
+        threshold = optionalThreshold || 0;
 
-    var _resolveImageAttributes = function(imgPlaceholder) {
-        return {
-            src: imgPlaceholder.getAttribute("data-src"),
-            alt: imgPlaceholder.getAttribute("data-alt"),
-            title: imgPlaceholder.getAttribute("data-title"),
-            srcset: imgPlaceholder.getAttribute("data-srcset")
-        };
-    };
+    return element.getBoundingClientRect().top - windowInnerHeight <= threshold;
+}
 
-    var _validateOptions = function(options) {
-        return options || {};
-    };
 
-    var _isVisible = function(placeholder, optionalThreshold) {
-        var windowInnerHeight = window.innerHeight || document.documentElement.clientHeight;
-        var threshold = optionalThreshold || 0;
+/**
+ * Lazy loads image with img tag.
+ *
+ * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
+ *                                The node has to provide the data element data-src and data-alt.
+ *                                All other attributes are optional.
+ * @param {Object} options Optional object with following attributes:
+ *                           - onloadCallback:
+ *                                 Optional callback which is invoked after the image is loaded
+ *                                 successfully but before the actual replacement.
+ *                           - onerrorCallback:
+ *                                 Optional error handler which is invoked before the actual
+ *                                 replacement if the image could not be loaded.
+ *                           - onreplaceCallback
+ *                                 Optional callback which is invoked directly after the
+ *                                 replacement of the placeholder.
+ */
+export function lazyLoad (imgPlaceholder, options = {}) {
+    const imgAttributes = resolveImageAttributes(imgPlaceholder);
+    if (imgAttributes.src)
+        createImage(imgPlaceholder, imgAttributes, options);
+}
 
-        return placeholder.getBoundingClientRect().top - windowInnerHeight <= threshold;
-    };
 
-    var _loadImgIfVisible = function(imgPlaceholder, options) {
-        var scrollEventCallback = function(e) {
-            if (_isVisible(imgPlaceholder, options.threshold)) {
-                lazyLoad(imgPlaceholder, options);
+/**
+ * Registers the lazy loading event. If the placeholder becomes visible, the image
+ * will be loaded automatically.
+ *
+ * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
+ *                                The node has to provide the data element data-src and data-alt.
+ *                                All other attributes are optional.
+ * @param {Object} options Optional object of options.
+ */
+export function registerLazyLoad (imgPlaceholder, options = {}) {
+    const containgDetails = findContainingDetails(imgPlaceholder);
 
-                if (window.removeEventListener) {
-                    window.removeEventListener(e.type, scrollEventCallback, false);
-                } else {
-                    window.detachEvent("on" + e.type, scrollEventCallback);
-                }
-            }
-        };
-
-        return scrollEventCallback;
-    };
-
-    /**
-     * Lazy loads image with img tag.
-     *
-     * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
-     *                                The node has to provide the data element data-src and data-alt.
-     *                                All other attributes are optional.
-     * @param {Object} options Optional object with following attributes:
-     *                           - onloadCallback:
-     *                                 Optional callback which is invoked after the image is loaded
-     *                                 successfully but before the actual replacement.
-     *                           - onerrorCallback:
-     *                                 Optional error handler which is invoked before the actual
-     *                                 replacement if the image could not be loaded.
-     *                           - onreplaceCallback
-     *                                 Optional callback which is invoked directly after the
-     *                                 replacement of the placeholder.
-     */
-    var lazyLoad = function(imgPlaceholder, options) {
-        var imgAttributes = _resolveImageAttributes(imgPlaceholder);
-        var validatedOptions = _validateOptions(options);
-
-        if (!!imgAttributes.src && (!!imgAttributes.alt || imgAttributes.alt === "")) {
-            _createImage(
-                imgPlaceholder,
-                imgAttributes,
-                validatedOptions
-            );
-        }
-    };
-
-    /**
-     * Registers the lazy loading event. If the placeholder becomes visible, the image
-     * will be loaded automatically.
-     *
-     * @param {Object} imgPlaceholder The placeholder is a html node of any type (e.g. a span element).
-     *                                The node has to provide the data element data-src and data-alt.
-     *                                All other attributes are optional.
-     * @param {Object} options Optional object of options.
-     */
-    var registerLazyLoad = function(imgPlaceholder, options) {
-        var validatedOptions = _validateOptions(options);
-        if (_isVisible(imgPlaceholder, validatedOptions.threshold)) {
+    function eventHandler () {
+        if (isVisible(imgPlaceholder, options.threshold, containgDetails)) {
             lazyLoad(imgPlaceholder, options);
-        } else {
-            var loadImgIfVisible = _loadImgIfVisible(imgPlaceholder, validatedOptions);
-            if (window.addEventListener) {
-                window.addEventListener("scroll", loadImgIfVisible, false);
-            } else {
-                window.attachEvent("onscroll", loadImgIfVisible);
-            }
+            window.removeEventListener('scroll', eventHandler);
+            for (let detailElement of containgDetails)
+                detailElement.removeEventListener('toggle', eventHandler)
         }
-    };
+    }
 
-    /**
-     * Registers the lazy loading by the defined class of the placeholder(s). If the
-     * placeholders become visible, the images will be loaded automatically.
-     *
-     * @param imgPlaceholderClass Class of the placeholder.
-     * @param {Object} options Optional object of options.
-     */
-    var registerLazyLoadByClass = function(imgPlaceholderClass, options) {
-        var placeholders = document.querySelectorAll("." + imgPlaceholderClass);
-        for (var i = 0; i < placeholders.length; ++i) {
-            this.registerLazyLoad(placeholders[i], options);
-        }
-    };
+    if (isVisible(imgPlaceholder, options.threshold, containgDetails))
+        lazyLoad(imgPlaceholder, options);
+    else {
+        window.addEventListener('scroll', eventHandler);
+        for (let detailElement of containgDetails)
+            detailElement.addEventListener('toggle', eventHandler)
+    }
+}
 
-    return {
-        lazyLoad: lazyLoad,
-        registerLazyLoad: registerLazyLoad,
-        registerLazyLoadByClass: registerLazyLoadByClass
-    };
-}));
+
+/**
+ * Registers the lazy loading by the defined class of the placeholder(s). If the
+ * placeholders become visible, the images will be loaded automatically.
+ *
+ * @param imgPlaceholderClass Class of the placeholder.
+ * @param {Object} options Optional object of options.
+ */
+export function registerLazyLoadByClass (imgPlaceholderClass, options) {
+    for (let element of document.querySelectorAll(`.${imgPlaceholderClass}`))
+        registerLazyLoad(element, options);
+}
